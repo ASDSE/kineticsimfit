@@ -1,0 +1,165 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 12.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      4884,        155]
+NotebookOptionsPosition[      4586,        142]
+NotebookOutlinePosition[      4929,        157]
+CellTagsIndexPosition[      4886,        154]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell["\<\
+file=FileNameJoin[{NotebookDirectory[],\"logo.png\"}];
+logo=Import[file];
+
+Pane[Grid[{{Style[\"kineticSimFit\",\"Title\"],Show[logo,ImageSize->Tiny]},{\
+MouseAppearance[Button[Style[\"Launch Software Package (Click me)\",\"Section\
+\"],{nb=EvaluationNotebook[],NotebookFind[nb,\"launchcell\",All,CellTags],\
+SelectionEvaluate[nb]},Appearance->None],\"LinkHand\"],SpanFromAbove}},\
+Alignment->Center,ItemSize->Large,BaselinePosition->Baseline],Alignment->\
+Center,ImageSize->Full]
+kineticSimFit\t
+Launch Software Package (Click me)
+kineticSimFit\t
+Launch Software Package (Click me)\t\[SpanFromAbove]
+
+
+kineticSimFit
+Click Launch me Package Software
+(* Notebook settings
+*)SetOptions[$FrontEnd,FrontEndEventActions->{{\"KeyDown\",\"\\t\"}:>\
+NotebookWrite[SelectedNotebook[],\"\\t\"]}];
+SetOptions[EvaluationNotebook[],CellContext->Notebook];
+SetOptions[$FrontEnd,\"DynamicUpdating\"->True];
+SetOptions[$FrontEnd,\"DynamicEvaluationTimeout\"->30];
+click=\"Null\";
+(* Load Packges *)\t
+
+Get[FileNameJoin[{FileNameJoin[{NotebookDirectory[],\"kineticSimFit\",\"\
+kineticSimFit.m\"}]}]];
+(*HG*)
+(* Paths *)
+
+kinHGSimpath=FileNameJoin[{NotebookDirectory[],\"Simulation\",\"Sim-thermoHG.\
+nb\"}];
+kinHGFitpath=FileNameJoin[{NotebookDirectory[],\"Fitting\",\"Fitting-kinHD-\
+fitConc_kequ.nb\"}];
+(*hgimg=Import[FileNameJoin[{NotebookDirectory[],\"Images\",\"HG-HR-pic.png\"}\
+]];*)
+(*Buttons*)
+kineticHGSimbutton=createButton[\"HG^Sim\",kinHGSimpath,\"Simulation for a \
+Direct-Binding Assay (DBA)\",0];
+
+kineticHGFitbutton=createButton[\"HG^Fit\",kinHGFitpath,\"Fitting for a \
+Direct-Binding Assay (DBA)\",1];
+
+
+(*inputlines*)
+  
+   
+   hg=Grid[{Text@Style[#,\"Section\"]&/@{\"Model\",\"Kinetics\"},
+\t\t{ Style[\"H + G Underoverscript[\[Equilibrium], Subsuperscript[k, out, \
+HG], Subsuperscript[k, in, HG]] HG\",\"Subsection\"],
+
+Grid[{{kineticHGSimbutton,kineticHGFitbutton}}]}
+\t
+\t\t},
+\t\tAlignment->{Center,{Bottom,Center}},Frame->All,ItemSize->{{20,50,40}},\
+Spacings->{0,1}];
+(*HDIDA*)
+(* Paths *)
+
+
+kinHDIDASimpath=FileNameJoin[{NotebookDirectory[],\"Simulation\",\"Sim-\
+kineticsComp.nb\"}];
+kinHDIDAFitpath=FileNameJoin[{NotebookDirectory[],\"Fitting\",\"Fit-\
+kineticsIDA.nb\"}];
+(*Buttons*)
+
+kineticHDIDASimbutton=createButton[\"IDA^Sim\",kinHDIDASimpath,\"Simulation \
+for a Competitive-Binding Assays (CBAs)\",1];
+kineticHDIDAFitbutton=createButton[\"IDA^Fit\",kinHDIDAFitpath,\"Fitting for \
+a Indicator-Displacement Assay (IDA)\",1];
+
+
+(*inputline*)
+   hdIDA=Grid[{Text@Style[#,\"Section\"]&/@{\"Model\",\"Kinetics\"},
+\t\t{ Style[\"HD + G Underoverscript[\[Equilibrium], Subsuperscript[k, in, \
+HD], Subsuperscript[k, out, HD]] H + D + G Underoverscript[\[Equilibrium], \
+Subsuperscript[k, out, HG], Subsuperscript[k, in, HG]] HG + \
+D\",\"Subsection\"],
+Grid[{{kineticHDIDASimbutton,kineticHDIDAFitbutton}}]}},
+\t\tAlignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},\
+Spacings->{0,1}];
+(*HDGDA*)
+(* Paths *)
+
+
+kinHDADASimpath=FileNameJoin[{NotebookDirectory[],\"Simulation\",\"Sim-\
+kineticsComp.nb\"}];
+kinHDADAFitpath=FileNameJoin[{NotebookDirectory[],\"Fitting\",\"Fit-\
+kineticsGDA.nb\"}];
+(*Buttons*)
+kineticHDADASimbutton=createButton[\"GDA^Sim\",kinHDADASimpath,\"Simulation \
+for a Competitive-Binding Assays (CBAs)\",1];
+kineticHDADAFitbutton=createButton[\"GDA^Fit\",kinHDADAFitpath,\"Fitting for \
+a Guest-Displacement Assay (IDA)\",1];
+
+
+(*inputline*)
+   hdGDA=Grid[{Text@Style[#,\"Section\"]&/@{\"Model\",\"Kinetics\"},
+\t\t{ Style[\"HG + D Underoverscript[\[Equilibrium], Subsuperscript[k, in, \
+HG], Subsuperscript[k, out, HG]] H + D + G Underoverscript[\[Equilibrium], \
+Subsuperscript[k, out, HD], Subsuperscript[k, in, HD]] HD + \
+G\",\"Subsection\"],
+Grid[{{kineticHDADASimbutton,kineticHDADAFitbutton}}]}},
+\t\tAlignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},\
+Spacings->{0,1}];
+
+myPrint[args__] :=Print[args] ;
+
+type={
+{hg,hdIDA,hdGDA}(*1,1*)
+};
+
+
+TableForm[First[type]]
+
+
+
+\
+\>", "Input",ExpressionUUID->"3de43712-fbd0-4dd5-92df-a16c8f23e808"]
+},
+WindowSize->{775, 561},
+WindowMargins->{{Automatic, -158}, {3, Automatic}},
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4024, 120, 1436, "Input",ExpressionUUID->"3de43712-fbd0-4dd5-92df-a16c8f23e808"]
+}
+]
+*)
+
+(* End of internal cache information *)
+

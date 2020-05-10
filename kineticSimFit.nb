@@ -3,9 +3,13 @@ logo=Import[file];
 
 Pane[Grid[{{Style["kineticSimFit","Title"],Show[logo,ImageSize->Tiny]},{MouseAppearance[Button[Style["Launch Software Package (Click me)","Section"],{nb=EvaluationNotebook[],NotebookFind[nb,"launchcell",All,CellTags],SelectionEvaluate[nb]},Appearance->None],"LinkHand"],SpanFromAbove}},Alignment->Center,ItemSize->Large,BaselinePosition->Baseline],Alignment->Center,ImageSize->Full]
 kineticSimFit	
+Launch Software Package (Click me)
+kineticSimFit	
 Launch Software Package (Click me)	
 
 
+kineticSimFit
+Click Launch me Package Software
 (* Notebook settings
 *)SetOptions[$FrontEnd,FrontEndEventActions->{{"KeyDown","\t"}:>NotebookWrite[SelectedNotebook[],"\t"]}];
 SetOptions[EvaluationNotebook[],CellContext->Notebook];
@@ -79,18 +83,6 @@ type={
 
 
 TableForm[First[type]]
-
-
-Model	Kinetics
-H + G Underoverscript[⇌, Subsuperscript[k, out, HG], Subsuperscript[k, in, HG]] HG	HG^Sim	HG^Fit
-
-
-Model	Kinetics
-HD + G Underoverscript[⇌, Subsuperscript[k, in, HD], Subsuperscript[k, out, HD]] H + D + G Underoverscript[⇌, Subsuperscript[k, out, HG], Subsuperscript[k, in, HG]] HG + D	IDA^Sim	IDA^Fit
-
-
-Model	Kinetics
-HG + D Underoverscript[⇌, Subsuperscript[k, in, HG], Subsuperscript[k, out, HG]] H + D + G Underoverscript[⇌, Subsuperscript[k, out, HD], Subsuperscript[k, in, HD]] HD + G	GDA^Sim	GDA^Fit
 
 
 

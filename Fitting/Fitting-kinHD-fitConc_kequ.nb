@@ -1,0 +1,3010 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[    125778,       3002]
+NotebookOptionsPosition[    122477,       2918]
+NotebookOutlinePosition[    124379,       2970]
+CellTagsIndexPosition[    124220,       2962]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Pane", "[", 
+  RowBox[{
+   RowBox[{"Grid", "[", 
+    RowBox[{
+     RowBox[{"{", "\n", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"Style", "[", 
+         RowBox[{
+         "\"\<Host:Guest kinetic fitting\>\"", ",", "\"\<Chapter\>\""}], 
+         "]"}], "}"}], ",", "\n", 
+       RowBox[{"{", 
+        RowBox[{"MouseAppearance", "[", 
+         RowBox[{
+          RowBox[{"Button", "[", 
+           RowBox[{
+            RowBox[{"Style", "[", 
+             RowBox[{"\"\<Launch Application\>\"", ",", "\"\<Section\>\""}], 
+             "]"}], ",", 
+            RowBox[{"{", " ", 
+             RowBox[{
+              RowBox[{"nb", "=", 
+               RowBox[{"EvaluationNotebook", "[", "]"}]}], ",", 
+              RowBox[{"NotebookFind", "[", 
+               RowBox[{
+               "nb", ",", "\"\<loadcell\>\"", ",", "All", ",", "CellTags"}], 
+               "]"}], ",", 
+              RowBox[{"SelectionEvaluate", "[", "nb", "]"}], ",", 
+              RowBox[{"NotebookFind", "[", 
+               RowBox[{
+               "nb", ",", "\"\<simulation\>\"", ",", "All", ",", "CellTags"}],
+                "]"}], ",", 
+              RowBox[{"SelectionEvaluate", "[", "nb", "]"}]}], "}"}], ",", 
+            RowBox[{"Appearance", "\[Rule]", "None"}]}], "]"}], ",", 
+          "\"\<LinkHand\>\""}], "]"}], "}"}]}], "\n", "\n", "}"}], ",", " ", 
+     RowBox[{"Alignment", "\[Rule]", "Center"}], ",", 
+     RowBox[{"ItemSize", "\[Rule]", "Large"}], ",", 
+     RowBox[{"BaselinePosition", "\[Rule]", "Baseline"}]}], "]"}], ",", 
+   RowBox[{"Alignment", "\[Rule]", "Center"}], ",", 
+   RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}]], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.7578714708975143`*^9, 3.757871517866379*^9}, {
+  3.778308787662057*^9, 3.7783087878852625`*^9}, {3.77833990293423*^9, 
+  3.778339931910925*^9}, {3.7784340202183895`*^9, 3.778434109859798*^9}, {
+  3.779010009589753*^9, 3.779010011044368*^9}},
+ CellLabel->
+  "In[1514]:=",ExpressionUUID->"9da95d24-26c6-4c61-84c2-9ce619ab87b0"],
+
+Cell[BoxData[
+ PaneBox[
+  TagBox[GridBox[{
+     {
+      StyleBox["\<\"Host:Guest kinetic fitting\"\>", "Chapter",
+       StripOnInput->False]},
+     {
+      TagBox[
+       ButtonBox[
+        StyleBox["\<\"Launch Application\"\>", "Section",
+         StripOnInput->False],
+        Appearance->None,
+        ButtonFunction:>{$CellContext`nb = EvaluationNotebook[], 
+          NotebookFind[$CellContext`nb, "loadcell", All, CellTags], 
+          SelectionEvaluate[$CellContext`nb], 
+          NotebookFind[$CellContext`nb, "simulation", All, CellTags], 
+          SelectionEvaluate[$CellContext`nb]},
+        Evaluator->Automatic,
+        Method->"Preemptive"],
+       MouseAppearanceTag["LinkHand"]]}
+    },
+    AutoDelete->False,
+    BaselinePosition->Baseline,
+    GridBoxAlignment->{"Columns" -> {{Center}}},
+    GridBoxItemSize->{"Columns" -> {{Large}}, "Rows" -> {{Large}}}],
+   "Grid"],
+  Alignment->Center,
+  ImageSize->Full]], "Output",
+ CellChangeTimes->{3.7784147367660675`*^9, 3.778434081661952*^9, 
+  3.7784341116887774`*^9, 3.779010025904336*^9},
+ CellLabel->
+  "Out[1514]=",ExpressionUUID->"de74371e-b7c3-4b40-8632-754783171304"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\t", 
+  RowBox[{"(*", " ", 
+   RowBox[{"Notebook", " ", "settings"}], "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{
+      RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+      RowBox[{"CellContext", "\[Rule]", "Notebook"}]}], "]"}], ";"}], "\n", 
+   RowBox[{"SetOptions", "[", 
+    RowBox[{"$FrontEnd", ",", 
+     RowBox[{"GlobalInitializationCellWarning", "\[Rule]", "False"}]}], "]"}],
+    "\n", 
+   RowBox[{"SetOptions", "[", 
+    RowBox[{
+     RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+     RowBox[{"CellEpilog", "\[RuleDelayed]", 
+      RowBox[{"SelectionMove", "[", 
+       RowBox[{
+        RowBox[{"EvaluationNotebook", "[", "]"}], ",", "All", ",", 
+        "EvaluationCell"}], "]"}]}]}], "]"}], "\n", 
+   RowBox[{"SetOptions", "[", 
+    RowBox[{
+     RowBox[{"EvaluationNotebook", "[", "]"}], ",", 
+     RowBox[{"InitializationCellEvaluation", "\[Rule]", "True"}], ",", 
+     RowBox[{"InitializationCellWarning", "\[Rule]", "False"}]}], "]"}], "\n", 
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"$FrontEnd", ",", 
+      RowBox[{"\"\<DynamicUpdating\>\"", "\[Rule]", "True"}]}], "]"}], ";"}], 
+   "\n", 
+   RowBox[{
+    RowBox[{"SetOptions", "[", 
+     RowBox[{"$FrontEnd", ",", 
+      RowBox[{"\"\<DynamicEvaluationTimeout\>\"", "\[Rule]", "30"}]}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Load", " ", "Packges"}], "*)"}], "\t", "\n", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Get", "[", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{"FileNameJoin", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"ParentDirectory", "[", 
+           RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ",", 
+          "\"\<Packages\>\"", ",", "\"\<datagen.m\>\""}], "}"}], "]"}], "}"}],
+       "]"}], "]"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Get", "[", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"ParentDirectory", "[", 
+         RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ",", 
+        "\"\<Styles\>\"", ",", "\"\<buttons.m\>\""}], "}"}], "]"}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Get", "[", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"ParentDirectory", "[", 
+         RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ",", 
+        "\"\<Styles\>\"", ",", "\"\<styles.m\>\""}], "}"}], "]"}], "]"}], 
+    ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Get", "[", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"ParentDirectory", "[", 
+         RowBox[{"NotebookDirectory", "[", "]"}], "]"}], ",", 
+        "\"\<Styles\>\"", ",", "\"\<inputline.m\>\""}], "}"}], "]"}], "]"}], 
+    ";"}], "\[IndentingNewLine]", "\n", "\[IndentingNewLine]", 
+   RowBox[{"(*", "Output", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"output", "=", "\"\<empty\>\""}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Off", "[", 
+     RowBox[{"Export", "::", "chtype"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"outputinfo", "=", "\"\<data not yet generated\>\""}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"kinGenerateOutput", "[", 
+      RowBox[{
+      "fk2hd_", ",", "fk1hd_", ",", "fh0_", ",", "fd0_", ",", "fsig0_", ",", 
+       "fsighd_", ",", "fsigd_", ",", "ftmin_", ",", "ftmax_", ",", 
+       "fsteps_"}], "]"}], ":=", "\[IndentingNewLine]", 
+     RowBox[{"Block", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "inputs", ",", "datafitted", ",", "header", ",", "units", ",", 
+         "column1", ",", "column2", ",", "column3", ",", "signaloutput", ",", 
+         "put", ",", "dataHD", ",", "dataD", ",", "dataHG", ",", "dataG", ",",
+          "dataH", ",", "specieslegend", ",", "dataX"}], "}"}], ",", 
+       "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"inputs", "=", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<Quantity\>\"", ",", "\"\<Value\>\"", ",", "\"\<Error\>\""}], 
+            "}"}], ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<adjusted R-squared\>\"", ",", "adjustedrsquared", ",", 
+             "\"\<\>\""}], "}"}], ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{"\"\<conc(H)\>\"", ",", "fh0", ",", "\"\<\>\""}], "}"}], 
+           ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{"\"\<conc(D)\>\"", ",", "fd0", ",", "\"\<\>\""}], "}"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Kequ(HD)\>\"", ",", 
+             RowBox[{"fk1hd", "/", "fk2hd"}], ",", "kequhderror"}], "}"}], 
+           ",", "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<k1(HD)\>\"", ",", "fk1hd", ",", "khd1error"}], "}"}],
+            ",", "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<k-1(HD)\>\"", ",", "fk2hd", ",", "khd2error"}], 
+            "}"}], ",", "\n", "\n", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Signal-0\>\"", ",", "sig0in", ",", "sig0error"}], 
+            "}"}], ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Signal-HD\>\"", ",", "sighdin", ",", "sighderror"}], 
+            "}"}], ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Signal-Dye\>\"", ",", "sigdin", ",", "sigderror"}], 
+            "}"}], ",", "\n", 
+           RowBox[{"{", 
+            RowBox[{"\"\<tmax\>\"", ",", "ftmax", ",", "\"\<sec\>\""}], "}"}],
+            ",", "\[IndentingNewLine]", 
+           RowBox[{"{", 
+            RowBox[{"\"\<Date\>\"", ",", 
+             RowBox[{"DateString", "[", "]"}], ",", "\"\<\>\""}], "}"}]}], 
+          "\n", "}"}]}], ";", "\n", 
+        RowBox[{"header", "=", 
+         RowBox[{"{", 
+          RowBox[{
+          "\"\<time / sec\>\"", ",", "\"\<fitted signal\>\"", ",", 
+           "\"\<time / sec\>\"", ",", "\"\<imported data\>\""}], "}"}]}], ";",
+         "\n", "\n", 
+        RowBox[{"column1", "=", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"inputs", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ";", 
+        RowBox[{"column2", "=", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"inputs", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], ";", 
+        RowBox[{"column3", "=", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"inputs", "[", 
+           RowBox[{"[", 
+            RowBox[{"All", ",", "3"}], "]"}], "]"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", " ", 
+        RowBox[{"dataX", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{"N", "[", "x", "]"}], "}"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "ftmax", ",", 
+             RowBox[{"ftmax", "/", "fsteps"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", " ", 
+        RowBox[{"datafitted", "=", 
+         RowBox[{"Table", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"modelsignalsim", "[", 
+             RowBox[{
+             "khd1in", ",", "kequhdin", ",", "h0in", ",", "d0in", ",", 
+              "sig0in", ",", "sighdin", ",", "sigdin"}], "]"}], "[", "x", 
+            "]"}], ",", 
+           RowBox[{"{", 
+            RowBox[{"x", ",", "0", ",", "ftmax", ",", 
+             RowBox[{"ftmax", "/", "fsteps"}]}], "}"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"signaloutput", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{"dataX", ",", 
+           RowBox[{"List", "/@", "datafitted"}], ",", 
+           RowBox[{"List", "/@", 
+            RowBox[{"adjusteddata", "[", 
+             RowBox[{"[", 
+              RowBox[{"All", ",", "1"}], "]"}], "]"}]}], ",", 
+           RowBox[{"List", "/@", 
+            RowBox[{"adjusteddata", "[", 
+             RowBox[{"[", 
+              RowBox[{"All", ",", "2"}], "]"}], "]"}]}], ",", "2"}], "]"}]}], 
+        ";", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"put", "=", 
+         RowBox[{"Join", "[", 
+          RowBox[{
+           RowBox[{"Prepend", "[", 
+            RowBox[{"signaloutput", ",", "header"}], "]"}], ",", 
+           RowBox[{"List", "/@", "column1"}], ",", 
+           RowBox[{"List", "/@", "column2"}], ",", 
+           RowBox[{"List", "/@", "column3"}], ",", "2"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"Return", "[", "put", "]"}]}]}], "\[IndentingNewLine]", 
+      "]"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{"(*", "buttons", "*)"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"exportbutton", "=", 
+     RowBox[{"MouseAppearance", "[", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{
+         RowBox[{"stylesButtonGenericStyle", "[", 
+          RowBox[{
+          "\"\<Save Fitting\>\"", ",", 
+           "\"\<Save the simulated data as comma delimited .csv\>\""}], "]"}],
+          ",", "\[IndentingNewLine]", 
+         RowBox[{"Export", "[", 
+          RowBox[{
+           RowBox[{"SystemDialogInput", "[", 
+            RowBox[{"\"\<FileSave\>\"", ",", "\"\<.csv\>\""}], "]"}], ",", 
+           "output"}], "]"}], ",", 
+         RowBox[{"Method", "\[Rule]", "\"\<Queued\>\""}], ",", 
+         RowBox[{"Appearance", "\[Rule]", "None"}]}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", "]"}], ",", "\"\<LinkHand\>\""}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"datageneratebutton", "=", 
+     RowBox[{"MouseAppearance", "[", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{
+         RowBox[{"stylesButtonGenericStyle", "[", 
+          RowBox[{
+          "\"\<Generate saveable Data\>\"", ",", 
+           "\"\<Generate Datapoints for CSV export\>\""}], "]"}], ",", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"output", "=", 
+           RowBox[{"kinGenerateOutput", "[", 
+            RowBox[{
+            "khd2in", ",", "khd1in", ",", "h0in", ",", "d0in", ",", "sig0in", 
+             ",", "sighdin", ",", "sigdin", ",", "tmin", ",", "tmax", ",", 
+             RowBox[{"N", "[", "200", "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"outputinfo", "=", 
+           RowBox[{"output", "[", 
+            RowBox[{"[", 
+             RowBox[{"12", ",", "6"}], "]"}], "]"}]}], ";"}], 
+         "\[IndentingNewLine]", ",", 
+         RowBox[{"Appearance", "\[Rule]", "None"}]}], "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", "]"}], ",", "\"\<LinkHand\>\""}], "]"}]}], 
+    ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"eqkinsignal", "=", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{
+        RowBox[{
+         RowBox[{"hd", "'"}], "[", "t", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"-", 
+           RowBox[{"(", 
+            RowBox[{"khd1", "/", "kequhd"}], ")"}]}], "*", 
+          RowBox[{"hd", "[", "t", "]"}]}], "+", 
+         RowBox[{"khd1", "*", 
+          RowBox[{"h", "[", "t", "]"}], "*", 
+          RowBox[{"d", "[", "t", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"h", "'"}], "[", "t", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"khd1", "/", "kequhd"}], ")"}], "*", 
+          RowBox[{"hd", "[", "t", "]"}]}], "-", 
+         RowBox[{"khd1", "*", 
+          RowBox[{"h", "[", "t", "]"}], "*", 
+          RowBox[{"d", "[", "t", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"d", "'"}], "[", "t", "]"}], "\[Equal]", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"khd1", "/", "kequhd"}], ")"}], "*", 
+          RowBox[{"hd", "[", "t", "]"}]}], "-", 
+         RowBox[{"khd1", "*", 
+          RowBox[{"h", "[", "t", "]"}], "*", 
+          RowBox[{"d", "[", "t", "]"}]}]}]}], ",", "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"sig", "[", "t", "]"}], "\[Equal]", 
+        RowBox[{"sig0", "+", 
+         RowBox[{"sighd", "*", 
+          RowBox[{"hd", "[", "t", "]"}]}], "+", 
+         RowBox[{"sigd", "*", 
+          RowBox[{"d", "[", "t", "]"}]}]}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Clear", "[", 
+     RowBox[{
+     "h0", ",", "d0", ",", "khd1", ",", "khd2", ",", "kequhd", ",", "sig0", 
+      ",", "sighd", ",", "sigd"}], "]"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"initialssim", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"h", "[", "0", "]"}], "\[Equal]", "h0"}], ",", 
+       RowBox[{
+        RowBox[{"d", "[", "0", "]"}], "\[Equal]", "d0"}], ",", 
+       RowBox[{
+        RowBox[{"hd", "[", "0", "]"}], "\[Equal]", "0."}], ",", 
+       RowBox[{
+        RowBox[{"sig", "[", "0", "]"}], "\[Equal]", 
+        RowBox[{"sig0in", "+", 
+         RowBox[{"sighdin", "*", "0"}], "+", 
+         RowBox[{"sigdin", "*", "d0"}]}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"modelsignalsim", "=", 
+     RowBox[{"ParametricNDSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eqkinsignal", ",", "initialssim"}], "}"}], ",", "sig", ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tmax"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "khd1", ",", "kequhd", ",", "h0", ",", "d0", ",", "sig0", ",", 
+         "sighd", ",", "sigd"}], "}"}]}], "]"}]}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"cannot", " ", "be", " ", "used", " ", "for", " ", "fitting"}], 
+     ",", " ", 
+     RowBox[{"only", " ", "simulation"}], ",", " ", 
+     RowBox[{
+     "causes", " ", "unknown", " ", "errors", " ", "in", " ", "fitting"}]}], 
+    "*)"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{"Clear", "[", 
+    RowBox[{
+    "h0in", ",", "h0error", ",", "h0fixed", ",", "d0in", ",", "d0error", ",", 
+     "d0fixed", ",", "g0in", ",", "kequhdin", ",", "kequhderror", ",", 
+     "kequhdfixed", ",", "kequhgin", ",", "khg1in", ",", "khd1in", ",", 
+     "khd1error", ",", "khd1fixed", ",", "khd2in", ",", "khd2error", ",", 
+     "khd2fixed", ",", "tmax", ",", "sighdin", ",", "sighderror", ",", 
+     "sighdfixed", ",", "sigdin", ",", "sigderror", ",", "sigdfixed", ",", 
+     "sig0in", ",", "sig0error", ",", "sig0fixed", ",", "timesteps", ",", 
+     "concsteps", ",", "end"}], "]"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"filename", "=", "\"\<fit-temp-kinHD\>\""}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"variablessavebutton", "=", 
+     RowBox[{"MouseAppearance", "[", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{
+         RowBox[{"stylesButtonGenericStyle", "[", 
+          RowBox[{
+          "\"\<Save Parameters\>\"", ",", 
+           "\"\<Saves the set values of the parameters\>\""}], "]"}], ",", 
+         RowBox[{"{", "\[IndentingNewLine]", 
+          RowBox[{"Export", "[", 
+           RowBox[{
+            RowBox[{"savepath", "[", "filename", "]"}], ",", 
+            RowBox[{"{", 
+             RowBox[{
+             "h0in", ",", "d0in", ",", "step", ",", "kequhdin", ",", "sig0in",
+               ",", "sigdin", ",", "sighdin", ",", "g0in", ",", "kequhgin", 
+              ",", "khd1in", ",", " ", "khg1in"}], "}"}]}], "]"}], "}"}], ",", 
+         RowBox[{"Appearance", "\[Rule]", "None"}]}], "]"}], ",", 
+       "\"\<LinkHand\>\""}], "]"}]}], ";"}], "\n", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"variablesloadbutton", "=", 
+     RowBox[{"MouseAppearance", "[", 
+      RowBox[{
+       RowBox[{"Button", "[", 
+        RowBox[{
+         RowBox[{"stylesButtonGenericStyle", "[", 
+          RowBox[{
+          "\"\<Load Saved Parameters\>\"", ",", 
+           "\"\<Loads the previously saved values\>\""}], "]"}], ",", 
+         RowBox[{"{", 
+          RowBox[{
+           RowBox[{"{", 
+            RowBox[{
+            "h0in", ",", "d0in", ",", "step", ",", "kequhdin", ",", "sig0in", 
+             ",", "sigdin", ",", "sighdin", ",", "g0in", ",", "kequhgin", ",",
+              "khd1in", ",", " ", "khg1in"}], "}"}], "=", 
+           RowBox[{"Import", "[", 
+            RowBox[{"savepath", "[", "filename", "]"}], "]"}]}], "}"}], ",", 
+         RowBox[{"Appearance", "\[Rule]", "None"}]}], "]"}], ",", 
+       "\"\<LinkHand\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"inputline", "=", 
+     RowBox[{"{", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{
+        "importbutton", ",", "variablesloadbutton", ",", 
+         "variablessavebutton"}], "}"}], ",", "\[IndentingNewLine]", 
+       "fitilheading", ",", "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<concentration\>\"", ",", "\"\<Host\>\"", ",", "h0in", ",", 
+           "h0error", ",", "h0fixed", ",", "False"}], "]"}], "}"}], "]"}], 
+       ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<concentration\>\"", ",", "\"\<Host\>\"", ",", "h0in", ",", 
+           "h0error", ",", "h0fixed", ",", "False"}], "]"}], "}"}], "]"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<concentration\>\"", ",", "\"\<Dye\>\"", ",", "d0in", ",", 
+           "d0error", ",", "d0fixed", ",", "False"}], "]"}], "}"}], "]"}], 
+       ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<concentration\>\"", ",", "\"\<Dye\>\"", ",", "d0in", ",", 
+           "d0error", ",", "d0fixed", ",", "False"}], "]"}], "}"}], "]"}], 
+       ",", "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<binding\>\"", ",", "\"\<HD\>\"", ",", "kequhdin", ",", 
+           "kequhderror", ",", "kequhdfixed", ",", "False"}], "]"}], "}"}], 
+        "]"}], ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<binding\>\"", ",", "\"\<HD\>\"", ",", "kequhdin", ",", 
+           "kequhderror", ",", "kequhdfixed", ",", "False"}], "]"}], "}"}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<kin\>\"", ",", "\"\<Dye\>\"", ",", "khd1in", ",", "khd1error", 
+           ",", "khd1fixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<kin\>\"", ",", "\"\<Dye\>\"", ",", "khd1in", ",", "khd1error", 
+           ",", "khd1fixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{"\"\<kout\>\"", ",", "\"\<Dye\>\"", ",", 
+           RowBox[{"khd1in", "/", "kequhdin"}], ",", "khd2error", ",", 
+           "khd2fixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{"\"\<kout\>\"", ",", "\"\<Dye\>\"", ",", 
+           RowBox[{"khd1in", "/", "kequhdin"}], ",", "khd2error", ",", 
+           "khd2fixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<signal\>\"", ",", "\"\<HD\>\"", ",", "sighdin", ",", 
+           "sighderror", ",", "sighdfixed", ",", "True"}], "]"}], "}"}], 
+        "]"}], ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<signal\>\"", ",", "\"\<HD\>\"", ",", "sighdin", ",", 
+           "sighderror", ",", "sighdfixed", ",", "True"}], "]"}], "}"}], 
+        "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<signal\>\"", ",", "\"\<D\>\"", ",", "sigdin", ",", "sigderror",
+            ",", "sigdfixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<signal\>\"", ",", "\"\<D\>\"", ",", "sigdin", ",", "sigderror",
+            ",", "sigdfixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinputfield", "[", 
+          RowBox[{
+          "\"\<signal\>\"", ",", "\"\<0\>\"", ",", "sig0in", ",", "sig0error",
+            ",", "sig0fixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{"fitilinfofield", "[", 
+          RowBox[{
+          "\"\<signal\>\"", ",", "\"\<0\>\"", ",", "sig0in", ",", "sig0error",
+            ",", "sig0fixed", ",", "True"}], "]"}], "}"}], "]"}], ",", 
+       "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"ilinputfield", "[", 
+           RowBox[{"\"\<time\>\"", ",", "\"\<max\>\"", ",", "tmax"}], "]"}], 
+          ",", 
+          RowBox[{"ilinputfield", "[", 
+           RowBox[{"\"\<end\>\"", ",", "\"\<time\>\"", ",", "end"}], "]"}], 
+          ",", 
+          RowBox[{"ilinputfield", "[", 
+           RowBox[{"\"\<end\>\"", ",", "\"\<value\>\"", ",", "first"}], 
+           "]"}]}], "}"}], "]"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"Flatten", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"ilinfofield", "[", 
+           RowBox[{"\"\<time\>\"", ",", "\"\<max\>\"", ",", "tmax"}], "]"}], 
+          ",", 
+          RowBox[{"ilinfofield", "[", 
+           RowBox[{"\"\<end\>\"", ",", "\"\<time\>\"", ",", "end"}], "]"}], 
+          ",", 
+          RowBox[{"ilinfofield", "[", 
+           RowBox[{"\"\<end\>\"", ",", "\"\<value\>\"", ",", "first"}], 
+           "]"}]}], "}"}], "]"}]}], "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "}"}]}], ";"}], 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"species", "=", 
+     RowBox[{"{", "1", "}"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"h0in", "=", 
+     RowBox[{"1.", "*", 
+      RowBox[{"10", "^", 
+       RowBox[{"-", "6"}]}]}]}], ";", 
+    RowBox[{"h0error", "=", "0"}], ";", 
+    RowBox[{"h0fixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"g0in", "=", 
+     RowBox[{"4.9", "*", 
+      RowBox[{"10", "^", 
+       RowBox[{"-", "6"}]}]}]}], ";", 
+    RowBox[{"d0error", "=", "0"}], ";", 
+    RowBox[{"d0fixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"d0in", "=", 
+     RowBox[{"1.", "*", 
+      RowBox[{"10", "^", 
+       RowBox[{"-", "6"}]}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"khg1in", "=", 
+     RowBox[{"1.09977", "*", 
+      RowBox[{"10", "^", "7"}]}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"khd1in", "=", "1.0857031245986227`*^7"}], ";", 
+    RowBox[{"khd1error", "=", "0"}], ";", 
+    RowBox[{"khd1fixed", "=", "2"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kequhgin", "=", "23456790.12"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"kequhdin", "=", "23456790.12"}], ";", 
+    RowBox[{"kequhderror", "=", "0"}], ";", 
+    RowBox[{"kequhdfixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"khd2in", "=", 
+     RowBox[{"khd1in", "/", "kequhdin"}]}], ";", 
+    RowBox[{"khd2error", "=", "0"}], ";", 
+    RowBox[{"khd2fixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tmin", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"tmax", "=", "2."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"end", "=", "tmax"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"timesteps", "=", "10"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"concsteps", "=", "22."}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"stepsize", "=", 
+     RowBox[{"tmax", "/", "100"}]}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sighdin", "=", "1.2365763856052554`*^6"}], ";", 
+    RowBox[{"sighderror", "=", "0"}], ";", 
+    RowBox[{"sighdfixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sigdin", "=", "0"}], ";", 
+    RowBox[{"sigderror", "=", "0"}], ";", 
+    RowBox[{"sigdfixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"sig0in", "=", "0"}], ";", 
+    RowBox[{"sig0error", "=", "0"}], ";", 
+    RowBox[{"sig0fixed", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"cfac", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"adjustedrsquared", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"first", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+   "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"f", "=", 
+     RowBox[{"FileNameJoin", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Samples\>\"", ",", 
+        "\"\<kinHD-sim.txt\>\""}], "}"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", "\n", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{"TableForm", "[", 
+        RowBox[{"{", "\n", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<File format\>\"", ",", "\"\<Time domain\>\"", ",", 
+            "\"\<Normalization\>\"", ",", "\"\<Concentration factor\>\"", 
+            ",", "\"\<JASCO Import?\>\"", ",", " ", 
+            "\"\<Reset to Minimum?\>\"", ",", "\"\<Trim the data?\>\""}], 
+           "}"}], ",", "\n", 
+          RowBox[{"{", 
+           RowBox[{"\"\<tab delimited .txt file\>\"", ",", 
+            RowBox[{"RadioButtonBar", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "factor", "]"}], ",", " ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{
+                 RowBox[{"1", "/", "60."}], " ", "->", " ", "\"\<min\>\""}], 
+                ",", " ", 
+                RowBox[{"1", " ", "->", " ", "\"\<sec\>\""}], ",", 
+                RowBox[{"1000", "\[Rule]", " ", "\"\<msec\>\""}]}], "}"}]}], 
+             "]"}], ",", 
+            RowBox[{"RadioButtonBar", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "normchoice", "]"}], ",", " ", 
+              RowBox[{"{", 
+               RowBox[{
+                RowBox[{"1", " ", "->", " ", "\"\<None\>\""}], ",", " ", 
+                RowBox[{"2", " ", "->", " ", "\"\<to N[0,1]\>\""}], ",", 
+                RowBox[{"3", "\[Rule]", " ", "\"\<Devide by max\>\""}]}], 
+               "}"}]}], "]"}], ",", 
+            RowBox[{"InputField", "[", 
+             RowBox[{
+              RowBox[{"Dynamic", "[", "cfac", "]"}], ",", " ", 
+              RowBox[{"FieldSize", " ", "->", " ", "8"}]}], "]"}], ",", 
+            RowBox[{"Checkbox", "[", 
+             RowBox[{"Dynamic", "[", "jascoImport", "]"}], "]"}], ",", 
+            RowBox[{"Checkbox", "[", 
+             RowBox[{"Dynamic", "[", "resetToMin", "]"}], "]"}], ",", 
+            RowBox[{"Checkbox", "[", 
+             RowBox[{"Dynamic", "[", "trimmer", "]"}], "]"}]}], "}"}]}], 
+         "}"}], "]"}], ",", "\"\<Subsubsection\>\"", ",", "Black", ",", 
+       RowBox[{"FontSize", "\[Rule]", "16"}]}], "]"}], "\[IndentingNewLine]", 
+     "]"}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"Print", "[", 
+     RowBox[{"Style", "[", 
+      RowBox[{
+       RowBox[{"TableForm", "[", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<currently loaded data:\>\"", ",", 
+            RowBox[{"Dynamic", "[", "f", "]"}]}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"MouseAppearance", "[", 
+            RowBox[{
+             RowBox[{"Tooltip", "[", 
+              RowBox[{
+               RowBox[{"Framed", "[", 
+                RowBox[{
+                 RowBox[{"Style", "[", 
+                  RowBox[{
+                   RowBox[{"FileNameSetter", "[", 
+                    RowBox[{
+                    RowBox[{"Dynamic", "[", "f", "]"}], ",", "\"\<Open\>\"", 
+                    ",", 
+                    RowBox[{"{", 
+                    RowBox[{
+                    RowBox[{"\"\<Readable files\>\"", "\[Rule]", 
+                    RowBox[{"{", "\"\<*.TXT\>\"", "}"}]}], ",", 
+                    RowBox[{"\"\<All files\>\"", "\[Rule]", 
+                    RowBox[{"{", "\"\<*\>\"", "}"}]}]}], "}"}], ",", 
+                    RowBox[{"Appearance", "\[Rule]", 
+                    RowBox[{"Browse", "..."}]}]}], "]"}], ",", 
+                   "\"\<Section\>\"", ",", 
+                   RowBox[{"FontSize", "\[Rule]", "18"}]}], "]"}], ",", 
+                 RowBox[{"RoundingRadius", "\[Rule]", "15"}], ",", 
+                 RowBox[{"Background", "\[Rule]", "LightGray"}], ",", 
+                 RowBox[{"FrameStyle", "\[Rule]", 
+                  RowBox[{"Directive", "[", 
+                   RowBox[{"LightGray", ",", "12"}], "]"}]}]}], "]"}], ",", 
+               "\"\<Browse the file\>\""}], "]"}], ",", "\"\<LinkHand\>\""}], 
+            "]"}], "}"}], ",", 
+          RowBox[{"{", "}"}]}], "}"}], "]"}], ",", "\n", 
+       "\"\<Subsubsection\>\"", ",", "Black", ",", 
+       RowBox[{"FontSize", "\[Rule]", "14"}]}], "\n", "]"}], "]"}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"Style", "[", 
+    RowBox[{
+     RowBox[{"Grid", "[", 
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Grid", "[", 
+          RowBox[{"inputline", ",", 
+           RowBox[{"Alignment", "\[Rule]", "Left"}]}], "]"}], "}"}], ",", 
+        RowBox[{"{", 
+         RowBox[{"Grid", "[", 
+          RowBox[{"{", 
+           RowBox[{"{", 
+            RowBox[{
+            "simulationbutton", ",", "fitbutton", ",", "datageneratebutton", 
+             ",", " ", 
+             RowBox[{"Dynamic", "[", "outputinfo", "]"}], ",", 
+             "exportbutton"}], "}"}], "}"}], "]"}], "}"}]}], 
+       "\[IndentingNewLine]", "}"}], "]"}], ",", "\"\<Subsubsection\>\"", ",",
+      "Black", ",", 
+     RowBox[{"FontSize", "\[Rule]", "18"}]}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.778414754545665*^9, 3.778414997454282*^9}, {
+   3.7784154511202383`*^9, 3.778415457396941*^9}, {3.7784156117494946`*^9, 
+   3.7784156147185183`*^9}, {3.7784167064122953`*^9, 
+   3.7784167345950966`*^9}, {3.778416840877137*^9, 3.7784168526922417`*^9}, {
+   3.778417064030216*^9, 3.778417065186669*^9}, {3.77841729410798*^9, 
+   3.7784172977024612`*^9}, {3.7784182421866627`*^9, 3.778418341015254*^9}, 
+   3.7784185616874533`*^9, {3.7784190461954975`*^9, 3.7784190478041677`*^9}, {
+   3.77843293797106*^9, 3.778432946390587*^9}, {3.778433454395951*^9, 
+   3.778433463146333*^9}, 3.7784336103811307`*^9, {3.7784337673269625`*^9, 
+   3.7784337780997567`*^9}, {3.778433850183196*^9, 3.7784339100278926`*^9}, {
+   3.778434916826423*^9, 3.778434925028*^9}, {3.7784349606060753`*^9, 
+   3.7784349612671604`*^9}, {3.778477040212511*^9, 3.778477056323822*^9}, {
+   3.7784773479925113`*^9, 3.778477350733955*^9}, {3.778479300451727*^9, 
+   3.7784793057397594`*^9}, {3.7789939626498046`*^9, 3.778993989106491*^9}, {
+   3.7789941991942253`*^9, 3.778994211810381*^9}, {3.7789947599206505`*^9, 
+   3.778994761200051*^9}, {3.778995464303783*^9, 3.7789954646330585`*^9}, {
+   3.779003833928748*^9, 3.779003835125124*^9}, {3.779005973348383*^9, 
+   3.779005977388218*^9}, {3.779006070053341*^9, 3.7790060703399043`*^9}, {
+   3.7790061127950354`*^9, 3.7790061323544097`*^9}, {3.77900617059264*^9, 
+   3.7790061859981194`*^9}, {3.7790064185256634`*^9, 3.779006504294917*^9}, {
+   3.7790065367636147`*^9, 3.779006577809681*^9}, {3.77900691411263*^9, 
+   3.7790069143040757`*^9}, {3.779007082544572*^9, 3.779007241966345*^9}, {
+   3.779007273348999*^9, 3.7790072827100363`*^9}, {3.779007424404319*^9, 
+   3.779007436107066*^9}, {3.779007473919928*^9, 3.7790074891051254`*^9}, {
+   3.7790075298539147`*^9, 3.7790075393101425`*^9}, {3.779007581154681*^9, 
+   3.7790075828881683`*^9}, {3.7790076322424626`*^9, 
+   3.7790077827556047`*^9}, {3.7790079246393943`*^9, 3.77900792479432*^9}, {
+   3.779010075326692*^9, 3.779010099309655*^9}, {3.779010245731492*^9, 
+   3.779010247405345*^9}, {3.779010299953434*^9, 3.7790103400931234`*^9}, {
+   3.779010628101741*^9, 3.7790106674319525`*^9}, {3.7790107651965256`*^9, 
+   3.7790108262269173`*^9}, {3.779010874358625*^9, 3.7790109577941422`*^9}, {
+   3.7790109963893185`*^9, 3.7790111597633953`*^9}, 3.7790111960911164`*^9, {
+   3.779011245674449*^9, 3.7790112463945675`*^9}, {3.779011276622399*^9, 
+   3.779011281393421*^9}, {3.7790113129010673`*^9, 3.7790113448564315`*^9}, {
+   3.7790114019180613`*^9, 3.77901143792239*^9}, {3.7790115107979927`*^9, 
+   3.779011534809638*^9}, {3.7790116612235823`*^9, 3.7790116735186033`*^9}, {
+   3.77901173446741*^9, 3.7790117358318443`*^9}, {3.7821275996164308`*^9, 
+   3.782127645690456*^9}, {3.782145541538147*^9, 3.782145574215697*^9}, {
+   3.7825484082103577`*^9, 3.78254840919544*^9}, {3.7825487843536196`*^9, 
+   3.7825488171620455`*^9}, {3.7825488570648603`*^9, 
+   3.7825488850347977`*^9}, {3.782549074617738*^9, 3.782549095051691*^9}, 
+   3.7831570805394335`*^9},
+ CellTags->"loadcell",
+ CellLabel->"In[1]:=",ExpressionUUID->"e046c98b-a180-43a2-8ba0-ce2379536d4f"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ StyleBox[
+  TagBox[GridBox[{
+     {"\<\"File format\"\>", "\<\"Time domain\"\>", "\<\"Normalization\"\>", \
+"\<\"Concentration factor\"\>", "\<\"JASCO Import?\"\>", "\<\"Reset to \
+Minimum?\"\>", "\<\"Trim the data?\"\>"},
+     {"\<\"tab delimited .txt file\"\>", 
+      InterpretationBox[
+       StyleBox[
+        RowBox[{GridBox[{
+           {
+            
+            RadioButtonBox[Dynamic[$CellContext`factor], {
+             0.016666666666666666`},
+             DefaultBaseStyle->"RadioButtonBar"], 
+            StyleBox["\<\"min\"\>", "RadioButtonBarLabel",
+             StripOnInput->False]}
+          },
+          AutoDelete->False,
+          BaselinePosition->{1, 2},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.21]}, 
+              Offset[0.27999999999999997`]}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}}], "  ", GridBox[{
+           {
+            RadioButtonBox[Dynamic[$CellContext`factor], {1},
+             DefaultBaseStyle->"RadioButtonBar"], 
+            StyleBox["\<\"sec\"\>", "RadioButtonBarLabel",
+             StripOnInput->False]}
+          },
+          AutoDelete->False,
+          BaselinePosition->{1, 2},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.21]}, 
+              Offset[0.27999999999999997`]}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}}], "  ", GridBox[{
+           {
+            RadioButtonBox[Dynamic[$CellContext`factor], {1000},
+             DefaultBaseStyle->"RadioButtonBar"], 
+            StyleBox["\<\"msec\"\>", "RadioButtonBarLabel",
+             StripOnInput->False]}
+          },
+          AutoDelete->False,
+          BaselinePosition->{1, 2},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.21]}, 
+              Offset[0.27999999999999997`]}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}}]}], "Deploy"],
+       RadioButtonBar[
+        Dynamic[$CellContext`factor], {
+        0.016666666666666666` -> "min", 1 -> "sec", 1000 -> "msec"}]], 
+      InterpretationBox[
+       StyleBox[
+        RowBox[{GridBox[{
+           {
+            RadioButtonBox[Dynamic[$CellContext`normchoice], {1},
+             DefaultBaseStyle->"RadioButtonBar"], 
+            StyleBox["\<\"None\"\>", "RadioButtonBarLabel",
+             StripOnInput->False]}
+          },
+          AutoDelete->False,
+          BaselinePosition->{1, 2},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.21]}, 
+              Offset[0.27999999999999997`]}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}}], "  ", GridBox[{
+           {
+            RadioButtonBox[Dynamic[$CellContext`normchoice], {2},
+             DefaultBaseStyle->"RadioButtonBar"], 
+            StyleBox["\<\"to N[0,1]\"\>", "RadioButtonBarLabel",
+             StripOnInput->False]}
+          },
+          AutoDelete->False,
+          BaselinePosition->{1, 2},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.21]}, 
+              Offset[0.27999999999999997`]}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}}], "  ", GridBox[{
+           {
+            RadioButtonBox[Dynamic[$CellContext`normchoice], {3},
+             DefaultBaseStyle->"RadioButtonBar"], 
+            StyleBox["\<\"Devide by max\"\>", "RadioButtonBarLabel",
+             StripOnInput->False]}
+          },
+          AutoDelete->False,
+          BaselinePosition->{1, 2},
+          GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+          
+          GridBoxItemSize->{
+           "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+          GridBoxSpacings->{"Columns" -> {
+              Offset[0.27999999999999997`], {
+               Offset[0.21]}, 
+              Offset[0.27999999999999997`]}, "Rows" -> {
+              Offset[0.2], {
+               Offset[0.4]}, 
+              Offset[0.2]}}]}], "Deploy"],
+       RadioButtonBar[
+        Dynamic[$CellContext`normchoice], {
+        1 -> "None", 2 -> "to N[0,1]", 3 -> "Devide by max"}]], 
+      InputFieldBox[Dynamic[$CellContext`cfac],
+       FieldSize->8], 
+      CheckboxBox[Dynamic[$CellContext`jascoImport]], 
+      CheckboxBox[Dynamic[$CellContext`resetToMin]], 
+      CheckboxBox[Dynamic[$CellContext`trimmer]]}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   Function[BoxForm`e$, 
+    TableForm[BoxForm`e$]]], "Subsubsection",
+  StripOnInput->False,
+  LineColor->GrayLevel[0],
+  FrontFaceColor->GrayLevel[0],
+  BackFaceColor->GrayLevel[0],
+  GraphicsColor->GrayLevel[0],
+  FontSize->16,
+  FontColor->GrayLevel[0]]], "Print",
+ CellChangeTimes->{
+  3.7784167415397577`*^9, {3.7784168543589973`*^9, 3.778416871193473*^9}, 
+   3.778417066819934*^9, {3.7784172992038374`*^9, 3.7784173339051156`*^9}, 
+   3.7784181814527764`*^9, 3.778418363789338*^9, 3.778418562858644*^9, 
+   3.7784190498128633`*^9, 3.7784304593360214`*^9, 3.7784305211461*^9, 
+   3.778430745867356*^9, 3.7784331370059814`*^9, 3.778433464641837*^9, 
+   3.7784336118853498`*^9, 3.778433936572192*^9, {3.7784340855499525`*^9, 
+   3.77843411423463*^9}, 3.7784344403409452`*^9, 3.7784349353765607`*^9, 
+   3.7784349691321077`*^9, 3.778435388546199*^9, 3.7784375383011975`*^9, 
+   3.7784730675300603`*^9, 3.77847311823798*^9, 3.778474201546717*^9, 
+   3.7784774389558015`*^9, 3.778484788395913*^9, 3.7785002602793283`*^9, 
+   3.778918119574097*^9, 3.778992484591359*^9, 3.7789940107189417`*^9, 
+   3.778994083448819*^9, 3.778994214223055*^9, {3.778994763515446*^9, 
+   3.7789947724505167`*^9}, 3.778995063013564*^9, 3.7789951701692333`*^9, 
+   3.77899547196671*^9, 3.7790037633411922`*^9, 3.779003793951829*^9, 
+   3.7790038372513185`*^9, 3.779004377656152*^9, 3.779004607795025*^9, 
+   3.7790047918400326`*^9, 3.7790048645493064`*^9, 3.7790050109682865`*^9, 
+   3.7790050437289867`*^9, {3.779005098451541*^9, 3.779005101270212*^9}, 
+   3.779005146543703*^9, {3.7790052249547777`*^9, 3.7790052501470337`*^9}, {
+   3.77900551743093*^9, 3.7790055409568443`*^9}, 3.779006188721297*^9, 
+   3.7790063177870865`*^9, 3.779006584794021*^9, 3.7790072542318354`*^9, 
+   3.7790072860309315`*^9, 3.7790073274889917`*^9, 3.77900743888829*^9, 
+   3.7790075885752726`*^9, 3.7790077853258486`*^9, 3.779007926934895*^9, 
+   3.7790100283447123`*^9, {3.7790100819937572`*^9, 3.779010101873563*^9}, 
+   3.779010360936165*^9, {3.7790106550620413`*^9, 3.7790106692641306`*^9}, {
+   3.779010807693696*^9, 3.7790108372591257`*^9}, {3.7790108796697893`*^9, 
+   3.7790109465202045`*^9}, {3.7790110015286684`*^9, 3.779011016897319*^9}, {
+   3.7790110502986436`*^9, 3.7790110867938223`*^9}, 3.7790111199096394`*^9, 
+   3.7790111632947793`*^9, 3.7790111979353666`*^9, 3.7790112483344245`*^9, 
+   3.779011286075127*^9, {3.7790113242467346`*^9, 3.7790113467507725`*^9}, {
+   3.779011403231728*^9, 3.77901144175686*^9}, {3.7790115191532145`*^9, 
+   3.779011537434822*^9}, 3.779011675533462*^9, {3.779011737950078*^9, 
+   3.779011752235627*^9}, 3.77901194749926*^9, 3.7821075031135063`*^9, 
+   3.782107831809435*^9, 3.7821079795259657`*^9, 3.782127588457065*^9, 
+   3.7821276622092624`*^9, {3.782127821008381*^9, 3.782127821772667*^9}, 
+   3.7821282541283274`*^9, 3.78212829515128*^9, {3.7821283885103273`*^9, 
+   3.7821283928683724`*^9}, 3.7821285152268744`*^9, 3.7821449291188393`*^9, 
+   3.782144959905153*^9, {3.782145548570591*^9, 3.7821455875252895`*^9}, 
+   3.78254835367318*^9, 3.78254841662052*^9, 3.782548508649127*^9, {
+   3.782548862740572*^9, 3.7825488881019382`*^9}, 3.782549103427891*^9, 
+   3.7825493587713413`*^9, {3.7830754170883613`*^9, 3.7830754407123437`*^9}, {
+   3.7830755271018543`*^9, 3.7830755323719525`*^9}, 3.7830755689189005`*^9, 
+   3.7830763986535854`*^9, 3.7831565399514036`*^9, 3.7831567863441563`*^9, 
+   3.7831568893902855`*^9, 3.783157103450119*^9, 3.7831577848134365`*^9, {
+   3.783157839284756*^9, 3.78315784025985*^9}, 3.783838541401477*^9},
+ CellTags->"loadcell",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"fde269b7-3005-4f87-9c5f-af7392c443f6"],
+
+Cell[BoxData[
+ StyleBox[
+  InterpretationBox[GridBox[{
+     {"\<\"currently loaded data:\"\>", 
+      DynamicBox[ToBoxes[$CellContext`f, StandardForm],
+       ImageSizeCache->{923., {3., 10.}}]},
+     {
+      TagBox[
+       TagBox[
+        TooltipBox[
+         FrameBox[
+          StyleBox[
+           
+           TemplateBox[{
+            Dynamic[$CellContext`f],"Open",{
+             "Readable files" -> {"*.TXT"}, "All files" -> {"*"}},Automatic,
+             RowBox[{"Browse", "..."}],None,{"FileNameSetter"},Automatic,0,
+             Automatic},
+            "FileNameSetterBoxes4"], "Section",
+           StripOnInput->False,
+           FontSize->18],
+          Background->GrayLevel[0.85],
+          FrameStyle->Directive[
+            GrayLevel[0.85], 12],
+          RoundingRadius->15,
+          StripOnInput->False],
+         "\"Browse the file\"",
+         TooltipStyle->"TextStyling"],
+        Annotation[#, "Browse the file", "Tooltip"]& ],
+       MouseAppearanceTag["LinkHand"]], "\<\"\"\>"},
+     {"\<\"\"\>", "\<\"\"\>"}
+    },
+    GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[2.0999999999999996`]}, 
+        Offset[0.27999999999999997`]}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}}],
+   TableForm[{{"currently loaded data:", 
+      Dynamic[$CellContext`f]}, {
+      MouseAppearance[
+       Tooltip[
+        Framed[
+         Style[
+          FileNameSetter[
+           Dynamic[$CellContext`f], "Open", {
+           "Readable files" -> {"*.TXT"}, "All files" -> {"*"}}, Appearance -> 
+           RepeatedNull[$CellContext`Browse]], "Section", FontSize -> 18], 
+         RoundingRadius -> 15, Background -> GrayLevel[0.85], FrameStyle -> 
+         Directive[
+           GrayLevel[0.85], 12]], "Browse the file"], "LinkHand"]}, {}}]], 
+  "Subsubsection",
+  StripOnInput->False,
+  LineColor->GrayLevel[0],
+  FrontFaceColor->GrayLevel[0],
+  BackFaceColor->GrayLevel[0],
+  GraphicsColor->GrayLevel[0],
+  FontSize->14,
+  FontColor->GrayLevel[0]]], "Print",
+ CellChangeTimes->{
+  3.7784167415397577`*^9, {3.7784168543589973`*^9, 3.778416871193473*^9}, 
+   3.778417066819934*^9, {3.7784172992038374`*^9, 3.7784173339051156`*^9}, 
+   3.7784181814527764`*^9, 3.778418363789338*^9, 3.778418562858644*^9, 
+   3.7784190498128633`*^9, 3.7784304593360214`*^9, 3.7784305211461*^9, 
+   3.778430745867356*^9, 3.7784331370059814`*^9, 3.778433464641837*^9, 
+   3.7784336118853498`*^9, 3.778433936572192*^9, {3.7784340855499525`*^9, 
+   3.77843411423463*^9}, 3.7784344403409452`*^9, 3.7784349353765607`*^9, 
+   3.7784349691321077`*^9, 3.778435388546199*^9, 3.7784375383011975`*^9, 
+   3.7784730675300603`*^9, 3.77847311823798*^9, 3.778474201546717*^9, 
+   3.7784774389558015`*^9, 3.778484788395913*^9, 3.7785002602793283`*^9, 
+   3.778918119574097*^9, 3.778992484591359*^9, 3.7789940107189417`*^9, 
+   3.778994083448819*^9, 3.778994214223055*^9, {3.778994763515446*^9, 
+   3.7789947724505167`*^9}, 3.778995063013564*^9, 3.7789951701692333`*^9, 
+   3.77899547196671*^9, 3.7790037633411922`*^9, 3.779003793951829*^9, 
+   3.7790038372513185`*^9, 3.779004377656152*^9, 3.779004607795025*^9, 
+   3.7790047918400326`*^9, 3.7790048645493064`*^9, 3.7790050109682865`*^9, 
+   3.7790050437289867`*^9, {3.779005098451541*^9, 3.779005101270212*^9}, 
+   3.779005146543703*^9, {3.7790052249547777`*^9, 3.7790052501470337`*^9}, {
+   3.77900551743093*^9, 3.7790055409568443`*^9}, 3.779006188721297*^9, 
+   3.7790063177870865`*^9, 3.779006584794021*^9, 3.7790072542318354`*^9, 
+   3.7790072860309315`*^9, 3.7790073274889917`*^9, 3.77900743888829*^9, 
+   3.7790075885752726`*^9, 3.7790077853258486`*^9, 3.779007926934895*^9, 
+   3.7790100283447123`*^9, {3.7790100819937572`*^9, 3.779010101873563*^9}, 
+   3.779010360936165*^9, {3.7790106550620413`*^9, 3.7790106692641306`*^9}, {
+   3.779010807693696*^9, 3.7790108372591257`*^9}, {3.7790108796697893`*^9, 
+   3.7790109465202045`*^9}, {3.7790110015286684`*^9, 3.779011016897319*^9}, {
+   3.7790110502986436`*^9, 3.7790110867938223`*^9}, 3.7790111199096394`*^9, 
+   3.7790111632947793`*^9, 3.7790111979353666`*^9, 3.7790112483344245`*^9, 
+   3.779011286075127*^9, {3.7790113242467346`*^9, 3.7790113467507725`*^9}, {
+   3.779011403231728*^9, 3.77901144175686*^9}, {3.7790115191532145`*^9, 
+   3.779011537434822*^9}, 3.779011675533462*^9, {3.779011737950078*^9, 
+   3.779011752235627*^9}, 3.77901194749926*^9, 3.7821075031135063`*^9, 
+   3.782107831809435*^9, 3.7821079795259657`*^9, 3.782127588457065*^9, 
+   3.7821276622092624`*^9, {3.782127821008381*^9, 3.782127821772667*^9}, 
+   3.7821282541283274`*^9, 3.78212829515128*^9, {3.7821283885103273`*^9, 
+   3.7821283928683724`*^9}, 3.7821285152268744`*^9, 3.7821449291188393`*^9, 
+   3.782144959905153*^9, {3.782145548570591*^9, 3.7821455875252895`*^9}, 
+   3.78254835367318*^9, 3.78254841662052*^9, 3.782548508649127*^9, {
+   3.782548862740572*^9, 3.7825488881019382`*^9}, 3.782549103427891*^9, 
+   3.7825493587713413`*^9, {3.7830754170883613`*^9, 3.7830754407123437`*^9}, {
+   3.7830755271018543`*^9, 3.7830755323719525`*^9}, 3.7830755689189005`*^9, 
+   3.7830763986535854`*^9, 3.7831565399514036`*^9, 3.7831567863441563`*^9, 
+   3.7831568893902855`*^9, 3.783157103450119*^9, 3.7831577848134365`*^9, {
+   3.783157839284756*^9, 3.78315784025985*^9}, 3.7838385414634194`*^9},
+ CellTags->"loadcell",
+ CellLabel->
+  "During evaluation of \
+In[1]:=",ExpressionUUID->"b6547b10-62d6-4754-8ad4-180d484979dd"]
+}, Open  ]],
+
+Cell[BoxData[
+ StyleBox[
+  TagBox[GridBox[{
+     {
+      TagBox[GridBox[{
+         {
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Import/Update Data\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Import the dataset in ASCII format\"",
+              TooltipStyle->"TextStyling"],
+             Annotation[#, "Import the dataset in ASCII format", "Tooltip"]& ],
+            Appearance->None,
+            ButtonFunction:>{buttons`Private`nb = EvaluationNotebook[], 
+              NotebookFind[buttons`Private`nb, "import", All, CellTags], 
+              SelectionEvaluate[buttons`Private`nb]},
+            Evaluator->Automatic,
+            Method->"Preemptive"],
+           MouseAppearanceTag["LinkHand"]], 
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Load Saved Parameters\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Loads the previously saved values\"",
+              TooltipStyle->"TextStyling"],
+             Annotation[#, "Loads the previously saved values", "Tooltip"]& ],
+            Appearance->None,
+            
+            ButtonFunction:>{{$CellContext`h0in, $CellContext`d0in, \
+$CellContext`step, $CellContext`kequhdin, $CellContext`sig0in, \
+$CellContext`sigdin, $CellContext`sighdin, $CellContext`g0in, \
+$CellContext`kequhgin, $CellContext`khd1in, $CellContext`khg1in} = Import[
+                buttons`savepath[$CellContext`filename]]},
+            Evaluator->Automatic,
+            Method->"Preemptive"],
+           MouseAppearanceTag["LinkHand"]], 
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Save Parameters\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Saves the set values of the parameters\"",
+              TooltipStyle->"TextStyling"],
+             
+             Annotation[#, "Saves the set values of the parameters", 
+              "Tooltip"]& ],
+            Appearance->None,
+            ButtonFunction:>{
+              Export[
+               
+               buttons`savepath[$CellContext`filename], {$CellContext`h0in, \
+$CellContext`d0in, $CellContext`step, $CellContext`kequhdin, \
+$CellContext`sig0in, $CellContext`sigdin, $CellContext`sighdin, \
+$CellContext`g0in, $CellContext`kequhgin, $CellContext`khd1in, \
+$CellContext`khg1in}]},
+            Evaluator->Automatic,
+            Method->"Preemptive"],
+           MouseAppearanceTag["LinkHand"]], "", "", "", "", "", ""},
+         {"\<\"Quantitiy\"\>", "\<\"Value\"\>", "\<\"Error\"\>", \
+"\<\"Unit\"\>", "\<\"Fixation\"\>", "", "", "", ""},
+         {
+          StyleBox["\<\"[Host\\!\\(\\*SubscriptBox[\\(]\\), \\(0\\)]\\) =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`h0in],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`h0error, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"M\"\>", "\<\"\"\>", "", "", "", ""},
+         {
+          StyleBox["\<\"initial Host concentration\"\>",
+           StripOnInput->False,
+           Thickness->Tiny,
+           FontSize->14], 
+          DynamicBox[ToBoxes[$CellContext`h0in 1000000, StandardForm],
+           ImageSizeCache->{13., {0., 11.}}], 
+          DynamicBox[ToBoxes[$CellContext`h0error 1000000, StandardForm],
+           ImageSizeCache->{9., {0., 11.}}], "\<\"\[Mu]M\"\>", "", "", "", "",
+           ""},
+         {
+          StyleBox["\<\"[Dye\\!\\(\\*SubscriptBox[\\(]\\), \\(0\\)]\\) =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`d0in],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`d0error, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"M\"\>", "\<\"\"\>", "", "", "", ""},
+         {
+          StyleBox["\<\"initial Dye concentration\"\>",
+           StripOnInput->False,
+           Thickness->Tiny,
+           FontSize->14], 
+          DynamicBox[ToBoxes[$CellContext`d0in 1000000, StandardForm],
+           ImageSizeCache->{13., {0., 11.}}], 
+          DynamicBox[ToBoxes[$CellContext`d0error 1000000, StandardForm],
+           ImageSizeCache->{9., {0., 11.}}], "\<\"\[Mu]M\"\>", "", "", "", "",
+           ""},
+         {
+          
+          StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(K\\), \\(equ\\)]\\)(HD) \
+=\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`kequhdin],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`kequhderror, None],
+           Background->GrayLevel[0.85],
+           
+           FieldSize->
+            8], "\<\"\\!\\(\\*SuperscriptBox[\\(M\\), \\(-1\\)]\\)\"\>", \
+"\<\"\"\>", "", "", "", ""},
+         {
+          StyleBox["\<\"affinity of HD for host\"\>",
+           StripOnInput->False,
+           Thickness->Tiny,
+           FontSize->14], 
+          DynamicBox[ToBoxes[
+            Log10[$CellContext`kequhdin], StandardForm],
+           ImageSizeCache->{58., {0., 11.}}], 
+          DynamicBox[ToBoxes[
+            Log10[$CellContext`kequhderror], StandardForm],
+           ImageSizeCache->{25., {0., 7.}}], "", "", "", "", "", ""},
+         {
+          StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(1\\)]\\)(Dye) =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`khd1in],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`khd1error, None],
+           Background->GrayLevel[0.85],
+           
+           FieldSize->
+            8], "\<\"\\!\\(\\*SuperscriptBox[\\(M\\), \\(-1\\)]\\)  \
+\\!\\(\\*SuperscriptBox[\\(s\\), \\(-1\\)]\\)\"\>", 
+          InterpretationBox[
+           StyleBox[
+            RowBox[{GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`khd1fixed], {1},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"Fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}], "  ", GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`khd1fixed], {2},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"not fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}]}], "Deploy"],
+           RadioButtonBar[
+            Dynamic[$CellContext`khd1fixed], {
+            1 -> "Fixed", 2 -> "not fixed"}]], "", "", "", ""},
+         {
+          StyleBox["\<\"Dye ingression rate constant\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->14,
+           
+           FontWeight->
+            Bold], "\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(in\\)]\\)\"\>", "\<\
+\"\"\>", "", "", "", "", "", ""},
+         {
+          
+          StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(-1\\)]\\)(Dye) \
+=\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          
+          InputFieldBox[
+           Dynamic[$CellContext`kequhdin^(-1) $CellContext`khd1in, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`khd2error, None],
+           Background->GrayLevel[0.85],
+           
+           FieldSize->
+            8], "\<\"\\!\\(\\*SuperscriptBox[\\(s\\), \\(-1\\)]\\)\"\>", 
+          InterpretationBox[
+           StyleBox[
+            RowBox[{GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`khd2fixed], {1},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"Fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}], "  ", GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`khd2fixed], {2},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"not fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}]}], "Deploy"],
+           RadioButtonBar[
+            Dynamic[$CellContext`khd2fixed], {
+            1 -> "Fixed", 2 -> "not fixed"}]], "", "", "", ""},
+         {
+          StyleBox["\<\"Dye egression rate constant\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->14,
+           
+           FontWeight->
+            Bold], "\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(out\\)]\\)\"\>", \
+"\<\"\"\>", "", "", "", "", "", ""},
+         {
+          StyleBox["\<\"Signal-HD =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`sighdin],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`sighderror, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"a.u.\"\>", 
+          InterpretationBox[
+           StyleBox[
+            RowBox[{GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`sighdfixed], {1},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"Fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}], "  ", GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`sighdfixed], {2},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"not fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}]}], "Deploy"],
+           RadioButtonBar[
+            Dynamic[$CellContext`sighdfixed], {
+            1 -> "Fixed", 2 -> "not fixed"}]], "", "", "", ""},
+         {
+          StyleBox["\<\"Signal of HD complex\"\>",
+           StripOnInput->False,
+           Thickness->Tiny,
+           FontSize->14], 
+          SliderBox[Dynamic[$CellContext`sighdin], {0, 1.*^7},
+           ImageSize->Small], "\<\"\"\>", "", "", "", "", "", ""},
+         {
+          StyleBox["\<\"Signal-D =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`sigdin],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`sigderror, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"a.u.\"\>", 
+          InterpretationBox[
+           StyleBox[
+            RowBox[{GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`sigdfixed], {1},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"Fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}], "  ", GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`sigdfixed], {2},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"not fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}]}], "Deploy"],
+           RadioButtonBar[
+            Dynamic[$CellContext`sigdfixed], {
+            1 -> "Fixed", 2 -> "not fixed"}]], "", "", "", ""},
+         {
+          StyleBox["\<\"Signal of D complex\"\>",
+           StripOnInput->False,
+           Thickness->Tiny,
+           FontSize->14], 
+          SliderBox[Dynamic[$CellContext`sigdin], {0, 1.*^7},
+           ImageSize->Small], "\<\"\"\>", "", "", "", "", "", ""},
+         {
+          StyleBox["\<\"Signal-0 =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`sig0in],
+           FieldSize->8], 
+          InputFieldBox[Dynamic[$CellContext`sig0error, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"a.u.\"\>", 
+          InterpretationBox[
+           StyleBox[
+            RowBox[{GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`sig0fixed], {1},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"Fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}], "  ", GridBox[{
+               {
+                RadioButtonBox[Dynamic[$CellContext`sig0fixed], {2},
+                 DefaultBaseStyle->"RadioButtonBar"], 
+                StyleBox["\<\"not fixed\"\>", "RadioButtonBarLabel",
+                 StripOnInput->False]}
+              },
+              AutoDelete->False,
+              BaselinePosition->{1, 2},
+              
+              GridBoxAlignment->{
+               "Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+              
+              GridBoxItemSize->{
+               "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}},
+              GridBoxSpacings->{"Columns" -> {
+                  Offset[0.27999999999999997`], {
+                   Offset[0.21]}, 
+                  Offset[0.27999999999999997`]}, "Rows" -> {
+                  Offset[0.2], {
+                   Offset[0.4]}, 
+                  Offset[0.2]}}]}], "Deploy"],
+           RadioButtonBar[
+            Dynamic[$CellContext`sig0fixed], {
+            1 -> "Fixed", 2 -> "not fixed"}]], "", "", "", ""},
+         {
+          StyleBox["\<\"Signal of 0 complex\"\>",
+           StripOnInput->False,
+           Thickness->Tiny,
+           FontSize->14], 
+          SliderBox[Dynamic[$CellContext`sig0in], {0, 1.*^7},
+           ImageSize->Small], "\<\"\"\>", "", "", "", "", "", ""},
+         {
+          StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(t\\), \\(max\\)]\\) =\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`tmax],
+           FieldSize->8], "\<\"sec\"\>", 
+          
+          StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(time\\), \\(endpoint\\)]\\) \
+=\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`end, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"number\"\>", 
+          
+          StyleBox["\<\"\\!\\(\\*SubscriptBox[\\(value\\), \\(endpoint\\)]\\) \
+=\"\>",
+           StripOnInput->False,
+           TextAlignment->Right,
+           FontSize->16,
+           FontWeight->Bold], 
+          InputFieldBox[Dynamic[$CellContext`first, None],
+           Background->GrayLevel[0.85],
+           FieldSize->8], "\<\"number\"\>"},
+         {
+          StyleBox["\<\"max time\"\>",
+           StripOnInput->False,
+           FontSize->14], 
+          DynamicBox[ToBoxes[$CellContext`tmax 1000, StandardForm],
+           ImageSizeCache->{40., {0., 11.}}], "\<\"msec\"\>", 
+          StyleBox["\<\"endpoint =\"\>",
+           StripOnInput->False,
+           FontSize->14], 
+          DynamicBox[ToBoxes[$CellContext`end, StandardForm],
+           ImageSizeCache->{9., {0., 11.}}], "\<\"time\"\>", 
+          StyleBox["\<\"endpoint =\"\>",
+           StripOnInput->False,
+           FontSize->14], 
+          DynamicBox[ToBoxes[$CellContext`first, StandardForm],
+           ImageSizeCache->{109., {0., 16.}}], "\<\"value\"\>"}
+        },
+        AutoDelete->False,
+        GridBoxAlignment->{"Columns" -> {{Left}}},
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]},
+     {
+      TagBox[GridBox[{
+         {
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Simulate\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Simulate the isotherm\"",
+              TooltipStyle->"TextStyling"],
+             Annotation[#, "Simulate the isotherm", "Tooltip"]& ],
+            Appearance->None,
+            ButtonFunction:>{buttons`Private`nb = EvaluationNotebook[], 
+              NotebookFind[buttons`Private`nb, "simulation", All, CellTags], 
+              SelectionEvaluate[buttons`Private`nb]},
+            Evaluator->Automatic,
+            Method->"Preemptive"],
+           MouseAppearanceTag["LinkHand"]], 
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Fit the Data\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Fit a model to the data\"",
+              TooltipStyle->"TextStyling"],
+             Annotation[#, "Fit a model to the data", "Tooltip"]& ],
+            Appearance->None,
+            ButtonFunction:>{buttons`Private`nb = EvaluationNotebook[], 
+              NotebookFind[buttons`Private`nb, "fitting", All, CellTags], 
+              SelectionEvaluate[buttons`Private`nb]},
+            Evaluator->Automatic,
+            Method->"Preemptive"],
+           MouseAppearanceTag["LinkHand"]], 
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Generate saveable Data\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Generate Datapoints for CSV export\"",
+              TooltipStyle->"TextStyling"],
+             Annotation[#, "Generate Datapoints for CSV export", "Tooltip"]& ],
+            Appearance->None,
+            
+            ButtonFunction:>($CellContext`output = \
+$CellContext`kinGenerateOutput[$CellContext`khd2in, $CellContext`khd1in, \
+$CellContext`h0in, $CellContext`d0in, $CellContext`sig0in, \
+$CellContext`sighdin, $CellContext`sigdin, $CellContext`tmin, \
+$CellContext`tmax, 
+                N[200]]; $CellContext`outputinfo = 
+              Part[$CellContext`output, 12, 6]; Null),
+            Evaluator->Automatic,
+            Method->"Preemptive"],
+           MouseAppearanceTag["LinkHand"]], 
+          DynamicBox[ToBoxes[$CellContext`outputinfo, StandardForm],
+           ImageSizeCache->{172., {4., 13.}}], 
+          TagBox[
+           ButtonBox[
+            TagBox[
+             TooltipBox[
+              FrameBox[
+               StyleBox["\<\"Save Fitting\"\>", "Section",
+                StripOnInput->False,
+                FontSize->18],
+               Background->GrayLevel[0.85],
+               FrameStyle->Directive[
+                 GrayLevel[0.85], 12],
+               RoundingRadius->15,
+               StripOnInput->False],
+              "\"Save the simulated data as comma delimited .csv\"",
+              TooltipStyle->"TextStyling"],
+             
+             Annotation[#, "Save the simulated data as comma delimited .csv", 
+              "Tooltip"]& ],
+            Appearance->None,
+            ButtonFunction:>Export[
+              SystemDialogInput["FileSave", ".csv"], $CellContext`output],
+            Evaluator->Automatic,
+            Method->"Queued"],
+           MouseAppearanceTag["LinkHand"]]}
+        },
+        AutoDelete->False,
+        GridBoxItemSize->{
+         "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+       "Grid"]}
+    },
+    AutoDelete->False,
+    GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+   "Grid"], "Subsubsection",
+  StripOnInput->False,
+  LineColor->GrayLevel[0],
+  FrontFaceColor->GrayLevel[0],
+  BackFaceColor->GrayLevel[0],
+  GraphicsColor->GrayLevel[0],
+  FontSize->18,
+  FontColor->GrayLevel[0]]], "Output",
+ CellChangeTimes->{
+  3.778430745882984*^9, 3.7784331370940514`*^9, 3.7784334645265346`*^9, 
+   3.7784336117916045`*^9, 3.778433936608651*^9, {3.778434085574836*^9, 
+   3.7784341142658777`*^9}, 3.778434440372192*^9, 3.778434935302837*^9, 
+   3.778434969163356*^9, 3.778437538316821*^9, 3.778473067591322*^9, 
+   3.7784774390086164`*^9, 3.7784847884793444`*^9, 3.7785002603057613`*^9, 
+   3.778918119644104*^9, 3.778992484622937*^9, 3.778994010779668*^9, 
+   3.7789940834827156`*^9, 3.7789942142488265`*^9, {3.778994763559805*^9, 
+   3.7789947724817743`*^9}, 3.7789950630847936`*^9, 3.778995170185499*^9, 
+   3.778995472002345*^9, 3.779003763388153*^9, 3.7790037940183244`*^9, 
+   3.7790038372898607`*^9, 3.7790043777108135`*^9, 3.779004607825408*^9, 
+   3.779004791900488*^9, 3.7790048645774937`*^9, 3.7790050110085564`*^9, 
+   3.7790050437594624`*^9, {3.7790050984903064`*^9, 3.779005101310623*^9}, 
+   3.779005146559337*^9, {3.779005224983964*^9, 3.779005250174023*^9}, {
+   3.779005517450602*^9, 3.7790055409943395`*^9}, 3.779006188809595*^9, 
+   3.7790063178577356`*^9, 3.779006584830059*^9, 3.7790072542609725`*^9, 
+   3.7790072860764046`*^9, 3.779007327555581*^9, 3.779007438923732*^9, 
+   3.779007588616984*^9, 3.779007785387667*^9, 3.7790079269821444`*^9, 
+   3.779010028372508*^9, {3.779010082043908*^9, 3.7790101019229546`*^9}, 
+   3.779010360969492*^9, {3.779010655092517*^9, 3.7790106692977*^9}, {
+   3.7790108079968443`*^9, 3.7790108375379257`*^9}, {3.7790108797318535`*^9, 
+   3.7790109466080894`*^9}, {3.7790110016053376`*^9, 
+   3.7790110169511614`*^9}, {3.779011050326135*^9, 3.779011086955569*^9}, 
+   3.779011120060231*^9, 3.7790111634660606`*^9, 3.77901119842281*^9, 
+   3.7790112487440395`*^9, 3.7790112865641775`*^9, {3.77901132473221*^9, 
+   3.779011347231521*^9}, {3.7790114036826577`*^9, 3.77901144221605*^9}, {
+   3.7790115192084136`*^9, 3.7790115374671507`*^9}, 3.7790116755598793`*^9, {
+   3.779011737996214*^9, 3.779011752264083*^9}, 3.7790119475757837`*^9, 
+   3.782107503191432*^9, 3.782127588491027*^9, 3.7821276622462296`*^9, 
+   3.7821283885722704`*^9, 3.7821449291657953`*^9, {3.782145548622543*^9, 
+   3.7821455768802104`*^9}, 3.7825483537371206`*^9, 3.782548416673471*^9, {
+   3.7825488627825317`*^9, 3.782548888154891*^9}, 3.7825491035018206`*^9, 
+   3.783075417148299*^9, 3.7831565400273333`*^9, 3.783157103488081*^9, 
+   3.783157785045223*^9, 3.783838541496388*^9},
+ CellTags->"loadcell",
+ CellLabel->"Out[50]=",ExpressionUUID->"d31e50a2-7539-422c-b32e-2fe1132559ab"]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", "Import", "*)"}], "\n", "\t", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"dataimport", "=", 
+     RowBox[{"Import", "[", 
+      RowBox[{"f", ",", "\"\<Table\>\""}], "]"}]}], ";"}], " ", "\n", "\t", 
+   RowBox[{
+    RowBox[{"end", " ", "=", "  ", 
+     RowBox[{"Max", "[", 
+      RowBox[{"dataimport", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ";"}], "\n", "\t", 
+   RowBox[{
+    RowBox[{"step", " ", "=", " ", 
+     RowBox[{"end", "/", "100."}]}], ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{"jascoImport", ",", " ", "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"i", "=", "1"}], ";", "\n", "\t\t", 
+       RowBox[{"dataHeader", "=", 
+        RowBox[{"{", "}"}]}], ";", "\n", "\t\t", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{"Not", "[", 
+          RowBox[{"NumericQ", "[", 
+           RowBox[{"dataimport", "[", 
+            RowBox[{"[", 
+             RowBox[{"i", ",", "1"}], "]"}], "]"}], "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"dataHeader", "=", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"dataHeader", ",", 
+             RowBox[{"dataimport", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "All"}], "]"}], "]"}]}], "]"}]}], ";", 
+          "\[IndentingNewLine]", 
+          RowBox[{"i", "++"}], ";", 
+          RowBox[{"Off", "[", 
+           RowBox[{"Part", "::", "partw"}], "]"}]}]}], "]"}], ";", "\n", 
+       "\t\t", 
+       RowBox[{"dataXY", "=", 
+        RowBox[{"{", "}"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{"NumericQ", "[", 
+          RowBox[{"dataimport", "[", 
+           RowBox[{"[", 
+            RowBox[{"i", ",", "1"}], "]"}], "]"}], "]"}], ",", 
+         RowBox[{
+          RowBox[{"dataXY", "=", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"dataXY", ",", 
+             RowBox[{"dataimport", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "All"}], "]"}], "]"}]}], "]"}]}], ";", 
+          RowBox[{"i", "++"}], ";", 
+          RowBox[{"Off", "[", 
+           RowBox[{"Part", "::", "partw"}], "]"}]}]}], "]"}], ";", "\n", 
+       "\t\t", 
+       RowBox[{"dataFooter", "=", 
+        RowBox[{"{", "}"}]}], ";", 
+       RowBox[{"While", "[", 
+        RowBox[{
+         RowBox[{"i", "\[LessEqual]", " ", 
+          RowBox[{"First", "[", 
+           RowBox[{"Dimensions", "[", "dataimport", "]"}], "]"}]}], ",", 
+         RowBox[{
+          RowBox[{"dataFooter", "=", 
+           RowBox[{"AppendTo", "[", 
+            RowBox[{"dataFooter", ",", 
+             RowBox[{"dataimport", "[", 
+              RowBox[{"[", 
+               RowBox[{"i", ",", "All"}], "]"}], "]"}]}], "]"}]}], ";", 
+          RowBox[{"i", "++"}]}]}], "]"}], ";"}], "\n", "\t\t", ",", "\n", 
+      "\t\t", 
+      RowBox[{
+       RowBox[{"dataXY", "=", "dataimport"}], ";"}]}], "\n", "\t", "]"}], 
+    ";"}], "\[IndentingNewLine]", "\n", 
+   RowBox[{
+    RowBox[{"If", "[", 
+     RowBox[{"resetToMin", ",", " ", "\n", "\t", 
+      RowBox[{
+       RowBox[{"posMin", "=", 
+        RowBox[{"First", "[", 
+         RowBox[{"Flatten", "[", 
+          RowBox[{"Position", "[", 
+           RowBox[{
+            RowBox[{"dataXY", "[", 
+             RowBox[{"[", 
+              RowBox[{"All", ",", "2"}], "]"}], "]"}], ",", 
+            RowBox[{"Min", "[", 
+             RowBox[{"dataXY", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], "]"}], "]"}],
+          "]"}]}], ";", "\[IndentingNewLine]", 
+       RowBox[{"minimizedPart", "=", 
+        RowBox[{
+         RowBox[{"Length", "[", "dataXY", "]"}], "-", "posMin", "+", "1"}]}], 
+       ";", "\[IndentingNewLine]", "\t", 
+       RowBox[{"dataXY", "=", 
+        RowBox[{"Take", "[", 
+         RowBox[{"dataXY", ",", 
+          RowBox[{"-", "minimizedPart"}]}], "]"}]}], ";"}], 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", "\t\t", ",", "\n", "\t\t", 
+      RowBox[{
+       RowBox[{"dataXY", "=", "dataXY"}], ";"}]}], "\n", "\t", "]"}], ";"}], 
+   "\n", "\t", "\[IndentingNewLine]", "\t", 
+   RowBox[{
+    RowBox[{"ymax", "=", 
+     RowBox[{"Max", "[", 
+      RowBox[{"dataXY", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], ";"}], "\n", "\t", 
+   RowBox[{
+    RowBox[{"ymin", "=", 
+     RowBox[{"Min", "[", 
+      RowBox[{"dataXY", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], ";"}], "\n", "\t", 
+   RowBox[{
+    RowBox[{"adjusteddata", "=", 
+     RowBox[{"dataXY", "/.", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"x_", ",", "y_"}], "}"}], "\[Rule]", " ", 
+       RowBox[{"{", 
+        RowBox[{
+         RowBox[{"cfac", "*", 
+          RowBox[{"x", "/", "factor"}]}], ",", 
+         RowBox[{"normalize", "[", 
+          RowBox[{"y", ",", "ymax", ",", "ymin", ",", "normchoice"}], "]"}]}],
+         "}"}]}]}]}], ";"}], "\n", "\t", "\n", "\t", 
+   RowBox[{
+    RowBox[{"end", "=", 
+     RowBox[{"Max", "[", 
+      RowBox[{"adjusteddata", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "1"}], "]"}], "]"}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"first", "=", 
+     RowBox[{"Min", "[", 
+      RowBox[{"adjusteddata", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "2"}], "]"}], "]"}], "]"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"trimmer", "&&", 
+      RowBox[{"tmax", "<", "end"}]}], ",", " ", "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"adjusteddata", "=", 
+       RowBox[{"Take", "[", 
+        RowBox[{"adjusteddata", ",", 
+         RowBox[{
+          RowBox[{"Flatten", "[", 
+           RowBox[{"Position", "[", 
+            RowBox[{
+             RowBox[{"adjusteddata", "[", 
+              RowBox[{"[", 
+               RowBox[{"All", ",", "1"}], "]"}], "]"}], ",", "tmax"}], "]"}], 
+           "]"}], "[", 
+          RowBox[{"[", "1", "]"}], "]"}]}], "]"}]}], ";"}]}], 
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]"}]}]], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.7821448315028057`*^9, 3.7821448410369234`*^9}, {
+  3.7821453992727165`*^9, 3.7821454978818283`*^9}, {3.7825489500947733`*^9, 
+  3.782548950217661*^9}},
+ CellTags->"import",
+ CellLabel->"In[66]:=",ExpressionUUID->"c87c19cb-9bf3-48ad-8f3b-ea2ae8e76dab"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"Clear", "[", 
+     RowBox[{
+     "h0", ",", "d0", ",", "khd1", ",", "khd2", ",", "kequhd", ",", "sig0", 
+      ",", "sighd", ",", "sigd"}], "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"initialssim", "=", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{
+        RowBox[{"h", "[", "0", "]"}], "\[Equal]", "h0"}], ",", 
+       RowBox[{
+        RowBox[{"d", "[", "0", "]"}], "\[Equal]", "d0"}], ",", 
+       RowBox[{
+        RowBox[{"hd", "[", "0", "]"}], "\[Equal]", "0."}], ",", 
+       RowBox[{
+        RowBox[{"sig", "[", "0", "]"}], "\[Equal]", 
+        RowBox[{"sig0in", "+", 
+         RowBox[{"sighdin", "*", "0"}], "+", 
+         RowBox[{"sigdin", "*", "d0"}]}]}]}], "}"}]}], ";"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"modelsignalsim", "=", 
+     RowBox[{"ParametricNDSolveValue", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"eqkinsignal", ",", "initialssim"}], "}"}], ",", "sig", ",", 
+       RowBox[{"{", 
+        RowBox[{"t", ",", "0", ",", "tmax"}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{
+        "khd1", ",", "kequhd", ",", "h0", ",", "d0", ",", "sig0", ",", 
+         "sighd", ",", "sigd"}], "}"}], ",", 
+       RowBox[{"WorkingPrecision", "\[Rule]", "24"}]}], "]"}]}], ";"}], " ", 
+   RowBox[{"(*", 
+    RowBox[{
+     RowBox[{"cannot", " ", "be", " ", "used", " ", "for", " ", "fitting"}], 
+     ",", " ", 
+     RowBox[{"only", " ", "simulation"}], ",", " ", 
+     RowBox[{
+     "causes", " ", "unknown", " ", "errors", " ", "in", " ", "fitting"}]}], 
+    "*)"}], "\[IndentingNewLine]", 
+   RowBox[{"Manipulate", "[", "\n", "\t\t\t", 
+    RowBox[{
+     RowBox[{"Show", "[", "\t", "\n", "\t\t\t\t", "\n", "\t\t\t\t", 
+      RowBox[{
+       RowBox[{"ListPlot", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"a2", "*", "adjusteddata"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", " ", "Blue"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", "\n", 
+       "\t\t\t\t", 
+       RowBox[{"Plot", "[", 
+        RowBox[{
+         RowBox[{"{", 
+          RowBox[{"a1", "*", 
+           RowBox[{
+            RowBox[{"modelsignalsim", "[", 
+             RowBox[{
+             "khd1in", ",", "kequhdin", ",", "h0in", ",", "d0in", ",", 
+              "sig0in", ",", "sighdin", ",", "sigdin"}], "]"}], "[", "x", 
+            "]"}]}], "}"}], ",", 
+         RowBox[{"{", 
+          RowBox[{"x", ",", "0", ",", "tmax"}], "}"}], ",", 
+         RowBox[{"PlotStyle", "\[Rule]", " ", "Red"}], ",", 
+         RowBox[{"PlotRange", "\[Rule]", "All"}]}], "]"}], ",", "\n", 
+       "\t\t\t\t", "\n", "\t\t\t\t", 
+       RowBox[{"PlotRange", "\[Rule]", "All"}], ",", 
+       RowBox[{"PlotLegends", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Signal\>\"", ",", 
+          "\"\<[\!\(\*SubscriptBox[\(HD\), \(2\)]\)]\>\"", ",", "\"\<[D]\>\"",
+           ",", "\"\<[\!\(\*SubscriptBox[\(HG\), \(A\)]\)]\>\"", ",", 
+          "\"\<[\!\(\*SubscriptBox[\(G\), \(A\)]\)]\>\"", ",", 
+          "\"\<[H]\>\""}], "}"}]}], ",", 
+       RowBox[{"ImageSize", "\[Rule]", " ", 
+        RowBox[{"Scaled", "[", "0.5", "]"}]}], ",", 
+       RowBox[{"PlotLabel", "\[Rule]", " ", 
+        RowBox[{"Style", "[", 
+         RowBox[{"\"\<Simulated Data\>\"", ",", "\"\<Subsection\>\""}], 
+         "]"}]}], ",", 
+       RowBox[{"Frame", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"True", ",", "False"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"True", ",", "False"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"FrameLabel", "\[Rule]", 
+        RowBox[{"{", 
+         RowBox[{
+          RowBox[{"{", 
+           RowBox[{"\"\<Signal / INT\>\"", ",", "None"}], "}"}], ",", 
+          RowBox[{"{", 
+           RowBox[{"\"\<time / sec\>\"", ",", "None"}], "}"}]}], "}"}]}], ",", 
+       RowBox[{"FrameTicks", "\[Rule]", "All"}]}], "\n", "\t\t\t\t", "]"}], 
+     ",", "\n", "\t\t\t", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"a1", ",", "1", ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Fit Signal\>\"", ",", "Red"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"a2", ",", "1", ",", 
+         RowBox[{"Style", "[", 
+          RowBox[{"\"\<Data\>\"", ",", "Blue"}], "]"}]}], "}"}], ",", 
+       RowBox[{"{", 
+        RowBox[{"1", ",", "0"}], "}"}]}], "}"}], ",", 
+     RowBox[{"ControlPlacement", "\[Rule]", "Right"}]}], "\n", "\t\t\t", 
+    "]"}]}]}]], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.725254137096717*^9, 3.7252541374383726`*^9}, 
+   3.7252542612562513`*^9, 3.7252544944863997`*^9, {3.725254533362337*^9, 
+   3.725254570688819*^9}, {3.725266474268921*^9, 3.725266548845482*^9}, {
+   3.7252666294061303`*^9, 3.7252667708541512`*^9}, {3.7252668022370715`*^9, 
+   3.725266869219159*^9}, {3.725266934092969*^9, 3.725267002935566*^9}, {
+   3.725267082407237*^9, 3.725267090502107*^9}, {3.7252671408292456`*^9, 
+   3.725267312501072*^9}, {3.725267348905128*^9, 3.725267554516585*^9}, {
+   3.7252676349072037`*^9, 3.7252678443005934`*^9}, {3.725267909454728*^9, 
+   3.7252679201070642`*^9}, {3.725267990548365*^9, 3.7252680757359395`*^9}, {
+   3.7252682283001833`*^9, 3.725268349818635*^9}, {3.7252683847024937`*^9, 
+   3.7252685567310295`*^9}, {3.7252691527517395`*^9, 3.725269257317491*^9}, 
+   3.7252694400329475`*^9, {3.725269497612366*^9, 3.7252695697052903`*^9}, {
+   3.7252696024563894`*^9, 3.725269630639729*^9}, {3.725271273815401*^9, 
+   3.725271277487241*^9}, {3.7268907106190834`*^9, 3.72689071124411*^9}, {
+   3.7269070572490234`*^9, 3.726907086038515*^9}, {3.726907117868949*^9, 
+   3.7269072153966136`*^9}, 3.7287149892063684`*^9, {3.728715032799965*^9, 
+   3.7287150343933105`*^9}, {3.72871510693785*^9, 3.728715220519114*^9}, {
+   3.7287153709218607`*^9, 3.7287154265423117`*^9}, {3.728715516344833*^9, 
+   3.728715615093551*^9}, {3.7287156523161182`*^9, 3.7287156820196157`*^9}, {
+   3.757870137073166*^9, 3.7578701429100647`*^9}, {3.757870182012275*^9, 
+   3.7578701912248917`*^9}, {3.7578702517991*^9, 3.757870255339902*^9}, {
+   3.7578708676260653`*^9, 3.7578709926086235`*^9}, {3.7578711939046893`*^9, 
+   3.7578711952078*^9}, {3.778410259533452*^9, 3.7784102717027884`*^9}, {
+   3.7784103987816205`*^9, 3.778410426421773*^9}, 3.7784104617322445`*^9, {
+   3.7784104972839904`*^9, 3.7784105020625763`*^9}, 3.7784143349519663`*^9, {
+   3.778414416919433*^9, 3.778414438062804*^9}, {3.7784155167020564`*^9, 
+   3.778415585942232*^9}, {3.778415716551609*^9, 3.778415733561696*^9}, {
+   3.778415790257552*^9, 3.7784158028274064`*^9}, 3.778415871796462*^9, {
+   3.778415922166692*^9, 3.778415927660059*^9}, {3.778416580906206*^9, 
+   3.7784166115567293`*^9}, {3.778417182624181*^9, 3.7784171941418905`*^9}, 
+   3.778429797918434*^9, {3.7784308802741604`*^9, 3.7784308883335238`*^9}, {
+   3.778430922021867*^9, 3.77843099825611*^9}, {3.778431140114401*^9, 
+   3.7784312018180923`*^9}, {3.7784312559115543`*^9, 3.7784312711125393`*^9}, 
+   3.7784356295440364`*^9, {3.7784848837314544`*^9, 3.7784848875715237`*^9}, {
+   3.778994460841694*^9, 3.7789944656473618`*^9}, {3.7789952929724965`*^9, 
+   3.7789953421537213`*^9}, 3.7789953875187426`*^9, {3.778995442741038*^9, 
+   3.7789954497362976`*^9}, {3.7789954824789896`*^9, 3.778995505012836*^9}, 
+   3.778995540526989*^9, {3.778995573861005*^9, 3.778995581248051*^9}, {
+   3.782127673509466*^9, 3.782127704590499*^9}, {3.7830754644462347`*^9, 
+   3.783075469667365*^9}, 3.783156936106822*^9},
+ CellTags->"simulation",
+ CellLabel->"In[51]:=",ExpressionUUID->"8577a97d-05b7-489b-b202-e38a9d169a55"],
+
+Cell[BoxData[
+ TagBox[
+  StyleBox[
+   DynamicModuleBox[{$CellContext`a1$$ = 1, $CellContext`a2$$ = 1, 
+    Typeset`show$$ = True, Typeset`bookmarkList$$ = {}, 
+    Typeset`bookmarkMode$$ = "Menu", Typeset`animator$$, Typeset`animvar$$ = 
+    1, Typeset`name$$ = "\"untitled\"", Typeset`specs$$ = {{{
+       Hold[$CellContext`a1$$], 1, 
+       Style["Fit Signal", 
+        RGBColor[1, 0, 0]]}, {1, 0}}, {{
+       Hold[$CellContext`a2$$], 1, 
+       Style["Data", 
+        RGBColor[0, 0, 1]]}, {1, 0}}}, Typeset`size$$ = {873., {286., 291.}}, 
+    Typeset`update$$ = 0, Typeset`initDone$$, Typeset`skipInitDone$$ = 
+    True, $CellContext`a1$1396960$$ = False, $CellContext`a2$1396961$$ = 
+    False}, 
+    DynamicBox[Manipulate`ManipulateBoxes[
+     1, StandardForm, 
+      "Variables" :> {$CellContext`a1$$ = 1, $CellContext`a2$$ = 1}, 
+      "ControllerVariables" :> {
+        Hold[$CellContext`a1$$, $CellContext`a1$1396960$$, False], 
+        Hold[$CellContext`a2$$, $CellContext`a2$1396961$$, False]}, 
+      "OtherVariables" :> {
+       Typeset`show$$, Typeset`bookmarkList$$, Typeset`bookmarkMode$$, 
+        Typeset`animator$$, Typeset`animvar$$, Typeset`name$$, 
+        Typeset`specs$$, Typeset`size$$, Typeset`update$$, Typeset`initDone$$,
+         Typeset`skipInitDone$$}, "Body" :> Show[
+        ListPlot[{$CellContext`a2$$ $CellContext`adjusteddata}, PlotStyle -> 
+         Blue, PlotRange -> All], 
+        Plot[{$CellContext`a1$$ \
+$CellContext`modelsignalsim[$CellContext`khd1in, $CellContext`kequhdin, \
+$CellContext`h0in, $CellContext`d0in, $CellContext`sig0in, \
+$CellContext`sighdin, $CellContext`sigdin][$CellContext`x]}, {$CellContext`x, 
+          0, $CellContext`tmax}, PlotStyle -> Red, PlotRange -> All], 
+        PlotRange -> All, 
+        PlotLegends -> {
+         "Signal", "[\!\(\*SubscriptBox[\(HD\), \(2\)]\)]", "[D]", 
+          "[\!\(\*SubscriptBox[\(HG\), \(A\)]\)]", 
+          "[\!\(\*SubscriptBox[\(G\), \(A\)]\)]", "[H]"}, ImageSize -> 
+        Scaled[0.5], PlotLabel -> Style["Simulated Data", "Subsection"], 
+        Frame -> {{True, False}, {True, False}}, 
+        FrameLabel -> {{"Signal / INT", None}, {"time / sec", None}}, 
+        FrameTicks -> All], "Specifications" :> {{{$CellContext`a1$$, 1, 
+          Style["Fit Signal", 
+           RGBColor[1, 0, 0]]}, {1, 0}}, {{$CellContext`a2$$, 1, 
+          Style["Data", 
+           RGBColor[0, 0, 1]]}, {1, 0}}}, 
+      "Options" :> {ControlPlacement -> Right}, "DefaultOptions" :> {}],
+     ImageSizeCache->{995., {317., 323.}},
+     SingleEvaluation->True],
+    Deinitialization:>None,
+    DynamicModuleValues:>{},
+    SynchronousInitialization->True,
+    UndoTrackedVariables:>{Typeset`show$$, Typeset`bookmarkMode$$},
+    UnsavedVariables:>{Typeset`initDone$$},
+    UntrackedVariables:>{Typeset`size$$}], "Manipulate",
+   Deployed->True,
+   StripOnInput->False],
+  Manipulate`InterpretManipulate[1]]], "Output",
+ CellChangeTimes->{
+  3.7784298091483717`*^9, 3.7784305821412416`*^9, {3.7784306646355405`*^9, 
+   3.7784306678273506`*^9}, {3.7784307655658073`*^9, 
+   3.7784307826342683`*^9}, {3.7784309523051677`*^9, 
+   3.7784310005332966`*^9}, {3.778431167055269*^9, 3.778431202979209*^9}, {
+   3.778431234094746*^9, 3.7784312412283735`*^9}, 3.778431271974256*^9, 
+   3.7784314880020065`*^9, 3.778433148271525*^9, 3.778434466639022*^9, 
+   3.7784345297279963`*^9, 3.778435415744673*^9, {3.7784354658847036`*^9, 
+   3.778435478012163*^9}, 3.778435510112928*^9, 3.778435546510914*^9, 
+   3.7784356383237705`*^9, {3.7784363782984037`*^9, 3.778436404185321*^9}, 
+   3.7784364668192797`*^9, 3.7784369448676434`*^9, 3.7784370187626796`*^9, {
+   3.778437107281826*^9, 3.7784371302548504`*^9}, 3.7784371984693317`*^9, 
+   3.7784730786242857`*^9, 3.7784742089476533`*^9, {3.7784743046024594`*^9, 
+   3.7784743158669577`*^9}, {3.7784743542029514`*^9, 3.778474364610819*^9}, 
+   3.7784756064212575`*^9, 3.778476456296311*^9, 3.778476730577643*^9, 
+   3.778476897139254*^9, 3.7784769285468416`*^9, 3.778476966515627*^9, 
+   3.7784775330314245`*^9, 3.7784787763926506`*^9, 3.7784788608702984`*^9, 
+   3.77848489668673*^9, 3.778500266294031*^9, 3.778918125954931*^9, {
+   3.778992578873663*^9, 3.77899260664727*^9}, 3.7789927802794776`*^9, 
+   3.778992846216547*^9, 3.7789941083264065`*^9, {3.778994789434461*^9, 
+   3.778994803558564*^9}, 3.778995070254863*^9, 3.778995105167489*^9, 
+   3.7789951845453196`*^9, {3.778995490434202*^9, 3.778995541689098*^9}, 
+   3.7789955831388164`*^9, 3.779007813121901*^9, 3.77901002877938*^9, 
+   3.77901175276258*^9, 3.7790119484199276`*^9, 3.782107505334506*^9, 
+   3.782107969254739*^9, 3.7821275892943816`*^9, 3.782127715911937*^9, {
+   3.782127869131504*^9, 3.782127874026551*^9}, 3.782127976190323*^9, 
+   3.782128163348585*^9, 3.782128300550621*^9, 3.7821283894044046`*^9, 
+   3.7821284357282515`*^9, 3.782144930148878*^9, 3.7821457410772033`*^9, 
+   3.782548354212677*^9, 3.7825484193070183`*^9, 3.782548589046731*^9, 
+   3.7825492430198045`*^9, 3.782549310196602*^9, {3.782549369544299*^9, 
+   3.782549401561651*^9}, 3.78254945265366*^9, 3.782549775825214*^9, 
+   3.7830754177307606`*^9, {3.783075454835188*^9, 3.7830754811686497`*^9}, 
+   3.7830755771172533`*^9, {3.7830756216237864`*^9, 3.783075631735365*^9}, {
+   3.783075799965624*^9, 3.783075809181037*^9}, 3.7830758505484934`*^9, 
+   3.783076386715705*^9, 3.78307644699754*^9, {3.7830765639996*^9, 
+   3.783076624433221*^9}, 3.783156540884534*^9, 3.78315690298763*^9, {
+   3.783156943169245*^9, 3.783157005498252*^9}, 3.7831571039436626`*^9, {
+   3.7831571364544134`*^9, 3.783157144967488*^9}, 3.783157255574579*^9, {
+   3.7831573145227337`*^9, 3.783157321544202*^9}, {3.7831573865297394`*^9, 
+   3.7831574121439075`*^9}, 3.783157498257062*^9, 3.7831575956350794`*^9, {
+   3.783157677219654*^9, 3.7831576909418864`*^9}, {3.7831577492116756`*^9, 
+   3.7831577898457513`*^9}, {3.7831578573779187`*^9, 3.78315788237766*^9}, {
+   3.7831579445098524`*^9, 3.783157951229598*^9}, {3.7831580265894833`*^9, 
+   3.783158039045895*^9}, {3.78315813353398*^9, 3.7831581411129293`*^9}, 
+   3.783838542278781*^9},
+ CellTags->"simulation",
+ CellLabel->"Out[54]=",ExpressionUUID->"ebae26f7-6963-44ef-81e9-bd20dd4da36d"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Off", "[", 
+   RowBox[{"ParametricNDSolveValue", "::", "ivres"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Off", "[", 
+   RowBox[{"NonlinearModelFit", "::", "sszero"}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Off", "[", 
+   RowBox[{"General", "::", "munfl"}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", "kequhd", "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"initialsfit", "=", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"h", "[", "0", "]"}], "\[Equal]", "h0in"}], ",", 
+     RowBox[{
+      RowBox[{"d", "[", "0", "]"}], "\[Equal]", "d0in"}], ",", 
+     RowBox[{
+      RowBox[{"hd", "[", "0", "]"}], "\[Equal]", "0."}], ",", 
+     RowBox[{
+      RowBox[{"sig", "[", "0", "]"}], "\[Equal]", 
+      RowBox[{"sig0in", "+", 
+       RowBox[{"sighdin", "*", "0"}], "+", 
+       RowBox[{"sigdin", "*", "d0in"}]}]}]}], "}"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"modelsignalfit", "=", 
+    RowBox[{"ParametricNDSolveValue", "[", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{"eqkinsignal", ",", "initialsfit"}], "}"}], ",", "sig", ",", 
+      RowBox[{"{", 
+       RowBox[{"t", ",", "0", ",", "tmax"}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{
+       "khd1", ",", "kequhd", ",", "sig0", ",", "sighd", ",", "sigd"}], 
+       "}"}]}], "]"}]}], ";"}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+  "\n"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"inputparameter", "=", 
+   RowBox[{"{", "}"}]}], ";", 
+  RowBox[{"subparameter", "=", 
+   RowBox[{"{", "}"}]}], ";", 
+  RowBox[{"concparameter", "=", 
+   RowBox[{"{", "}"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Clear", "[", 
+   RowBox[{
+   "h0", ",", "d0", ",", "khd1", ",", "khd2", ",", "sig0", ",", "sighd", ",", 
+    "sigd", ",", "kequhd"}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"d0fixed", "==", " ", "2"}], ",", 
+    RowBox[{
+     RowBox[{"operator", "=", "1"}], ";", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"inputparameter", ",", 
+       RowBox[{"{", 
+        RowBox[{"d0", ",", "d0in"}], "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"(*", "else", "*)"}], " ", 
+    RowBox[{
+     RowBox[{"d0", "=", "d0in"}], ";"}]}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"khd1fixed", "==", " ", "2"}], ",", 
+    RowBox[{
+     RowBox[{"operator", "=", "1"}], ";", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"inputparameter", ",", 
+       RowBox[{"{", 
+        RowBox[{"khd1", ",", "khd1in"}], "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"(*", "else", "*)"}], " ", 
+    RowBox[{
+     RowBox[{"khd1", "=", "khd1in"}], ";"}]}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"khd2fixed", "==", " ", "2"}], ",", 
+    RowBox[{
+     RowBox[{"operator", "=", "1"}], ";", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"inputparameter", ",", 
+       RowBox[{"{", 
+        RowBox[{"kequhd", ",", "kequhdin"}], "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"(*", "else", "*)"}], " ", 
+    RowBox[{
+     RowBox[{"kequhd", "=", "kequhdin"}], ";"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"sighdfixed", "==", " ", "2"}], ",", 
+    RowBox[{
+     RowBox[{"operator", "=", "1"}], ";", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"inputparameter", ",", 
+       RowBox[{"{", 
+        RowBox[{"sighd", ",", "sighdin"}], "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"(*", "else", "*)"}], " ", 
+    RowBox[{
+     RowBox[{"sighd", "=", "sighdin"}], ";"}]}], "]"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"sigdfixed", "==", " ", "2"}], ",", 
+    RowBox[{
+     RowBox[{"operator", "=", "1"}], ";", 
+     RowBox[{"AppendTo", "[", 
+      RowBox[{"inputparameter", ",", 
+       RowBox[{"{", 
+        RowBox[{"sigd", ",", "sigdin"}], "}"}]}], "]"}]}], ",", " ", 
+    RowBox[{"(*", "else", "*)"}], " ", 
+    RowBox[{
+     RowBox[{"sigd", "=", "sigdin"}], ";"}]}], "]"}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"sig0fixed", "==", " ", "2"}], ",", 
+     RowBox[{
+      RowBox[{"operator", "=", "1"}], ";", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"inputparameter", ",", 
+        RowBox[{"{", 
+         RowBox[{"sig0", ",", "sig0in"}], "}"}]}], "]"}]}], ",", " ", 
+     RowBox[{"(*", "else", "*)"}], " ", 
+     RowBox[{
+      RowBox[{"sig0", "=", "sig0in"}], ";"}]}], "]"}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"nlmfit", "=", 
+   RowBox[{"NonlinearModelFit", "[", 
+    RowBox[{"adjusteddata", ",", 
+     RowBox[{
+      RowBox[{"modelsignalfit", "[", 
+       RowBox[{
+       "khd1", ",", "kequhd", ",", "sig0", ",", "sighd", ",", "sigd"}], "]"}],
+       "[", "x", "]"}], ",", "inputparameter", ",", "x"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"bestfit", "=", 
+    RowBox[{"TableForm", "[", 
+     RowBox[{"nlmfit", "[", "\"\<ParameterTableEntries\>\"", "]"}], "]"}]}], 
+   ";"}], "\n", "\t", 
+  RowBox[{"(*", 
+   RowBox[{"signal", " ", "results"}], "*)"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Clear", "[", 
+  RowBox[{
+  "sig0out", ",", "sighdout", ",", "sigdout", ",", "khd1out", ",", "khd2out", 
+   ",", "kequhdout", ",", "kequhd", ",", "h0", ",", "d0", ",", "khd1", ",", 
+   "khd2", ",", "sig0", ",", "sighd", ",", "sigd"}], "]"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"sig0out", "=", 
+    RowBox[{"sig0", "/.", 
+     RowBox[{"nlmfit", "[", "\"\<BestFitParameters\>\"", "]"}]}]}], 
+   ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"sig0pos", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{
+       RowBox[{"bestfit", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "All", ",", "1"}], "]"}], "]"}], ",", "sig0out"}], 
+      "]"}], "]"}]}], ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"NumericQ", "[", "sig0out", "]"}], ",", "\[IndentingNewLine]", 
+     "\t", 
+     RowBox[{
+      RowBox[{"sig0error", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"bestfit", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "sig0pos", ",", "2"}], "]"}], "]"}], "]"}]}], ";",
+       "\n", "\t", 
+      RowBox[{"sig0in", "=", "sig0out"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"sighdout", "=", 
+    RowBox[{"sighd", "/.", 
+     RowBox[{"nlmfit", "[", "\"\<BestFitParameters\>\"", "]"}]}]}], 
+   ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"sighdpos", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{
+       RowBox[{"bestfit", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "All", ",", "1"}], "]"}], "]"}], ",", "sighdout"}],
+       "]"}], "]"}]}], ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"NumericQ", "[", "sighdout", "]"}], ",", "\[IndentingNewLine]", 
+     "\t", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{"sighderror", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"bestfit", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "sighdpos", ",", "2"}], "]"}], "]"}], "]"}]}], 
+      ";", "\n", "\t", 
+      RowBox[{"sighdin", "=", "sighdout"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}], ";"}], "\n"}], "\[IndentingNewLine]", 
+ RowBox[{"\t\t", 
+  RowBox[{
+   RowBox[{"sigdout", "=", 
+    RowBox[{"sigd", "/.", 
+     RowBox[{"nlmfit", "[", "\"\<BestFitParameters\>\"", "]"}]}]}], 
+   ";"}]}], "\n", 
+ RowBox[{"\t\t", 
+  RowBox[{
+   RowBox[{"sigdpos", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{
+       RowBox[{"bestfit", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "All", ",", "1"}], "]"}], "]"}], ",", "sigdout"}], 
+      "]"}], "]"}]}], ";"}]}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"NumericQ", "[", "sigdout", "]"}], ",", "\[IndentingNewLine]", 
+     "\t", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{"sigderror", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"bestfit", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "sigdpos", ",", "2"}], "]"}], "]"}], "]"}]}], ";",
+       "\n", "\t", 
+      RowBox[{"sigdin", "=", "sigdout"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}], ";"}], "\[IndentingNewLine]", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"affinity", " ", "results"}], "*)"}], "\n"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"khd1out", "=", 
+    RowBox[{"khd1", "/.", 
+     RowBox[{"nlmfit", "[", "\"\<BestFitParameters\>\"", "]"}]}]}], 
+   ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"khd1pos", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{
+       RowBox[{"bestfit", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "All", ",", "1"}], "]"}], "]"}], ",", "khd1out"}], 
+      "]"}], "]"}]}], ";"}]}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"NumericQ", "[", "khd1out", "]"}], ",", "\[IndentingNewLine]", 
+     "\t", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{"khd1error", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"bestfit", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "khd1pos", ",", "2"}], "]"}], "]"}], "]"}]}], ";",
+       "\n", "\t", 
+      RowBox[{"khd1in", "=", "khd1out"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}], ";"}], "\[IndentingNewLine]"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"khd2out", "=", 
+    RowBox[{"khd2", "/.", 
+     RowBox[{"nlmfit", "[", "\"\<BestFitParameters\>\"", "]"}]}]}], 
+   ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"khd2pos", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{
+       RowBox[{"bestfit", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "All", ",", "1"}], "]"}], "]"}], ",", "khd2out"}], 
+      "]"}], "]"}]}], ";"}]}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"NumericQ", "[", "khd2out", "]"}], ",", "\[IndentingNewLine]", 
+     "\t", 
+     RowBox[{
+      RowBox[{"khd2error", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"bestfit", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "khd2pos", ",", "2"}], "]"}], "]"}], "]"}]}], ";",
+       "\n", "\t", 
+      RowBox[{"khd2in", "=", "khd2out"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}], ";"}], "\[IndentingNewLine]", "\n"}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"kequhdout", "=", 
+    RowBox[{"kequhd", "/.", 
+     RowBox[{"nlmfit", "[", "\"\<BestFitParameters\>\"", "]"}]}]}], 
+   ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"kequhdpos", "=", 
+    RowBox[{"Flatten", "[", 
+     RowBox[{"Position", "[", 
+      RowBox[{
+       RowBox[{"bestfit", "[", 
+        RowBox[{"[", 
+         RowBox[{"1", ",", "All", ",", "1"}], "]"}], "]"}], ",", 
+       "kequhdout"}], "]"}], "]"}]}], ";"}]}], "\n", 
+ RowBox[{"\t", 
+  RowBox[{
+   RowBox[{"If", "[", 
+    RowBox[{
+     RowBox[{"NumericQ", "[", "kequhdout", "]"}], ",", "\[IndentingNewLine]", 
+     "\t", "\[IndentingNewLine]", "\t", 
+     RowBox[{
+      RowBox[{"kequhderror", "=", 
+       RowBox[{"First", "[", 
+        RowBox[{"bestfit", "[", 
+         RowBox[{"[", 
+          RowBox[{"1", ",", "kequhdpos", ",", "2"}], "]"}], "]"}], "]"}]}], 
+      ";", "\n", "\t", 
+      RowBox[{"kequhdin", "=", "kequhdout"}], ";"}]}], "\[IndentingNewLine]", 
+    "]"}], ";"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"khd2in", "=", 
+   RowBox[{"khd1in", "/", "kequhdin"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"adjustedrsquared", "  ", "=", " ", 
+   RowBox[{"nlmfit", "[", "\"\<AdjustedRSquared\>\"", "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"summary", "=", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Quantity\>\"", ",", "\"\<Value\>\"", ",", "\"\<Error\>\""}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<adjusted R-squared\>\"", ",", "adjustedrsquared", ",", 
+        "\"\<\>\""}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{"\"\<conc(H)\>\"", ",", "h0in", ",", "h0error"}], "}"}], ",", 
+      "\n", 
+      RowBox[{"{", 
+       RowBox[{"\"\<conc(D)\>\"", ",", "d0in", ",", "d0error"}], "}"}], ",", 
+      "\n", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Kequ(HD)\>\"", ",", "kequhdin", ",", "kequhderror"}], 
+       "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\!\(\*SubscriptBox[\(k\), \(1\)]\)(HD)\>\"", ",", "khd1in", ",", 
+        "khd1error"}], "}"}], ",", "\[IndentingNewLine]", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<\!\(\*SubscriptBox[\(k\), \(-1\)]\)(HD)\>\"", ",", "khd2in", ",", 
+        "khd2error"}], "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Signal-0\>\"", ",", "sig0in", ",", "sig0error"}], "}"}], 
+      ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Signal-HD\>\"", ",", "sighdin", ",", "sighderror"}], 
+       "}"}], ",", "\n", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Signal-Dye\>\"", ",", "sigdin", ",", "sigderror"}], 
+       "}"}]}], "\n", "}"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Style", "[", 
+   RowBox[{
+    RowBox[{"DecimalForm", "[", 
+     RowBox[{"TableForm", "[", "summary", "]"}], "]"}], ",", "\"\<Menu\>\""}],
+    "]"}], "\[IndentingNewLine]"}], "\n"}], "Input",
+ CellOpen->False,
+ CellChangeTimes->{{3.778417673405059*^9, 3.7784177056617193`*^9}, {
+   3.7784177485579042`*^9, 3.7784177521727314`*^9}, {3.778430227110628*^9, 
+   3.778430417845829*^9}, {3.7784323848070717`*^9, 3.7784323927210608`*^9}, {
+   3.778432425030758*^9, 3.778432441892988*^9}, {3.778432892805046*^9, 
+   3.7784329194302607`*^9}, 3.7784338121075077`*^9, {3.778434625628976*^9, 
+   3.7784346463174715`*^9}, {3.7784346815170045`*^9, 3.778434683903349*^9}, 
+   3.7784366233931155`*^9, {3.7784366663655033`*^9, 3.778436702630489*^9}, {
+   3.7784367835712147`*^9, 3.778436830513134*^9}, {3.7784761487471747`*^9, 
+   3.778476222359009*^9}, {3.7784763130629053`*^9, 3.7784763316710916`*^9}, {
+   3.7784771946993666`*^9, 3.778477244159848*^9}, {3.7789953963500414`*^9, 
+   3.778995412363085*^9}, 3.778995512131403*^9, 3.7821084318692117`*^9, {
+   3.7821277265131874`*^9, 3.782127775342189*^9}, {3.7821280923189898`*^9, 
+   3.7821281081163*^9}, {3.782128220073968*^9, 3.7821282210130997`*^9}, 
+   3.782128466984259*^9, 3.7825484511203747`*^9, {3.783838568269498*^9, 
+   3.7838385743168635`*^9}, {3.7838387453328032`*^9, 3.783838747605714*^9}},
+ CellTags->"fitting",
+ CellLabel->
+  "In[116]:=",ExpressionUUID->"a1a81e00-da0f-45cc-887b-c130784d06a3"],
+
+Cell[BoxData[
+ StyleBox[
+  TagBox[
+   TagBox[GridBox[{
+      {"\<\"Quantity\"\>", "\<\"Value\"\>", "\<\"Error\"\>"},
+      {"\<\"adjusted R-squared\"\>", 
+       InterpretationBox["\<\"1.\"\>",
+        0.9999999999846576,
+        AutoDelete->True], "\<\"\"\>"},
+      {"\<\"conc(H)\"\>", 
+       InterpretationBox["\<\"0.000001\"\>",
+        1.*^-6,
+        AutoDelete->True], 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False]},
+      {"\<\"conc(D)\"\>", 
+       InterpretationBox["\<\"0.000001\"\>",
+        1.*^-6,
+        AutoDelete->True], 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False]},
+      {"\<\"Kequ(HD)\"\>", 
+       InterpretationBox["\<\"23456790.\"\>",
+        2.345679012*^7,
+        AutoDelete->True], 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False]},
+      {"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(1\\)]\\)(HD)\"\>", 
+       InterpretationBox["\<\"10997645.\"\>",
+        1.0997645464805104`*^7,
+        AutoDelete->True], 
+       InterpretationBox["\<\"0.0000000000000525794\"\>",
+        5.2579381415429355`*^-14,
+        AutoDelete->True]},
+      {"\<\"\\!\\(\\*SubscriptBox[\\(k\\), \\(-1\\)]\\)(HD)\"\>", 
+       InterpretationBox["\<\"0.468847\"\>",
+        0.4688469909371003,
+        AutoDelete->True], 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False]},
+      {"\<\"Signal-0\"\>", 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False], 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False]},
+      {"\<\"Signal-HD\"\>", 
+       InterpretationBox["\<\"944485.\"\>",
+        944485.2133613534,
+        AutoDelete->True], 
+       InterpretationBox["\<\"0.00000000000000000000000000669185\"\>",
+        6.691851792696883*^-27,
+        AutoDelete->True]},
+      {"\<\"Signal-Dye\"\>", 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False], 
+       InterpretationBox["\<\"0\"\>",
+        0,
+        Editable->False]}
+     },
+     GridBoxAlignment->{"Columns" -> {{Left}}, "Rows" -> {{Baseline}}},
+     GridBoxSpacings->{"Columns" -> {
+         Offset[0.27999999999999997`], {
+          Offset[2.0999999999999996`]}, 
+         Offset[0.27999999999999997`]}, "Rows" -> {
+         Offset[0.2], {
+          Offset[0.4]}, 
+         Offset[0.2]}}],
+    Function[BoxForm`e$, 
+     TableForm[BoxForm`e$]]],
+   DecimalForm], "Menu",
+  StripOnInput->False]], "Output",
+ CellChangeTimes->{
+  3.778476241640148*^9, 3.778476294513961*^9, 3.7784763830313287`*^9, {
+   3.778476489343857*^9, 3.7784765309147696`*^9}, 3.7784766040053577`*^9, 
+   3.7784766695329547`*^9, 3.7784767430781336`*^9, 3.778476816837424*^9, 
+   3.7784768482955227`*^9, 3.778476906607667*^9, 3.778476945859847*^9, 
+   3.778477254889945*^9, 3.7784775591435785`*^9, 3.7784787835331087`*^9, 
+   3.7784788202333117`*^9, 3.778478869828538*^9, 3.7789927571072254`*^9, {
+   3.778994154894637*^9, 3.778994178550767*^9}, 3.778995121766206*^9, 
+   3.778995617263893*^9, {3.779007956678754*^9, 3.779007975856979*^9}, 
+   3.7790101293733425`*^9, {3.7790115737559566`*^9, 3.779011609241454*^9}, 
+   3.779011684653981*^9, 3.779011976638197*^9, {3.7821081207439785`*^9, 
+   3.7821081355183077`*^9}, 3.782128067666808*^9, 3.7821281292317357`*^9, 
+   3.782128183413703*^9, 3.7821282355989*^9, 3.7821282816607027`*^9, 
+   3.78212836500165*^9, {3.782128452355518*^9, 3.7821285219890165`*^9}, 
+   3.7821286121606646`*^9, {3.782128710059209*^9, 3.7821287178950434`*^9}, 
+   3.7821288433230553`*^9, 3.7821290677792006`*^9, 3.782129150043366*^9, {
+   3.78212920449957*^9, 3.782129210242191*^9}, {3.7821318850974083`*^9, 
+   3.78213190202796*^9}, 3.7821319347536216`*^9, {3.7821319666146383`*^9, 
+   3.7821320002483497`*^9}, 3.782132138141425*^9, {3.7821322035888243`*^9, 
+   3.782132210065978*^9}, 3.7821322697867527`*^9, {3.782145802974519*^9, 
+   3.7821458263247604`*^9}, 3.782145895686124*^9, 3.782145930045109*^9, 
+   3.7821461640260663`*^9, 3.7821462385616083`*^9, {3.7821464394404154`*^9, 
+   3.7821465214380045`*^9}, 3.782146696543829*^9, 3.782146781903286*^9, 
+   3.7821469800266604`*^9, 3.7821471184686503`*^9, 3.7821471889509745`*^9, 
+   3.7821472400823226`*^9, {3.7821472958263764`*^9, 3.782147299812665*^9}, {
+   3.7821474779636483`*^9, 3.782144029533924*^9}, 3.7821440816723385`*^9, 
+   3.782144153922012*^9, {3.7825492745803947`*^9, 3.7825493081135445`*^9}, 
+   3.782549398857829*^9, 3.7825494502429075`*^9, 3.782549772117668*^9, {
+   3.78307563713134*^9, 3.7830756434174805`*^9}, {3.783075751324942*^9, 
+   3.783075807389705*^9}, 3.783075874496181*^9, 3.783076434681017*^9, {
+   3.7830765714485884`*^9, 3.7830765891281157`*^9}, 3.783076622868683*^9, 
+   3.7831570030335455`*^9, 3.7831571433110294`*^9, 3.783157253084895*^9, 
+   3.7831573177827*^9, 3.7831573898236747`*^9, 3.7831574907737513`*^9, 
+   3.783157597497346*^9, 3.7831576805785275`*^9, 3.783157879820039*^9, 
+   3.783157948402229*^9, {3.783158029491783*^9, 3.783158036203539*^9}, 
+   3.783158138474393*^9, 3.783838611247514*^9, 3.783838753983757*^9},
+ CellTags->"fitting",
+ CellLabel->
+  "Out[154]=",ExpressionUUID->"bf4b4da6-a142-4447-9db0-726fea28ace4"]
+}, Open  ]]
+},
+InitializationCellEvaluation->True,
+InitializationCellWarning->False,
+WindowSize->{1920, 997},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+CellContext->Notebook,
+CellEpilog:>SelectionMove[
+  EvaluationNotebook[], All, EvaluationCell],
+FrontEndVersion->"12.0 for Microsoft Windows (64-bit) (April 8, 2019)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{
+ "loadcell"->{
+  Cell[3795, 107, 34187, 791, 19, "Input",ExpressionUUID->"e046c98b-a180-43a2-8ba0-ce2379536d4f",
+   CellOpen->False,
+   CellTags->"loadcell"],
+  Cell[38007, 902, 9551, 206, 55, "Print",ExpressionUUID->"fde269b7-3005-4f87-9c5f-af7392c443f6",
+   CellTags->"loadcell"],
+  Cell[47561, 1110, 5525, 109, 73, "Print",ExpressionUUID->"b6547b10-62d6-4754-8ad4-180d484979dd",
+   CellTags->"loadcell"],
+  Cell[53101, 1222, 28907, 704, 674, "Output",ExpressionUUID->"d31e50a2-7539-422c-b32e-2fe1132559ab",
+   CellTags->"loadcell"]},
+ "import"->{
+  Cell[82023, 1929, 6384, 171, 19, "Input",ExpressionUUID->"c87c19cb-9bf3-48ad-8f3b-ea2ae8e76dab",
+   CellOpen->False,
+   CellTags->"import"]},
+ "simulation"->{
+  Cell[88432, 2104, 7792, 163, 19, "Input",ExpressionUUID->"8577a97d-05b7-489b-b202-e38a9d169a55",
+   CellOpen->False,
+   CellTags->"simulation"],
+  Cell[96227, 2269, 6189, 105, 659, "Output",ExpressionUUID->"ebae26f7-6963-44ef-81e9-bd20dd4da36d",
+   CellTags->"simulation"]},
+ "fitting"->{
+  Cell[102453, 2379, 14854, 418, 19, "Input",ExpressionUUID->"a1a81e00-da0f-45cc-887b-c130784d06a3",
+   CellOpen->False,
+   CellTags->"fitting"],
+  Cell[117310, 2799, 5151, 116, 194, "Output",ExpressionUUID->"bf4b4da6-a142-4447-9db0-726fea28ace4",
+   CellTags->"fitting"]}
+ }
+*)
+(*CellTagsIndex
+CellTagsIndex->{
+ {"loadcell", 122936, 2933},
+ {"import", 123471, 2943},
+ {"simulation", 123632, 2947},
+ {"fitting", 123923, 2953}
+ }
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 2034, 47, 19, "Input",ExpressionUUID->"9da95d24-26c6-4c61-84c2-9ce619ab87b0",
+ CellOpen->False],
+Cell[2617, 71, 1141, 31, 91, "Output",ExpressionUUID->"de74371e-b7c3-4b40-8632-754783171304"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[3795, 107, 34187, 791, 19, "Input",ExpressionUUID->"e046c98b-a180-43a2-8ba0-ce2379536d4f",
+ CellOpen->False,
+ CellTags->"loadcell"],
+Cell[CellGroupData[{
+Cell[38007, 902, 9551, 206, 55, "Print",ExpressionUUID->"fde269b7-3005-4f87-9c5f-af7392c443f6",
+ CellTags->"loadcell"],
+Cell[47561, 1110, 5525, 109, 73, "Print",ExpressionUUID->"b6547b10-62d6-4754-8ad4-180d484979dd",
+ CellTags->"loadcell"]
+}, Open  ]],
+Cell[53101, 1222, 28907, 704, 674, "Output",ExpressionUUID->"d31e50a2-7539-422c-b32e-2fe1132559ab",
+ CellTags->"loadcell"]
+}, Open  ]],
+Cell[82023, 1929, 6384, 171, 19, "Input",ExpressionUUID->"c87c19cb-9bf3-48ad-8f3b-ea2ae8e76dab",
+ CellOpen->False,
+ CellTags->"import"],
+Cell[CellGroupData[{
+Cell[88432, 2104, 7792, 163, 19, "Input",ExpressionUUID->"8577a97d-05b7-489b-b202-e38a9d169a55",
+ CellOpen->False,
+ CellTags->"simulation"],
+Cell[96227, 2269, 6189, 105, 659, "Output",ExpressionUUID->"ebae26f7-6963-44ef-81e9-bd20dd4da36d",
+ CellTags->"simulation"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[102453, 2379, 14854, 418, 19, "Input",ExpressionUUID->"a1a81e00-da0f-45cc-887b-c130784d06a3",
+ CellOpen->False,
+ CellTags->"fitting"],
+Cell[117310, 2799, 5151, 116, 194, "Output",ExpressionUUID->"bf4b4da6-a142-4447-9db0-726fea28ace4",
+ CellTags->"fitting"]
+}, Open  ]]
+}
+]
+*)
+

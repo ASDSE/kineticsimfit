@@ -1,8 +1,8 @@
 file=FileNameJoin[{NotebookDirectory[],"logo.png"}];
 logo=Import[file];
 
-Pane[Grid[{{Style["thermoSimFit","Title"],Show[logo,ImageSize->Tiny]},{MouseAppearance[Button[Style["Launch Software Package (Click me)","Section"],{nb=EvaluationNotebook[],NotebookFind[nb,"launchcell",All,CellTags],SelectionEvaluate[nb]},Appearance->None],"LinkHand"],SpanFromAbove}},Alignment->Center,ItemSize->Large,BaselinePosition->Baseline],Alignment->Center,ImageSize->Full]
-thermoSimFit	
+Pane[Grid[{{Style["kineticSimFit","Title"],Show[logo,ImageSize->Tiny]},{MouseAppearance[Button[Style["Launch Software Package (Click me)","Section"],{nb=EvaluationNotebook[],NotebookFind[nb,"launchcell",All,CellTags],SelectionEvaluate[nb]},Appearance->None],"LinkHand"],SpanFromAbove}},Alignment->Center,ItemSize->Large,BaselinePosition->Baseline],Alignment->Center,ImageSize->Full]
+kineticSimFit	
 Launch Software Package (Click me)	
 
 
@@ -22,7 +22,7 @@ kinHGSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
 kinHGFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fitting-kinHD-fitConc_kequ.nb"}];
 (*hgimg=Import[FileNameJoin[{NotebookDirectory[],"Images","HG-HR-pic.png"}]];*)
 (*Buttons*)
-kineticHGSimbutton=createButton["HG^Sim",kinHGSimpath,"Simulation for a Direct-Binding Assay (DBA)",1];
+kineticHGSimbutton=createButton["HG^Sim",kinHGSimpath,"Simulation for a Direct-Binding Assay (DBA)",0];
 
 kineticHGFitbutton=createButton["HG^Fit",kinHGFitpath,"Fitting for a Direct-Binding Assay (DBA)",1];
 
@@ -46,7 +46,7 @@ kinHDIDAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-kineticsIDA.nb"
 (*Buttons*)
 
 kineticHDIDASimbutton=createButton["IDA^Sim",kinHDIDASimpath,"Simulation for a Competitive-Binding Assays (CBAs)",1];
-kineticHDIDAFitbutton=createButton["IDA^Fit",kinHGFitpath,"Fitting for a Indicator-Displacement Assay (IDA)",1];
+kineticHDIDAFitbutton=createButton["IDA^Fit",kinHDIDAFitpath,"Fitting for a Indicator-Displacement Assay (IDA)",1];
 
 
 (*inputline*)
@@ -82,7 +82,7 @@ TableForm[First[type]]
 
 
 Model	Kinetics
-H + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG	HG^Sim	HG^Fit
+H + G Underoverscript[⇌, Subsuperscript[k, out, HG], Subsuperscript[k, in, HG]] HG	HG^Sim	HG^Fit
 
 
 Model	Kinetics
@@ -90,7 +90,7 @@ HD + G Underoverscript[⇌, Subsuperscript[k, in, HD], Subsuperscript[k, out, HD
 
 
 Model	Kinetics
-HG + D Underoverscript[⇌, Subsuperscript[k, in, HG], Subsuperscript[k, out, HG]] H + D + G Underoverscript[⇌, Subsuperscript[k, out, HD], Subsuperscript[k, in, HD]] HD + G	IDA^Sim	IDA^Fit
+HG + D Underoverscript[⇌, Subsuperscript[k, in, HG], Subsuperscript[k, out, HG]] H + D + G Underoverscript[⇌, Subsuperscript[k, out, HD], Subsuperscript[k, in, HD]] HD + G	GDA^Sim	GDA^Fit
 
 
 

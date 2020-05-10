@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    523022,       9421]
-NotebookOptionsPosition[    520681,       9364]
-NotebookOutlinePosition[    521968,       9400]
-CellTagsIndexPosition[    521860,       9394]
+NotebookDataLength[    523021,       9421]
+NotebookOptionsPosition[    520697,       9365]
+NotebookOutlinePosition[    521984,       9401]
+CellTagsIndexPosition[    521876,       9395]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -57,7 +57,7 @@ Cell[BoxData[{
             RowBox[{
              RowBox[{"Style", "[", 
               RowBox[{
-              "\"\<Launch Software Package (Click me)\>\"", ",", 
+              "\"\<Launch Application (Click me)\>\"", ",", 
                "\"\<Section\>\""}], "]"}], ",", 
              RowBox[{"{", 
               RowBox[{
@@ -76,12 +76,13 @@ Cell[BoxData[{
      RowBox[{"BaselinePosition", "\[Rule]", "Baseline"}]}], "]"}], ",", 
    RowBox[{"Alignment", "\[Rule]", "Center"}], ",", 
    RowBox[{"ImageSize", "\[Rule]", "Full"}]}], "]"}]}], "Input",
- CellOpen->False,
  CellChangeTimes->{
   3.7334756520037374`*^9, {3.7404728880552044`*^9, 3.740472888394908*^9}, {
    3.7782377479855185`*^9, 3.7782377561892285`*^9}, {3.783753570366954*^9, 
-   3.7837535929289665`*^9}, {3.7981297208008947`*^9, 3.798129844625798*^9}},
- CellLabel->"In[91]:=",ExpressionUUID->"bf3a4b68-1d71-4f00-82d5-18e01219bba9"],
+   3.7837535929289665`*^9}, {3.7981297208008947`*^9, 3.798129844625798*^9}, {
+   3.7981301529622087`*^9, 
+   3.798130154543744*^9}},ExpressionUUID->"bf3a4b68-1d71-4f00-82d5-\
+18e01219bba9"],
 
 Cell[BoxData[
  PaneBox[
@@ -8074,14 +8075,14 @@ Cell[BoxData[
      {"\<\"initial host concentration\"\>", 
       DynamicBox[ToBoxes[$CellContext`h0in 1000000, StandardForm],
        ImageSizeCache->{
-        22., {0., 
-         11.}}], "\<\"\[Mu]M\"\>", "\<\"initial dye concentration\"\>", 
+        103., {1., 
+         13.}}], "\<\"\[Mu]M\"\>", "\<\"initial dye concentration\"\>", 
       DynamicBox[ToBoxes[$CellContext`d0in 1000000, StandardForm],
        ImageSizeCache->{
-        22., {0., 
-         11.}}], "\<\"\[Mu]M\"\>", "\<\"initial guest concentration\"\>", 
+        103., {1., 
+         13.}}], "\<\"\[Mu]M\"\>", "\<\"initial guest concentration\"\>", 
       DynamicBox[ToBoxes[$CellContext`g0in 1000000, StandardForm],
-       ImageSizeCache->{22., {0., 11.}}], "\<\"\[Mu]M\"\>"},
+       ImageSizeCache->{102., {4., 13.}}], "\<\"\[Mu]M\"\>"},
      {
       StyleBox["\<\"time-max = \"\>",
        StripOnInput->False,
@@ -8110,10 +8111,10 @@ host\"\>",
       DynamicBox[ToBoxes[
         Log10[$CellContext`kequhdin], StandardForm],
        ImageSizeCache->{
-        58., {0., 11.}}], "\<\"\"\>", "\<\"affinity of guest for host\"\>", 
+        81., {11., 18.}}], "\<\"\"\>", "\<\"affinity of guest for host\"\>", 
       DynamicBox[ToBoxes[
         Log10[$CellContext`kequhgin], StandardForm],
-       ImageSizeCache->{58., {0., 11.}}], ""},
+       ImageSizeCache->{81., {11., 18.}}], ""},
      {
       StyleBox["\<\"FactorRatio fd/fg= \"\>",
        StripOnInput->False,
@@ -9374,55 +9375,54 @@ StyleDefinitions->"Default.nb"
 (*CellTagsOutline
 CellTagsIndex->{
  "launchcell"->{
-  Cell[369860, 6118, 78835, 1699, 19, "Input",ExpressionUUID->"46b0609f-dce5-4e0e-9641-7090269d59ba",
+  Cell[369871, 6119, 78835, 1699, 19, "Input",ExpressionUUID->"46b0609f-dce5-4e0e-9641-7090269d59ba",
    CellOpen->False,
    CellTags->"launchcell"],
-  Cell[448698, 7819, 7616, 161, 43, "Print",ExpressionUUID->"3164d74a-8312-4da1-ac02-b22dd33a0de2",
+  Cell[448709, 7820, 7616, 161, 43, "Print",ExpressionUUID->"3164d74a-8312-4da1-ac02-b22dd33a0de2",
    CellTags->"launchcell"],
-  Cell[456317, 7982, 18702, 445, 528, "Output",ExpressionUUID->"f1cc281a-e0d1-42be-9335-bb1f5050ed25",
+  Cell[456328, 7983, 18707, 445, 547, "Output",ExpressionUUID->"f1cc281a-e0d1-42be-9335-bb1f5050ed25",
    CellTags->"launchcell"],
-  Cell[475022, 8429, 3665, 72, 22, "Print",ExpressionUUID->"c70805b8-8632-4c7b-aa15-3a5ed9cc8b36",
+  Cell[475038, 8430, 3665, 72, 22, "Print",ExpressionUUID->"c70805b8-8632-4c7b-aa15-3a5ed9cc8b36",
    CellTags->"launchcell"]},
  "simroutineHG"->{
-  Cell[478724, 8506, 4848, 99, 19, "Input",ExpressionUUID->"4710ba10-adb0-437d-8627-607d0eaf131a",
+  Cell[478740, 8507, 4848, 99, 19, "Input",ExpressionUUID->"4710ba10-adb0-437d-8627-607d0eaf131a",
    CellOpen->False,
    CellTags->"simroutineHG"],
-  Cell[483575, 8607, 36882, 748, 366, "Print",ExpressionUUID->"65c6dc55-f3db-4fb6-8ea1-d593319db486",
+  Cell[483591, 8608, 36882, 748, 366, "Print",ExpressionUUID->"65c6dc55-f3db-4fb6-8ea1-d593319db486",
    CellTags->"simroutineHG"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"launchcell", 520999, 9375},
- {"simroutineHG", 521555, 9385}
+ {"launchcell", 521015, 9376},
+ {"simroutineHG", 521571, 9386}
  }
 *)
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 2412, 61, 19, "Input",ExpressionUUID->"bf3a4b68-1d71-4f00-82d5-18e01219bba9",
- CellOpen->False],
-Cell[2995, 85, 366828, 6028, 121, "Output",ExpressionUUID->"12f29094-f622-476c-8c1f-c4521051ea85"]
+Cell[580, 22, 2423, 62, 212, "Input",ExpressionUUID->"bf3a4b68-1d71-4f00-82d5-18e01219bba9"],
+Cell[3006, 86, 366828, 6028, 121, "Output",ExpressionUUID->"12f29094-f622-476c-8c1f-c4521051ea85"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[369860, 6118, 78835, 1699, 19, "Input",ExpressionUUID->"46b0609f-dce5-4e0e-9641-7090269d59ba",
+Cell[369871, 6119, 78835, 1699, 19, "Input",ExpressionUUID->"46b0609f-dce5-4e0e-9641-7090269d59ba",
  CellOpen->False,
  CellTags->"launchcell"],
-Cell[448698, 7819, 7616, 161, 43, "Print",ExpressionUUID->"3164d74a-8312-4da1-ac02-b22dd33a0de2",
+Cell[448709, 7820, 7616, 161, 43, "Print",ExpressionUUID->"3164d74a-8312-4da1-ac02-b22dd33a0de2",
  CellTags->"launchcell"],
-Cell[456317, 7982, 18702, 445, 528, "Output",ExpressionUUID->"f1cc281a-e0d1-42be-9335-bb1f5050ed25",
+Cell[456328, 7983, 18707, 445, 547, "Output",ExpressionUUID->"f1cc281a-e0d1-42be-9335-bb1f5050ed25",
  CellTags->"launchcell"],
-Cell[475022, 8429, 3665, 72, 22, "Print",ExpressionUUID->"c70805b8-8632-4c7b-aa15-3a5ed9cc8b36",
+Cell[475038, 8430, 3665, 72, 22, "Print",ExpressionUUID->"c70805b8-8632-4c7b-aa15-3a5ed9cc8b36",
  CellTags->"launchcell"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[478724, 8506, 4848, 99, 19, "Input",ExpressionUUID->"4710ba10-adb0-437d-8627-607d0eaf131a",
+Cell[478740, 8507, 4848, 99, 19, "Input",ExpressionUUID->"4710ba10-adb0-437d-8627-607d0eaf131a",
  CellOpen->False,
  CellTags->"simroutineHG"],
-Cell[483575, 8607, 36882, 748, 366, "Print",ExpressionUUID->"65c6dc55-f3db-4fb6-8ea1-d593319db486",
+Cell[483591, 8608, 36882, 748, 366, "Print",ExpressionUUID->"65c6dc55-f3db-4fb6-8ea1-d593319db486",
  CellTags->"simroutineHG"]
 }, Open  ]],
-Cell[520472, 9358, 205, 4, 28, "Input",ExpressionUUID->"453970f9-419a-4f9d-bed8-ef1a2f62ae16"]
+Cell[520488, 9359, 205, 4, 28, "Input",ExpressionUUID->"453970f9-419a-4f9d-bed8-ef1a2f62ae16"]
 }
 ]
 *)

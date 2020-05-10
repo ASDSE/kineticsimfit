@@ -1,0 +1,280 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      8865,        272]
+NotebookOptionsPosition[      7910,        234]
+NotebookOutlinePosition[      8262,        249]
+CellTagsIndexPosition[      8219,        246]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ParentDirectory", "[", 
+       RowBox[{"ParentDirectory", "[", 
+        RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}], ",", 
+      "\"\<Styles\>\"", ",", "\"\<styles.m\>\""}], "}"}], "]"}], "]"}], 
+  ";"}]], "Input"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PopupMenu", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "compNumber", "]"}], ",", 
+   RowBox[{"Range", "[", 
+    RowBox[{"0", ",", "8"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7555874147141705`*^9, 3.755587419122857*^9}}],
+
+Cell[BoxData[
+ PopupMenuBox[Dynamic[$CellContext`compNumber], {0->"0", 1->"1", 2->"2", 3->
+  "3", 4->"4", 5->"5", 6->"6", 7->"7", 8->"8"}]], "Output",
+ CellChangeTimes->{3.755587352351709*^9, 3.755587420011321*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stoich", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"stoichiometrybutton", "=", 
+   RowBox[{"MouseAppearance", "[", 
+    RowBox[{
+     RowBox[{"Button", "[", 
+      RowBox[{
+       RowBox[{"stylesButtonGenericStyle", "[", 
+        RowBox[{
+        "\"\<Adjust competitors\>\"", ",", 
+         "\"\<Select the number of competitors\>\""}], "]"}], ",", 
+       RowBox[{
+       "{", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"stoich", "==", "1"}], ",", 
+           RowBox[{"stoich", "=", "0"}], ",", 
+           RowBox[{"stoich", "=", "1"}]}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"ClearAll", "[", 
+          RowBox[{"hi", ",", "grid1"}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"array1", "=", 
+          RowBox[{"Map", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+            RowBox[{"Array", "[", 
+             RowBox[{"hi", ",", 
+              RowBox[{"compNumber", "*", "2"}]}], "]"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"grid1", "=", 
+          RowBox[{"Partition", "[", 
+           RowBox[{
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"InputField", "[", 
+                RowBox[{
+                 RowBox[{"Dynamic", "[", "#", "]"}], ",", 
+                 RowBox[{"FieldHint", "\[Rule]", "\"\<Input\>\""}]}], "]"}], 
+               "&"}], ",", "array1"}], "]"}], ",", "2"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"k", "=", "1"}], ",", 
+           RowBox[{"k", "\[LessEqual]", " ", "compNumber"}], ",", 
+           RowBox[{"k", "++"}], ",", 
+           RowBox[{
+            RowBox[{"grid1", "=", 
+             RowBox[{"Insert", "[", 
+              RowBox[{"grid1", ",", 
+               RowBox[{"\"\<Competitor \>\"", "<>", 
+                RowBox[{"ToString", "[", "k", "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"{", 
+                 RowBox[{"k", ",", "1"}], "}"}], "}"}]}], "]"}]}], ";"}]}], 
+          "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"PrependTo", "[", 
+          RowBox[{"grid1", ",", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<\>\"", ",", "\"\<Concentration / M\>\"", ",", 
+             "\"\<Ka / M-1\>\""}], "}"}]}], "]"}], ";", "\[IndentingNewLine]",
+          " ", 
+         RowBox[{
+          RowBox[{"Grid", "[", 
+           RowBox[{"grid1", ",", " ", 
+            RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], "//", 
+          "panelstyling"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "}"}], ",", 
+       RowBox[{"Appearance", "\[Rule]", "None"}]}], "]"}], ",", 
+     "\"\<LinkHand\>\""}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Print", "[", "stoichiometrybutton", "]"}]}], "Input",
+ CellChangeTimes->{{3.7555873771040726`*^9, 3.7555873774489617`*^9}, {
+  3.755587545813159*^9, 3.75558754658854*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  ButtonBox[
+   TagBox[
+    TooltipBox[
+     FrameBox[
+      StyleBox["\<\"Adjust competitors\"\>", "Section",
+       StripOnInput->False,
+       FontSize->18],
+      Background->GrayLevel[0.85],
+      FrameStyle->Directive[
+        GrayLevel[0.85], 12],
+      RoundingRadius->15,
+      StripOnInput->False],
+     "\"Select the number of competitors\"",
+     TooltipStyle->"TextStyling"],
+    Annotation[#, "Select the number of competitors", "Tooltip"]& ],
+   Appearance->None,
+   ButtonFunction:>{
+    If[$CellContext`stoich == 1, $CellContext`stoich = 0, $CellContext`stoich = 
+       1]; ClearAll[$CellContext`hi, $CellContext`grid1]; $CellContext`array1 = 
+      Map[(# = 0.)& , 
+        Array[$CellContext`hi, $CellContext`compNumber 
+         2]]; $CellContext`grid1 = Partition[
+        Map[InputField[
+          Dynamic[#], FieldHint -> "Input"]& , $CellContext`array1], 2]; 
+     For[$CellContext`k = 1, $CellContext`k <= $CellContext`compNumber, 
+       Increment[$CellContext`k], $CellContext`grid1 = 
+        Insert[$CellContext`grid1, 
+          StringJoin["Competitor ", 
+           ToString[$CellContext`k]], {{$CellContext`k, 1}}]; Null]; 
+     PrependTo[$CellContext`grid1, {"", "Concentration / M", "Ka / M-1"}]; 
+     styles`panelstyling[
+       Grid[$CellContext`grid1, Alignment -> Center]]},
+   Evaluator->Automatic,
+   Method->"Preemptive"],
+  MouseAppearanceTag["LinkHand"]]], "Print",
+ CellChangeTimes->{3.755587424961898*^9, 3.755587559764805*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"compNumber", "\[NotEqual]", " ", "0"}], ",", 
+    RowBox[{
+     RowBox[{"Grid", "[", 
+      RowBox[{"grid1", ",", " ", 
+       RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], "//", 
+     "panelstyling"}], ",", "\"\<\>\""}], "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.75558745329148*^9, 3.7555874588028555`*^9}, {
+  3.755587489276883*^9, 3.755587521657192*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   If[$CellContext`compNumber != 0, 
+    styles`panelstyling[
+     Grid[$CellContext`grid1, Alignment -> Center]], ""], StandardForm],
+  ImageSizeCache->{802., {19., 25.}}]], "Output",
+ CellChangeTimes->{3.7555875219788404`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["array1"], "Input",
+ CellChangeTimes->{{3.7555876179479227`*^9, 3.7555876230413747`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.`", ",", "0.`"}], "}"}]], "Output",
+ CellChangeTimes->{3.755587624057995*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.7555876310702667`*^9, 3.755587640368409*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"hi", "[", "1", "]"}]], "Input",
+ CellChangeTimes->{{3.755587653823633*^9, 3.7555876552888427`*^9}}],
+
+Cell[BoxData["0.`"], "Output",
+ CellChangeTimes->{3.755587656213952*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Array", "[", 
+  RowBox[{"hg", ",", 
+   RowBox[{"compNumber", "*", "2"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7555876494004955`*^9, 3.7555876495266886`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"hg", "[", "1", "]"}], ",", 
+   RowBox[{"hg", "[", "2", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.755587650041007*^9}]
+}, Open  ]]
+},
+WindowSize->{1348, 667},
+WindowMargins->{{-1680, Automatic}, {-17, Automatic}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 351, 10, 47, "Input"],
+Cell[CellGroupData[{
+Cell[934, 34, 255, 6, 47, "Input"],
+Cell[1192, 42, 214, 3, 43, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1443, 50, 3200, 78, 475, "Input"],
+Cell[4646, 130, 1497, 37, 49, "Print"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6180, 172, 455, 11, 47, "Input"],
+Cell[6638, 185, 263, 6, 61, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[6938, 196, 102, 1, 30, "Input"],
+Cell[7043, 199, 119, 3, 30, "Output"]
+}, Open  ]],
+Cell[7177, 205, 94, 1, 30, "Input"],
+Cell[CellGroupData[{
+Cell[7296, 210, 123, 2, 30, InheritFromParent],
+Cell[7422, 214, 72, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[7531, 220, 185, 4, 47, "Input"],
+Cell[7719, 226, 175, 5, 30, "Output"]
+}, Open  ]]
+}
+]
+*)
+

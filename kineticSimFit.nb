@@ -1,0 +1,416 @@
+file=FileNameJoin[{NotebookDirectory[],"logo.png"}];
+logo=Import[file];
+
+Pane[Grid[{{Style["thermoSimFit","Title"],Show[logo,ImageSize->Tiny]},{MouseAppearance[Button[Style["Launch Software Package (Click me)","Section"],{nb=EvaluationNotebook[],NotebookFind[nb,"launchcell",All,CellTags],SelectionEvaluate[nb]},Appearance->None],"LinkHand"],SpanFromAbove}},Alignment->Center,ItemSize->Large,BaselinePosition->Baseline],Alignment->Center,ImageSize->Full]
+thermoSimFit	
+Launch Software Package (Click me)	
+
+
+(* Notebook settings
+*)SetOptions[$FrontEnd,FrontEndEventActions->{{"KeyDown","\t"}:>NotebookWrite[SelectedNotebook[],"\t"]}];
+SetOptions[EvaluationNotebook[],CellContext->Notebook];
+SetOptions[$FrontEnd,"DynamicUpdating"->True];
+SetOptions[$FrontEnd,"DynamicEvaluationTimeout"->30];
+click="Null";
+(* Load Packges *)	
+
+Get[FileNameJoin[{FileNameJoin[{NotebookDirectory[],"kineticSimFit","kineticSimFit.m"}]}]];
+(*HG*)
+(* Paths *)
+
+thermoHGSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHG.nb"}];
+thermoHGSimVolpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheVolHG.nb"}];
+thermoHGSESimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG-SE2.nb"}];
+thermoHGTitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+thermoHGFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheHG.nb"}];
+thermoHGFitVolpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheVolHG.nb"}];
+thermoHGFitJASCOpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheJASCOHG.nb"}];
+kinHGSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+kinHGFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fitting-kinHD-fitConc_kequ.nb"}];
+(*hgimg=Import[FileNameJoin[{NotebookDirectory[],"Images","HG-HR-pic.png"}]];*)
+(*Buttons*)
+thermoHGSimDummybutton=Tooltip[MouseAppearance[Button[Style["Subscript[HG, Simulation]","Section"],Dynamic[click="HGSim"],Appearance->None],"LinkHand"],"Simulate a Host:Guest Titration curve"];
+
+thermoHGSESDummybutton=MouseAppearance[Button[Style["Subscript[HG, Salt Effects]","Section"],Dynamic[click="HGSES"],Appearance->None],"LinkHand"];
+thermoHGTitDummybutton=MouseAppearance[Button[Style["Subscript[HG, Titration]","Section"],Dynamic[click="HGTit"],Appearance->None],"LinkHand"];
+thermoHGFitDummybutton=MouseAppearance[Button[Style["Subscript[HG, Fitting]","Section"],Dynamic[click="HGFit"],Appearance->None],"LinkHand"];
+
+
+thermoHGSimbutton=createButton["Subsuperscript[HG, [constant], Sim]",thermoHGSimpath,"Constant Guest/Dye concentration throughout the titration",1];
+
+thermoHGSimVolbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HG, Volume, Sim]","Section",FontSize->18],nb=NotebookOpen[thermoHGSimVolpath],Appearance->None],"LinkHand"],"Dilution effects by volume addition within titration"];
+thermoHGSESimbutton=MouseAppearance[Button[Style["Subscript[HG, Salt Effects]","Section",FontSize->18],nb=NotebookOpen[thermoHGSESimpath],Appearance->None],"LinkHand"];
+
+thermoHGTitbutton=MouseAppearance[Button[Style["Subscript[HG, Titration]","Section",FontSize->18],nb=NotebookOpen[thermoHGTitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+thermoHGFitbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HG, [constant], Fit]","Section",FontSize->18],nb=NotebookOpen[thermoHGFitpath],Appearance->None],"LinkHand"],"Constant Guest/Dye concentration throughout the titration"];
+thermoHGFitVolbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HG, Volume, Fit]","Section",FontSize->18],nb=NotebookOpen[thermoHGFitVolpath],Appearance->None],"LinkHand"],"Dilution effects by volume addition within titration"];
+thermoHGFitJASCObutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HG, JASCO, Fit]","Section",FontSize->18],nb=NotebookOpen[thermoHGFitJASCOpath],Appearance->None],"LinkHand"],"Titration performed with JASCO Automatic Titration Unit "];
+kineticHGSimbutton=MouseAppearance[Button[Style["Subscript[HG, Simulation]","Section"],nb=NotebookOpen[kinHGSimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHGFitbutton=MouseAppearance[Button[Style["Subscript[HG, Fitting]","Section"],nb=NotebookOpen[kinHGFitpath],Appearance->None],"LinkHand"];
+
+
+(*inputlines*)
+  
+   
+   hg=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["H + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG","Subsection"],Grid[{
+{thermoHGSimDummybutton,thermoHGSESDummybutton,thermoHGTitDummybutton,thermoHGFitDummybutton},
+{Dynamic[If[click== "HGSim",Grid[{{thermoHGSimbutton,thermoHGSimVolbutton}}],""]],Dynamic[If[click== "HGSES",Grid[{{thermoHGSESimbutton}}],""]],Dynamic[If[click== "HGTit",Grid[{{thermoHGTitbutton}}],""]],Dynamic[If[click== "HGFit",Grid[{{thermoHGFitbutton,thermoHGFitVolbutton}}],""]]}
+
+
+}],
+
+Grid[{{kineticHGSimbutton,kineticHGFitbutton}}]}
+	
+		},
+		Alignment->{Center,{Bottom,Center}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+		
+		
+		
+(*HD2*)
+(* Paths *)
+
+
+thermoHD2Simpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2.nb"}];
+thermoHD2Titpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+thermoHD2Fitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoHD2.nb"}];
+kinHD2Simpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+kinHD2Fitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+(*Buttons*)
+
+thermoHD2Simbutton=MouseAppearance[Button[Style["Subscript[Subscript[HD, 2], Simulation]","Section"],nb=NotebookOpen[thermoHD2Simpath],Appearance->None],"LinkHand"];
+thermoHD2Titbutton=MouseAppearance[Button[Style["Subscript[Subscript[HD, 2], Titration]","Section"],nb=NotebookOpen[thermoHD2Titpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHD2Fitbutton=MouseAppearance[Button[Style["Subscript[Subscript[HD, 2], Fitting]","Section"],nb=NotebookOpen[thermoHD2Fitpath],Appearance->None],"LinkHand"];
+kineticHD2Simbutton=MouseAppearance[Button[Style["Subscript[Subscript[HD, 2], Simulation]","Section"],nb=NotebookOpen[kinHD2Simpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHD2Fitbutton=MouseAppearance[Button[Style["Subscript[Subscript[HD, 2], Fitting]","Section"],nb=NotebookOpen[kinHD2Fitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)    
+   hd2=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{Style["H + 2 D Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] Subscript[HD, 2]","Subsection"],Grid[{{thermoHD2Simbutton,thermoHD2Titbutton,thermoHD2Fitbutton}}],Grid[{{kineticHD2Simbutton,kineticHD2Fitbutton}}]}},
+		Alignment->{Center,{Bottom,Center}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+
+(*HDD*)
+(* Paths *)
+
+
+thermoHDDSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHDD.nb"}];
+thermoHDDTitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+thermoHDDFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheHDD.nb"}];
+kinHDDSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+kinHDDFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHG.nb"}];
+(*Buttons*)
+
+thermoHDDSimbutton=MouseAppearance[Button[Style["Subscript[HDD, Simulation]","Section"],nb=NotebookOpen[thermoHDDSimpath],Appearance->None],"LinkHand"];
+thermoHDDTitbutton=MouseAppearance[Button[Style["Subscript[HDD, Titration]","Section"],nb=NotebookOpen[thermoHDDTitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDDFitbutton=MouseAppearance[Button[Style["Subscript[HDD, Fitting]","Section"],nb=NotebookOpen[thermoHDDFitpath],Appearance->None],"LinkHand"];
+kineticHDDSimbutton=MouseAppearance[Button[Style["Subscript[HDD, Simulation]","Section"],nb=NotebookOpen[kinHDDSimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHDDFitbutton=MouseAppearance[Button[Style["Subscript[HDD, Fitting]","Section"],nb=NotebookOpen[kinHDDFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)    
+   hdd=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Grid[{{Style["H + D Underoverscript[⇌, Subscript[k, HD,-1], Subscript[k, HD,1]] HD","Subsection"]},{Style["HD + Subscript[D,  ]Underoverscript[⇌, Subscript[k, HDD,-1], Subscript[k, HDD,1]] HDD","Subsection"]}}],Grid[{{thermoHDDSimbutton,thermoHDDTitbutton,thermoHDDFitbutton}}],Grid[{{kineticHDDSimbutton,kineticHDDFitbutton}}]}},
+		Alignment->{Center,{Bottom,Center}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+
+(*HHD*)
+(* Paths *)
+
+thermoHHDSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHHD.1.0.0.2.nb"}];
+thermoHHDSimVolpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheVolHHD.nb"}];
+thermoHHDSESimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHHD-SE2.nb"}];
+thermoHHDTitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHHD.nb"}];
+thermoHHDFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheHHD.nb"}];
+thermoHHDFitVolpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheVolHHD.nb"}];
+thermoHHDFitJASCOpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheJASCOHHD.nb"}];
+kinHHDSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHHD.nb"}];
+kinHHDFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHHD.nb"}];
+(*hgimg=Import[FileNameJoin[{NotebookDirectory[],"Images","HHD-HR-pic.png"}]];*)
+(*Buttons*)
+thermoHHDSimDummybutton=Tooltip[MouseAppearance[Button[Style["Subscript[HHD, Simulation]","Section"],Dynamic[click="HHDSim"],Appearance->None],"LinkHand"],"Simulate a Host:Guest Titration curve"];
+
+thermoHHDSESDummybutton=MouseAppearance[Button[Style["Subscript[HHD, Salt Effects]","Section"],Dynamic[click="HHDSES"],Appearance->None],"LinkHand"];
+thermoHHDTitDummybutton=MouseAppearance[Button[Style["Subscript[HHD, Titration]","Section"],Dynamic[click="HHDTit"],Appearance->None],"LinkHand"];
+thermoHHDFitDummybutton=MouseAppearance[Button[Style["Subscript[HHD, Fitting]","Section"],Dynamic[click="HHDFit"],Appearance->None],"LinkHand"];
+
+thermoHHDSimbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HHD, [constant], Sim]","Section",FontSize->18],nb=NotebookOpen[thermoHHDSimpath],Appearance->None],"LinkHand"],"Constant Guest/Dye concentration throughout the titration"];
+thermoHHDSimVolbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HHD, Volume, Sim]","Section",FontSize->18],nb=NotebookOpen[thermoHHDSimVolpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"],"Dilution effects by volume addition within titration"];
+thermoHHDSESimbutton=MouseAppearance[Button[Style["Subscript[HHD, Salt Effects]","Section",FontSize->18],nb=NotebookOpen[thermoHHDSESimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+thermoHHDTitbutton=MouseAppearance[Button[Style["Subscript[HHD, Titration]","Section",FontSize->18],nb=NotebookOpen[thermoHHDTitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+thermoHHDFitbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HHD, [constant], Fit]","Section",FontSize->18],nb=NotebookOpen[thermoHHDFitpath],Appearance->None],"LinkHand"],"Constant Guest/Dye concentration throughout the titration"];
+thermoHHDFitVolbutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HHD, Volume, Fit]","Section",FontSize->18],nb=NotebookOpen[thermoHHDFitVolpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"],"Dilution effects by volume addition within titration"];
+thermoHHDFitJASCObutton=Tooltip[MouseAppearance[Button[Style["Subsuperscript[HHD, JASCO, Fit]","Section",FontSize->18],nb=NotebookOpen[thermoHHDFitJASCOpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"],"Titration performed with JASCO Automatic Titration Unit "];
+kineticHHDSimbutton=MouseAppearance[Button[Style["Subscript[HHD, Simulation]","Section"],nb=NotebookOpen[kinHHDSimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHHDFitbutton=MouseAppearance[Button[Style["Subscript[HHD, Fitting]","Section"],nb=NotebookOpen[kinHHDFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+
+(*inputlines*)
+  
+   
+   hhd=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Grid[{{Style["H + D Underoverscript[⇌, Subscript[k, HD-1], Subscript[k, HD1]] HD","Subsection"]},{Style["H + Subscript[HD,  ]Underoverscript[⇌, Subscript[k, HHD-1], Subscript[k, HHD1]] HHD","Subsection"]}}],Grid[{
+{thermoHHDSimDummybutton,thermoHHDFitDummybutton},
+{Dynamic[If[click== "HHDSim",Grid[{{thermoHHDSimbutton,thermoHHDSimVolbutton}}],""]],Dynamic[If[click== "HHDSES",Grid[{{thermoHHDSESimbutton}}],""]],Dynamic[If[click== "HHDTit",Grid[{{thermoHHDTitbutton}}],""]],Dynamic[If[click== "HHDFit",Grid[{{thermoHHDFitbutton,thermoHHDFitVolbutton}}],""]]}
+
+
+}],
+
+Grid[{{kineticHHDSimbutton,kineticHHDFitbutton}}]}
+	
+		},
+		Alignment->{Center,{Bottom,Center}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+
+
+(*HD2IDA*)
+(* Paths *)
+
+
+thermoHD2IDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+thermoHD2IDATitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+thermoHD2IDAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoHD2-IDA1.nb"}];
+kinHD2IDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+kinHD2IDAFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+(*Buttons*)
+
+thermoHD2IDASimbutton=MouseAppearance[Button[Style["IDA-Subscript[Subscript[HD, 2], Simulation]","Section"],nb=NotebookOpen[thermoHD2IDASimpath],Appearance->None],"LinkHand"];
+thermoHD2IDATitbutton=MouseAppearance[Button[Style["IDA-Subscript[Subscript[HD, 2], Titration]","Section"],nb=NotebookOpen[thermoHD2IDATitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHD2IDAFitbutton=MouseAppearance[Button[Style["IDA-Subscript[Subscript[HD, 2], Fitting]","Section"],nb=NotebookOpen[thermoHD2IDAFitpath],Appearance->None],"LinkHand"];
+kineticHD2IDASimbutton=MouseAppearance[Button[Style["IDA-Subscript[Subscript[HD, 2], Simulation]","Section"],nb=NotebookOpen[kinHD2IDASimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHD2IDAFitbutton=MouseAppearance[Button[Style["IDA-Subscript[Subscript[HD, 2], Fitting]","Section"],nb=NotebookOpen[kinHD2IDAFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)
+   hd2IDA=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["Subscript[HD, 2] + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + 2 D","Subsection"],Grid[{{thermoHD2IDASimbutton,thermoHD2IDATitbutton,thermoHD2IDAFitbutton}}],Grid[{{kineticHD2IDASimbutton,kineticHD2IDAFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+		
+		(*HDDIDA*)
+(* Paths *)
+
+
+thermoHDDIDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHDD-IDA1.nb"}];
+thermoHDDIDATitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+thermoHDDIDAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoHDD-IDA1.nb"}];
+kinHDDIDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+kinHDDIDAFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+(*Buttons*)
+
+thermoHDDIDASimbutton=MouseAppearance[Button[Style["IDA-Subscript[HDD, Simulation]","Section"],nb=NotebookOpen[thermoHDDIDASimpath],Appearance->None],"LinkHand"];
+thermoHDDIDATitbutton=MouseAppearance[Button[Style["IDA-Subscript[HDD, Titration]","Section"],nb=NotebookOpen[thermoHDDIDATitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDDIDAFitbutton=MouseAppearance[Button[Style["IDA-Subscript[HDD, Fitting]","Section"],nb=NotebookOpen[thermoHDDIDAFitpath],Appearance->None],"LinkHand"];
+kineticHDDIDASimbutton=MouseAppearance[Button[Style["IDA-Subscript[HDD, Simulation]","Section"],nb=NotebookOpen[kinHDDIDASimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHDDIDAFitbutton=MouseAppearance[Button[Style["IDA-Subscript[HDD, Fitting]","Section"],nb=NotebookOpen[kinHDDIDAFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)
+   hddIDA=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["HDD + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + 2 D","Subsection"],Grid[{{thermoHDDIDASimbutton,thermoHDDIDATitbutton,thermoHDDIDAFitbutton}}],Grid[{{kineticHDDIDASimbutton,kineticHDDIDAFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+		
+		(*HDIDA*)
+(* Paths *)
+
+
+thermoHDIDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHD-IDA1.nb"}];
+thermoHDIDATitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+thermoHDIDAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheHD-IDA1.nb"}];
+kinHDIDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-kineticsComp.nb"}];
+kinHDIDAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-kineticsIDA.nb"}];
+(*Buttons*)
+
+thermoHDIDASimbutton=MouseAppearance[Button[Style["IDA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[thermoHDIDASimpath],Appearance->None],"LinkHand"];
+thermoHDIDATitbutton=MouseAppearance[Button[Style["IDA-Subscript[HD, Titration]","Section"],nb=NotebookOpen[thermoHDIDATitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDIDAFitbutton=MouseAppearance[Button[Style["IDA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[thermoHDIDAFitpath],Appearance->None],"LinkHand"];
+kineticHDIDASimbutton=MouseAppearance[Button[Style["IDA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[kinHDIDASimpath],Appearance->None],"LinkHand"];
+kineticHDIDAFitbutton=MouseAppearance[Button[Style["IDA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[kinHDIDAFitpath],Appearance->None],"LinkHand"];
+
+(*inputline*)
+   hdIDA=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["HD + Subscript[G, a] Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] Subscript[HG, a] + D","Subsection"],Grid[{{thermoHDIDASimbutton,thermoHDIDATitbutton,thermoHDIDAFitbutton}}],Grid[{{kineticHDIDASimbutton,kineticHDIDAFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+(*HDGDA*)
+(* Paths *)
+
+
+thermoHDADASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHD-GDA.nb"}];
+thermoHDADATitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-ADA1.nb"}];
+thermoHDADAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoHD-GDA1.nb"}];
+kinHDADASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-kineticsComp.nb"}];
+kinHDADAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-kineticsGDA.nb"}];
+(*Buttons*)
+
+thermoHDADASimbutton=MouseAppearance[Button[Style["GDA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[thermoHDADASimpath],Appearance->None],"LinkHand"];
+thermoHDADATitbutton=MouseAppearance[Button[Style["GDA-Subscript[HD, Titration]","Section"],nb=NotebookOpen[thermoHDADATitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDADAFitbutton=MouseAppearance[Button[Style["GDA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[thermoHDADAFitpath],Appearance->None],"LinkHand"];
+kineticHDADASimbutton=MouseAppearance[Button[Style["GDA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[kinHDADASimpath],Appearance->None],"LinkHand"];
+kineticHDADAFitbutton=MouseAppearance[Button[Style["GDA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[kinHDADAFitpath],Appearance->None],"LinkHand"];
+
+(*inputline*)
+   hdGDA=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["Subscript[HG, a] + D Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HD + Subscript[G, a]","Subsection"],Grid[{{thermoHDADASimbutton,thermoHDADATitbutton,thermoHDADAFitbutton}}],Grid[{{kineticHDADASimbutton,kineticHDADAFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+
+(*HDHGaHGb*)
+(* Paths *)
+
+
+thermoHDHGaHGbSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHD-HGa-HGb.nb"}];
+thermoHDHGaHGbTitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+thermoHDHGaHGbFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheHD-IDA1.nb"}];
+kinHDHGaHGbSimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+kinHDHGaHGbFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+(*Buttons*)
+
+thermoHDHGaHGbSimbutton=MouseAppearance[Button[Style["IDA-HD-HGa-Subscript[HGb, Simulation]","Section"],nb=NotebookOpen[thermoHDHGaHGbSimpath],Appearance->None],"LinkHand"];
+thermoHDHGaHGbTitbutton=MouseAppearance[Button[Style["IDA-HD-HGa-Subscript[HGb, Titration]","Section"],nb=NotebookOpen[thermoHDHGaHGbTitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDHGaHGbFitbutton=MouseAppearance[Button[Style["IDA-HD-HGa-Subscript[HGb, Fitting]","Section"],nb=NotebookOpen[thermoHDHGaHGbFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHDHGaHGbSimbutton=MouseAppearance[Button[Style["IDA-HD-HGa-Subscript[HGb, Simulation]","Section"],nb=NotebookOpen[kinHDHGaHGbSimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHDHGaHGbFitbutton=MouseAppearance[Button[Style["IDA-HD-HGa-Subscript[HGb, Fitting]","Section"],nb=NotebookOpen[kinHDHGaHGbFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)
+   hdHGaHGb=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["HD + Subscript[G, a] + Subscript[G, b] Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] Subscript[HG, a] + Subscript[HG, b] + D","Subsection"],Grid[{{thermoHDHGaHGbSimbutton,thermoHDHGaHGbTitbutton,thermoHDHGaHGbFitbutton}}],Grid[{{kineticHDHGaHGbSimbutton,kineticHDHGaHGbFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+		
+		(*HDiIDA*)
+(* Paths *)
+
+
+thermoHDiIDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHD-iIDA1.nb"}];
+thermoHDiIDATitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+thermoHDiIDAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoCacheHD-iIDA1.nb"}];
+kinHDiIDASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+kinHDiIDAFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD2-IDA1.nb"}];
+(*Buttons*)
+
+thermoHDiIDASimbutton=MouseAppearance[Button[Style["iIDA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[thermoHDiIDASimpath],Appearance->None],"LinkHand"];
+thermoHDiIDATitbutton=MouseAppearance[Button[Style["iIDA-Subscript[HD, Titration]","Section"],nb=NotebookOpen[thermoHDiIDATitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDiIDAFitbutton=MouseAppearance[Button[Style["iIDA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[thermoHDiIDAFitpath],Appearance->None],"LinkHand"];
+kineticHDiIDASimbutton=MouseAppearance[Button[Style["iIDA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[kinHDiIDASimpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+kineticHDiIDAFitbutton=MouseAppearance[Button[Style["iIDA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[kinHDiIDAFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)
+   hdiIDA=Grid[{Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["G + HD Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + D","Subsection"],Grid[{{thermoHDiIDASimbutton,thermoHDiIDATitbutton,thermoHDiIDAFitbutton}}],Grid[{{kineticHDiIDASimbutton,kineticHDiIDAFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+		
+		(*HDSAIBA*)
+(* Paths *)
+
+
+thermoHDSAIBASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoCacheHD-SBA.nb"}];
+thermoHDSAIBATitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD-SAIBA1.nb"}];
+thermoHDSAIBAFitpath=FileNameJoin[{NotebookDirectory[],"Fitting","Fit-thermoHD-SAIBA1.nb"}];
+kinHDSAIBASimpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-kineticsComp.nb"}];
+kinHDSAIBAFitpath=FileNameJoin[{NotebookDirectory[],"Simulation","Sim-thermoHD-SAIBA1.nb"}];
+(*Buttons*)
+
+thermoHDSAIBASimbutton=MouseAppearance[Button[Style["SBA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[thermoHDSAIBASimpath],Appearance->None],"LinkHand"];
+thermoHDSAIBATitbutton=MouseAppearance[Button[Style["SBA-Subscript[HD, Titration]","Section"],nb=NotebookOpen[thermoHDSAIBATitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+thermoHDSAIBAFitbutton=MouseAppearance[Button[Style["SBA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[thermoHDSAIBAFitpath],Appearance->None],"LinkHand"];
+kineticHDSAIBASimbutton=MouseAppearance[Button[Style["SBA-Subscript[HD, Simulation]","Section"],nb=NotebookOpen[kinHDSAIBASimpath],Appearance->None],"LinkHand"];
+kineticHDSAIBAFitbutton=MouseAppearance[Button[Style["SBA-Subscript[HD, Fitting]","Section"],nb=NotebookOpen[kinHDSAIBAFitpath],Appearance->None, Background->LightGray, Enabled->False],"LinkHand"];
+
+(*inputline*)
+   hdSAIBA=Grid[{{"Saiba"},Text@Style[#,"Section"]&/@{"Model","Thermodynamics","Kinetics"},
+		{ Style["H + D + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + HD","Subsection"],Grid[{{thermoHDSAIBASimbutton,thermoHDSAIBATitbutton,thermoHDSAIBAFitbutton}}],Grid[{{kineticHDSAIBASimbutton,kineticHDSAIBAFitbutton}}]}},
+		Alignment->{Center,{Bottom,Top}},Frame->All,ItemSize->{{20,50,40}},Spacings->{0,1}];
+
+myPrint[args__] :=Print[args] ;
+model={
+{hg,hd2,hdd,hd2IDA,hddIDA,hdIDA,hdSAIBA},(*1,1*)
+{hg},(*2,1*)
+{hd2},(*3,1*)
+{hdd},(*4,1*)
+{hd2IDA},(*5,1*)
+{hddIDA},(*6,1*)
+{hdIDA},(*7,1*)
+{hdSAIBA},(*8,1*)
+{hhd}(*9,1*)
+{hdHGaHGb}(*10,1*)
+{hdGDA}(*11,1*)
+};
+
+type={
+{hg,hd2,hdd,hhd,hd2IDA,hddIDA,hdIDA,hdGDA,hdiIDA,hdSAIBA},(*1,1*)
+{hg,hd2,hdd,hhd},(*2,1*)
+{hd2IDA,hddIDA,hdIDA,hdiIDA,hdHGaHGb},(*3,1*)
+{hdIDA,hdSAIBA},(*4,1*)
+{hd2IDA},(*5,1*)
+{hddIDA}(*6,1*)};
+
+
+
+(*Print session*)
+
+
+varA=Style["Model","Subsubsubsection"];
+varB=Style["Type","Subsubsubsection"];
+(*Grid[{
+ {Style["Filter:","Subsection"],PopupMenu[Dynamic[varA],{Style["Model","Subsubsubsection"],"HG","Subscript[HD, 2]","HDD","IDA-Subscript[HD, 2]","IDA-HDD","IDA-HD","SAIBA-HD"}]}
+}]
+Dynamic[TableForm[First[model[[Switch[varA,Style["Model","Subsubsubsection"],{1,1},"HG",{2,1},"Subscript[HD, 2]",{3,1},"HDD",{4,1},"IDA-Subscript[HD, 2]",{5,1},"IDA-HDD",{6,1},"IDA-HD",{7,1},"SAIBA-HD",{8,1}]]]]]]*)
+
+Grid[{
+ {Style["Filter:","Subsection"],PopupMenu[Dynamic[varB],{Style["Type","Subsubsubsection"],"Host-Guest","IDA","HD Competitive"}]}
+}]
+Dynamic[TableForm[First[type[[Switch[varB,Style["Type","Subsubsubsection"],{1,1},"Host-Guest",{2,1},"IDA",{3,1},"HD Competitive",{4,1}]]]]]]
+
+
+
+
+Get::noopen: Cannot open C:\Users\Stephan Sinn\OneDrive\Institute of Nanotechnology\Projects\kineticSimFit\SupraSimFitMM\SupraSimFitMM.m.
+Filter:	BoxData[Type]
+Model	Thermodynamics	Kinetics
+H + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG	Subscript[HG, Simulation]	Subscript[HG, Salt Effects]	Subscript[HG, Titration]	Subscript[HG, Fitting]
+			
+
+	Subscript[HG, Simulation]	Subscript[HG, Fitting]
+
+
+Model	Thermodynamics	Kinetics
+H + 2 D Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] Subscript[HD, 2]	Subscript[Subscript[HD, 2], Simulation]	Subscript[Subscript[HD, 2], Titration]	Subscript[Subscript[HD, 2], Fitting]	Subscript[Subscript[HD, 2], Simulation]	Subscript[Subscript[HD, 2], Fitting]
+
+
+Model	Thermodynamics	Kinetics
+H + D Underoverscript[⇌, Subscript[k, HD,-1], Subscript[k, HD,1]] HD
+HD + Subscript[D,  ]Underoverscript[⇌, Subscript[k, HDD,-1], Subscript[k, HDD,1]] HDD
+
+	Subscript[HDD, Simulation]	Subscript[HDD, Titration]	Subscript[HDD, Fitting]	Subscript[HDD, Simulation]	Subscript[HDD, Fitting]
+
+
+Model	Thermodynamics	Kinetics
+H + D Underoverscript[⇌, Subscript[k, HD-1], Subscript[k, HD1]] HD
+H + Subscript[HD,  ]Underoverscript[⇌, Subscript[k, HHD-1], Subscript[k, HHD1]] HHD
+
+	Subscript[HHD, Simulation]	Subscript[HHD, Fitting]		
+			
+
+	Subscript[HHD, Simulation]	Subscript[HHD, Fitting]
+
+
+Model	Thermodynamics	Kinetics
+Subscript[HD, 2] + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + 2 D	IDA-Subscript[Subscript[HD, 2], Simulation]	IDA-Subscript[Subscript[HD, 2], Titration]	IDA-Subscript[Subscript[HD, 2], Fitting]	IDA-Subscript[Subscript[HD, 2], Simulation]	IDA-Subscript[Subscript[HD, 2], Fitting]
+
+
+Model	Thermodynamics	Kinetics
+HDD + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + 2 D	IDA-Subscript[HDD, Simulation]	IDA-Subscript[HDD, Titration]	IDA-Subscript[HDD, Fitting]	IDA-Subscript[HDD, Simulation]	IDA-Subscript[HDD, Fitting]
+
+
+Model	Thermodynamics	Kinetics
+HD + Subscript[G, a] Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] Subscript[HG, a] + D	IDA-Subscript[HD, Simulation]	IDA-Subscript[HD, Titration]	IDA-Subscript[HD, Fitting]	IDA-Subscript[HD, Simulation]	IDA-Subscript[HD, Fitting]
+
+
+Model	Thermodynamics	Kinetics
+Subscript[HG, a] + D Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HD + Subscript[G, a]	GDA-Subscript[HD, Simulation]	GDA-Subscript[HD, Titration]	GDA-Subscript[HD, Fitting]	GDA-Subscript[HD, Simulation]	GDA-Subscript[HD, Fitting]
+
+
+Model	Thermodynamics	Kinetics
+G + HD Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + D	iIDA-Subscript[HD, Simulation]	iIDA-Subscript[HD, Titration]	iIDA-Subscript[HD, Fitting]	iIDA-Subscript[HD, Simulation]	iIDA-Subscript[HD, Fitting]
+
+
+Saiba		
+Model	Thermodynamics	Kinetics
+H + D + G Underoverscript[⇌, Subscript[k, -1], Subscript[k, 1]] HG + HD	SBA-Subscript[HD, Simulation]	SBA-Subscript[HD, Titration]	SBA-Subscript[HD, Fitting]	SBA-Subscript[HD, Simulation]	SBA-Subscript[HD, Fitting]
+
+
+

@@ -1,0 +1,1164 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 11.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     41631,       1156]
+NotebookOptionsPosition[     38315,       1043]
+NotebookOutlinePosition[     38663,       1058]
+CellTagsIndexPosition[     38620,       1055]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+
+Cell[CellGroupData[{
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"{", 
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"Array", "[", 
+     RowBox[{
+      RowBox[{"InputField", "[", 
+       RowBox[{"Dynamic", "[", "g", "]"}], "]"}], ",", "k"}], "]"}], "]"}], 
+   "}"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7544907151089115`*^9, 3.7544908705745106`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"{", 
+   DynamicBox[ToBoxes[
+     Array[
+      InputField[
+       Dynamic[$CellContext`g]], $CellContext`k], StandardForm],
+    ImageSizeCache->{600.5, {31., 14.}}], "}"}], "]"}]], "Output",
+ CellChangeTimes->{{3.7544908246859994`*^9, 3.7544908714650955`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"k", "=", "2"}]], "Input",
+ CellChangeTimes->{{3.754490831857545*^9, 3.754490839341576*^9}}],
+
+Cell[BoxData["2"], "Output",
+ CellChangeTimes->{{3.754490833748081*^9, 3.7544908397790537`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"InputField", "[", 
+  RowBox[{"Dynamic", "[", "jh", "]"}], "]"}]], "Input",
+ CellChangeTimes->{{3.754490887683099*^9, 3.754490972954893*^9}, {
+  3.7544910311240897`*^9, 3.754491031655319*^9}, {3.7544923014641933`*^9, 
+  3.754492314916704*^9}}],
+
+Cell[BoxData[
+ InputFieldBox[Dynamic[$CellContext`jh]]], "Output",
+ CellChangeTimes->{
+  3.754490918587926*^9, {3.7544910159841585`*^9, 3.754491032264658*^9}, 
+   3.7544912964313183`*^9, 3.7544923158229046`*^9, 3.755528133775757*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"ClearAll", "[", "gi", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"gr", "=", 
+  RowBox[{"Partition", "[", 
+   RowBox[{
+    RowBox[{"Map", "[", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"InputField", "[", 
+        RowBox[{
+         RowBox[{"Dynamic", "[", "#", "]"}], ",", 
+         RowBox[{"FieldHint", "\[Rule]", "\"\<Input\>\""}]}], "]"}], "&"}], 
+      ",", 
+      RowBox[{"Array", "[", 
+       RowBox[{"gi", ",", "jh"}], "]"}]}], "]"}], ",", "2"}], 
+   "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ClearAll", "[", "gi", "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Map", "[", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"(", 
+     RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+   RowBox[{"Array", "[", 
+    RowBox[{"gi", ",", "jh"}], "]"}]}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Grid", "[", "gr", "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.7544910349207907`*^9, 3.7544911201042433`*^9}, {
+   3.754491151337188*^9, 3.754491157477524*^9}, {3.754491467416071*^9, 
+   3.7544915445843916`*^9}, {3.754491582902526*^9, 3.754491587808548*^9}, {
+   3.754491831419553*^9, 3.7544918401691513`*^9}, 3.7544922795132294`*^9, {
+   3.754492320541438*^9, 3.754492322822584*^9}, {3.7544923636019573`*^9, 
+   3.754492420411848*^9}, {3.754492494877163*^9, 3.7544925265163355`*^9}, {
+   3.754492615074761*^9, 3.7544926265742297`*^9}, {3.754492764983046*^9, 
+   3.754492794653553*^9}, {3.7544928331518135`*^9, 3.7544928509790926`*^9}, {
+   3.754492927022459*^9, 3.7544929630676756`*^9}, {3.7544930025658627`*^9, 
+   3.754493016533969*^9}, {3.755528248607568*^9, 3.7555282668228765`*^9}, {
+   3.7555283230685153`*^9, 3.7555283510673475`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","ilsmn",
+   "\"Single or list of non-negative machine-sized integers expected at \
+position \\!\\(\\*RowBox[{\\\"2\\\"}]\\) of \\!\\(\\*RowBox[{\\\"Array\\\", \
+\\\"[\\\", RowBox[{\\\"gi\\\", \\\",\\\", \\\"1.`\\\"}], \\\"]\\\"}]\\).\"",2,
+   39,78,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283636312943`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","ilsmn",
+   "\"Single or list of non-negative machine-sized integers expected at \
+position \\!\\(\\*RowBox[{\\\"2\\\"}]\\) of \\!\\(\\*RowBox[{\\\"Array\\\", \
+\\\"[\\\", RowBox[{InputFieldBox[Dynamic[gi], Rule[FieldHint, \
+\\\"Input\\\"]], \\\",\\\", InputFieldBox[Dynamic[1.], Rule[FieldHint, \
+\\\"Input\\\"]]}], \\\"]\\\"}]\\).\"",2,39,79,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.755528363727395*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","ilsmn",
+   "\"Single or list of non-negative machine-sized integers expected at \
+position \\!\\(\\*RowBox[{\\\"2\\\"}]\\) of \\!\\(\\*RowBox[{\\\"Array\\\", \
+\\\"[\\\", RowBox[{InputFieldBox[Dynamic[gi], Rule[FieldHint, \
+\\\"Input\\\"]], \\\",\\\", InputFieldBox[Dynamic[1.], Rule[FieldHint, \
+\\\"Input\\\"]]}], \\\"]\\\"}]\\).\"",2,39,80,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283637752705`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "General","stop",
+   "\"Further output of \\!\\(\\*StyleBox[RowBox[{\\\"Array\\\", \\\"::\\\", \
+\\\"ilsmn\\\"}], \\\"MessageName\\\"]\\) will be suppressed during this \
+calculation.\"",2,39,81,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283638073797`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","argbu",
+   "\"\\!\\(\\*RowBox[{\\\"Array\\\"}]\\) called with 1 argument; between \\!\
+\\(\\*RowBox[{\\\"2\\\"}]\\) and \\!\\(\\*RowBox[{\\\"4\\\"}]\\) arguments \
+are expected.\"",2,39,82,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283638475637`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Array", "[", 
+  RowBox[{"Array", "[", 
+   RowBox[{
+    InputFieldBox[Dynamic[$CellContext`gi],
+     FieldHint->"Input"], ",", 
+    InputFieldBox[Dynamic[1.],
+     FieldHint->"Input"]}], "]"}], "]"}]], "Output",
+ CellChangeTimes->{{3.754491097183422*^9, 3.7544911208542147`*^9}, 
+   3.754491158336858*^9, {3.754491471369011*^9, 3.754491545256236*^9}, {
+   3.754491583824358*^9, 3.754491605635852*^9}, 3.7544918409816113`*^9, 
+   3.754492111500414*^9, {3.7544923293066587`*^9, 3.7544923485557723`*^9}, {
+   3.7544923939755616`*^9, 3.754492431989436*^9}, {3.754492571342394*^9, 
+   3.7544925943100863`*^9}, 3.7544926276366816`*^9, {3.7544927774980917`*^9, 
+   3.7544927954347672`*^9}, {3.7544928386359034`*^9, 
+   3.7544928517446756`*^9}, {3.7544929433498363`*^9, 
+   3.7544930175182943`*^9}, {3.7555281407010417`*^9, 
+   3.7555281532209024`*^9}, {3.7555282375358696`*^9, 3.755528269400494*^9}, {
+   3.755528325513112*^9, 3.7555283638475637`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","ilsmn",
+   "\"Single or list of non-negative machine-sized integers expected at \
+position \\!\\(\\*RowBox[{\\\"2\\\"}]\\) of \\!\\(\\*RowBox[{\\\"Array\\\", \
+\\\"[\\\", RowBox[{\\\"gi\\\", \\\",\\\", \\\"1.`\\\"}], \\\"]\\\"}]\\).\"",2,
+   41,83,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283638875437`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set","setraw",
+   "\"Cannot assign to raw object \\!\\(\\*RowBox[{\\\"1.`\\\"}]\\).\"",2,41,
+   84,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.755528363927294*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","ilsmn",
+   "\"Single or list of non-negative machine-sized integers expected at \
+position \\!\\(\\*RowBox[{\\\"2\\\"}]\\) of \\!\\(\\*RowBox[{\\\"Array\\\", \
+\\\"[\\\", RowBox[{\\\"0.`\\\", \\\",\\\", \\\"0.`\\\"}], \\\"]\\\"}]\\).\"",
+   2,41,85,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283639674606`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Array", "[", 
+  RowBox[{"0.`", ",", "0.`"}], "]"}]], "Output",
+ CellChangeTimes->{{3.754491097183422*^9, 3.7544911208542147`*^9}, 
+   3.754491158336858*^9, {3.754491471369011*^9, 3.754491545256236*^9}, {
+   3.754491583824358*^9, 3.754491605635852*^9}, 3.7544918409816113`*^9, 
+   3.754492111500414*^9, {3.7544923293066587`*^9, 3.7544923485557723`*^9}, {
+   3.7544923939755616`*^9, 3.754492431989436*^9}, {3.754492571342394*^9, 
+   3.7544925943100863`*^9}, 3.7544926276366816`*^9, {3.7544927774980917`*^9, 
+   3.7544927954347672`*^9}, {3.7544928386359034`*^9, 
+   3.7544928517446756`*^9}, {3.7544929433498363`*^9, 
+   3.7544930175182943`*^9}, {3.7555281407010417`*^9, 
+   3.7555281532209024`*^9}, {3.7555282375358696`*^9, 3.755528269400494*^9}, {
+   3.755528325513112*^9, 3.7555283639674606`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","ilsmn",
+   "\"Single or list of non-negative machine-sized integers expected at \
+position \\!\\(\\*RowBox[{\\\"2\\\"}]\\) of \\!\\(\\*RowBox[{\\\"Array\\\", \
+\\\"[\\\", RowBox[{InputFieldBox[Dynamic[gi], Rule[FieldHint, \
+\\\"Input\\\"]], \\\",\\\", InputFieldBox[Dynamic[1.], Rule[FieldHint, \
+\\\"Input\\\"]]}], \\\"]\\\"}]\\).\"",2,42,86,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283640142612`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Array","argbu",
+   "\"\\!\\(\\*RowBox[{\\\"Array\\\"}]\\) called with 1 argument; between \\!\
+\\(\\*RowBox[{\\\"2\\\"}]\\) and \\!\\(\\*RowBox[{\\\"4\\\"}]\\) arguments \
+are expected.\"",2,42,87,16860376708875120640,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{{3.755528140488518*^9, 3.7555281530073247`*^9}, {
+  3.7555282373373346`*^9, 3.7555282691621447`*^9}, {3.7555283253080797`*^9, 
+  3.7555283640475492`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", 
+  RowBox[{"Array", "[", 
+   RowBox[{"Array", "[", 
+    RowBox[{
+     InputFieldBox[Dynamic[$CellContext`gi],
+      FieldHint->"Input"], ",", 
+     InputFieldBox[Dynamic[1.],
+      FieldHint->"Input"]}], "]"}], "]"}], "]"}]], "Output",
+ CellChangeTimes->{{3.754491097183422*^9, 3.7544911208542147`*^9}, 
+   3.754491158336858*^9, {3.754491471369011*^9, 3.754491545256236*^9}, {
+   3.754491583824358*^9, 3.754491605635852*^9}, 3.7544918409816113`*^9, 
+   3.754492111500414*^9, {3.7544923293066587`*^9, 3.7544923485557723`*^9}, {
+   3.7544923939755616`*^9, 3.754492431989436*^9}, {3.754492571342394*^9, 
+   3.7544925943100863`*^9}, 3.7544926276366816`*^9, {3.7544927774980917`*^9, 
+   3.7544927954347672`*^9}, {3.7544928386359034`*^9, 
+   3.7544928517446756`*^9}, {3.7544929433498363`*^9, 
+   3.7544930175182943`*^9}, {3.7555281407010417`*^9, 
+   3.7555281532209024`*^9}, {3.7555282375358696`*^9, 3.755528269400494*^9}, {
+   3.755528325513112*^9, 3.755528364060582*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"Style", "[", 
+   RowBox[{"\"\<Host:\>\"", ",", " ", "Bold", ",", " ", 
+    RowBox[{"FontSize", "\[Rule]", "16"}], " ", ",", 
+    RowBox[{"TextAlignment", "\[Rule]", "Right"}]}], "]"}], "}"}]], "Input",
+ CellChangeTimes->{{3.754492659713334*^9, 3.7544926698378677`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  StyleBox["\<\"Host:\"\>",
+   StripOnInput->False,
+   TextAlignment->Right,
+   FontSize->16,
+   FontWeight->Bold], "}"}]], "Output",
+ CellChangeTimes->{{3.7544926604007964`*^9, 3.75449267080657*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"Clear", "[", "hi", "]"}]], "Input",
+ CellChangeTimes->{
+  3.7544911356816525`*^9, {3.7544915970737543`*^9, 3.754491600604841*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"ji", "=", 
+  RowBox[{"Thread", "[", 
+   RowBox[{
+    RowBox[{"Array", "[", 
+     RowBox[{"hi", ",", "2"}], "]"}], ",", 
+    RowBox[{"Range", "[", "2", "]"}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.7544913086338863`*^9, 3.7544913116650014`*^9}, 
+   3.7544913490695224`*^9, {3.7544913955443797`*^9, 3.754491396684949*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"hi", "[", "1", "]"}], ",", 
+   RowBox[{"hi", "[", "2", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7544913147117276`*^9, 3.7544913499288607`*^9, 
+  3.7544913975755367`*^9, 3.7555283862480097`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Array", "[", 
+  RowBox[{"hi", ",", "2"}], "]"}]], "Input",
+ CellChangeTimes->{{3.7544913301953936`*^9, 3.7544913394293423`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"hi", "[", "1", "]"}], ",", 
+   RowBox[{"hi", "[", "2", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.754491340194934*^9, 3.755528389779519*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Array", "[", 
+  RowBox[{"hi", ",", "4"}], "]"}]], "Input"],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"hi", "[", "1", "]"}], ",", 
+   RowBox[{"hi", "[", "2", "]"}], ",", 
+   RowBox[{"hi", "[", "3", "]"}], ",", 
+   RowBox[{"hi", "[", "4", "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.7544918840265045`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Map", "[", 
+  RowBox[{"2", ",", 
+   RowBox[{"Array", "[", 
+    RowBox[{"hi", ",", "4"}], "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7544918915730324`*^9, 3.7544918966665545`*^9}, {
+  3.7544919403832936`*^9, 3.7544919494453707`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"2", "[", 
+    RowBox[{"hi", "[", "1", "]"}], "]"}], ",", 
+   RowBox[{"2", "[", 
+    RowBox[{"hi", "[", "2", "]"}], "]"}], ",", 
+   RowBox[{"2", "[", 
+    RowBox[{"hi", "[", "3", "]"}], "]"}], ",", 
+   RowBox[{"2", "[", 
+    RowBox[{"hi", "[", "4", "]"}], "]"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.7544919426019373`*^9, 3.7544919507578087`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"Array", "[", 
+   RowBox[{"hi", ",", "4"}], "]"}], "/.", 
+  RowBox[{"Thread", "[", 
+   RowBox[{
+    RowBox[{"Array", "[", 
+     RowBox[{"hi", ",", "4"}], "]"}], "\[Rule]", " ", "0."}], 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.754492033316511*^9, 3.7544920847985215`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], "}"}]], "Output",
+ CellChangeTimes->{{3.754492047862714*^9, 3.7544920854078608`*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Array", "[", 
+   RowBox[{"hi", ",", "4"}], "]"}], "=", "0."}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Get", "[", 
+   RowBox[{"FileNameJoin", "[", 
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"ParentDirectory", "[", 
+       RowBox[{"ParentDirectory", "[", 
+        RowBox[{"NotebookDirectory", "[", "]"}], "]"}], "]"}], ",", 
+      "\"\<Styles\>\"", ",", "\"\<styles.m\>\""}], "}"}], "]"}], "]"}], 
+  ";"}]}], "Input",
+ CellChangeTimes->{{3.7544921849289217`*^9, 3.7544921861632433`*^9}, {
+  3.7555300323536935`*^9, 3.7555300325939736`*^9}, {3.755530224977205*^9, 
+  3.7555302286295033`*^9}}],
+
+Cell[BoxData[
+ TemplateBox[{
+  "Set","write",
+   "\"Tag \\!\\(\\*RowBox[{\\\"Array\\\"}]\\) in \\!\\(\\*RowBox[{\\\"Array\\\
+\", \\\"[\\\", RowBox[{\\\"hi\\\", \\\",\\\", \\\"4\\\"}], \\\"]\\\"}]\\) is \
+Protected.\"",2,7,5,16866920637191504352,"Local"},
+  "MessageTemplate"]], "Message", "MSG",
+ CellChangeTimes->{
+  3.7544921866163397`*^9, 3.7555300334146643`*^9, 3.755530087369235*^9, 
+   3.7555302297004356`*^9, {3.7555303620266147`*^9, 3.7555303721053524`*^9}, 
+   3.7555393997729774`*^9, {3.755586014541123*^9, 3.7555860201139765`*^9}}],
+
+Cell[BoxData["0.`"], "Output",
+ CellChangeTimes->{
+  3.7544921866163397`*^9, 3.7555300334778337`*^9, 3.7555300874224424`*^9, 
+   3.755530229757846*^9, {3.7555303620949163`*^9, 3.755530372153106*^9}, 
+   3.755539399851098*^9, {3.7555860146050253`*^9, 3.755586020164639*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.754492205224864*^9, 3.7544922662169714`*^9}, {
+   3.7555285394591002`*^9, 3.755528558276*^9}, {3.7555287043518395`*^9, 
+   3.7555287051263514`*^9}, {3.7555293933228645`*^9, 3.75552944779164*^9}, 
+   3.755529762999714*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.7544922553737135`*^9, 3.75449226696693*^9}, 
+   3.755528402681439*^9, {3.755528542407381*^9, 3.7555285596816626`*^9}, 
+   3.755528709714753*^9, {3.7555294089406385`*^9, 3.75552944484978*^9}, 
+   3.7555297283004885`*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData["grid1"], "Input",
+ CellChangeTimes->{{3.7555291114330616`*^9, 3.755529118892705*^9}, {
+  3.7555291554802046`*^9, 3.7555291570397563`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], ",", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], ",", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{3.755529157567529*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"ClearAll", "[", 
+  RowBox[{"hi", ",", "grid1"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"compNumber", "=", "4"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"array1", "=", 
+   RowBox[{"Map", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+     RowBox[{"Array", "[", 
+      RowBox[{"hi", ",", 
+       RowBox[{"compNumber", "*", "2"}]}], "]"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"grid1", "=", 
+    RowBox[{"Partition", "[", 
+     RowBox[{
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"InputField", "[", 
+          RowBox[{
+           RowBox[{"Dynamic", "[", "#", "]"}], ",", 
+           RowBox[{"FieldHint", "\[Rule]", "\"\<Input\>\""}]}], "]"}], "&"}], 
+        ",", "array1"}], "]"}], ",", "2"}], "]"}]}], ";"}], 
+  "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"For", "[", 
+  RowBox[{
+   RowBox[{"k", "=", "1"}], ",", 
+   RowBox[{"k", "\[LessEqual]", " ", "compNumber"}], ",", 
+   RowBox[{"k", "++"}], ",", "\[IndentingNewLine]", 
+   RowBox[{
+    RowBox[{"grid1", "=", 
+     RowBox[{"Insert", "[", 
+      RowBox[{"grid1", ",", 
+       RowBox[{"\"\<Competitor \>\"", "<>", 
+        RowBox[{"ToString", "[", "k", "]"}]}], ",", 
+       RowBox[{"{", 
+        RowBox[{"{", 
+         RowBox[{"k", ",", "1"}], "}"}], "}"}]}], "]"}]}], ";"}]}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PrependTo", "[", 
+   RowBox[{"grid1", ",", 
+    RowBox[{"{", 
+     RowBox[{
+     "\"\<\>\"", ",", "\"\<Concentration / M\>\"", ",", "\"\<Ka / M-1\>\""}], 
+     "}"}]}], "]"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"Grid", "[", "grid1", "]"}]}], "Input",
+ CellChangeTimes->{{3.7555291717247024`*^9, 3.7555292299324617`*^9}, {
+   3.7555293356398106`*^9, 3.755529385370226*^9}, {3.7555294605106225`*^9, 
+   3.7555295706195555`*^9}, {3.755529604462827*^9, 3.755529714447175*^9}, {
+   3.755529755744983*^9, 3.7555297860273275`*^9}, 3.7555306464803233`*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"\"\>", "\<\"Concentration / M\"\>", "\<\"Ka / M-1\"\>"},
+    {"\<\"Competitor 1\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {"\<\"Competitor 2\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {"\<\"Competitor 3\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {"\<\"Competitor 4\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{{3.75552969566055*^9, 3.755529739114003*^9}, {
+  3.755529772234311*^9, 3.755529786933517*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Grid", "[", "grid1", "]"}]], "Input",
+ CellChangeTimes->{{3.7555292358678303`*^9, 3.755529239931631*^9}, {
+   3.7555295412767897`*^9, 3.755529554092757*^9}, 3.75552960749508*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\<\"Concentration / M\"\>", "\<\"Ka / M-1\"\>", ""},
+    {"\<\"Competitor 1\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {"\<\"Competitor 2\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {"\<\"Competitor 3\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]},
+    {"\<\"Competitor 4\"\>", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]}
+   },
+   AutoDelete->False,
+   GridBoxItemSize->{"Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}],
+  "Grid"]], "Output",
+ CellChangeTimes->{
+  3.7555292410808473`*^9, {3.755529544838157*^9, 3.7555295546339703`*^9}, 
+   3.7555296113864627`*^9, {3.7555297012564845`*^9, 3.755529741651799*^9}}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{" ", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", 
+    RowBox[{"If", "[", 
+     RowBox[{
+      RowBox[{"compNumber", "\[NotEqual]", " ", "0"}], ",", 
+      RowBox[{
+      "{", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+       "\[IndentingNewLine]", 
+       RowBox[{
+        RowBox[{"array1", "=", 
+         RowBox[{"Map", "[", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"(", 
+             RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+           RowBox[{"Array", "[", 
+            RowBox[{"hi", ",", 
+             RowBox[{"compNumber", "*", "2"}]}], "]"}]}], "]"}]}], ";", 
+        "\[IndentingNewLine]", 
+        RowBox[{"grid1", "=", 
+         RowBox[{"Partition", "[", 
+          RowBox[{
+           RowBox[{"Map", "[", 
+            RowBox[{
+             RowBox[{
+              RowBox[{"InputField", "[", 
+               RowBox[{
+                RowBox[{"Dynamic", "[", "#", "]"}], ",", 
+                RowBox[{"FieldHint", "\[Rule]", "\"\<Input\>\""}]}], "]"}], 
+              "&"}], ",", "array1"}], "]"}], ",", "2"}], "]"}]}], ";", 
+        "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        RowBox[{"For", "[", 
+         RowBox[{
+          RowBox[{"k", "=", "1"}], ",", 
+          RowBox[{"k", "\[LessEqual]", " ", "compNumber"}], ",", 
+          RowBox[{"k", "++"}], ",", 
+          RowBox[{
+           RowBox[{"grid1", "=", 
+            RowBox[{"Insert", "[", 
+             RowBox[{"grid1", ",", 
+              RowBox[{"\"\<Competitor \>\"", "<>", 
+               RowBox[{"ToString", "[", "k", "]"}]}], ",", 
+              RowBox[{"{", 
+               RowBox[{"{", 
+                RowBox[{"k", ",", "1"}], "}"}], "}"}]}], "]"}]}], ";"}]}], 
+         "]"}], ";", "\[IndentingNewLine]", 
+        RowBox[{"PrependTo", "[", 
+         RowBox[{"grid1", ",", 
+          RowBox[{"{", 
+           RowBox[{
+           "\"\<\>\"", ",", "\"\<Concentration / M\>\"", ",", 
+            "\"\<Ka / M-1\>\""}], "}"}]}], "]"}], ";", "\[IndentingNewLine]", 
+        " ", 
+        RowBox[{
+         RowBox[{"Grid", "[", 
+          RowBox[{"grid1", ",", " ", 
+           RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], "//", 
+         "panelstyling"}]}], "}"}], ",", "\"\<\>\""}], "]"}], "]"}], 
+   "\[IndentingNewLine]"}]}]], "Input",
+ CellChangeTimes->{{3.7555299776598735`*^9, 3.7555299981670485`*^9}, {
+  3.7555303887191706`*^9, 3.7555304299486523`*^9}, {3.7555305468341017`*^9, 
+  3.75553062390133*^9}, {3.7555306543289223`*^9, 3.7555306836806774`*^9}, {
+  3.7555307189317217`*^9, 3.7555307593406477`*^9}, {3.755531371042815*^9, 
+  3.7555314276817813`*^9}, {3.755539345141673*^9, 3.7555394161606216`*^9}, {
+  3.7555400160208807`*^9, 3.755540032359767*^9}, {3.755540124531685*^9, 
+  3.7555401281096387`*^9}, {3.755540186410753*^9, 3.755540210886789*^9}, {
+  3.755540262612232*^9, 3.755540293480418*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   If[$CellContext`compNumber != 0, {$CellContext`array1 = Map[(# = 0.)& , 
+        Array[$CellContext`hi, $CellContext`compNumber 
+         2]]; $CellContext`grid1 = Partition[
+        Map[InputField[
+          Dynamic[#], FieldHint -> "Input"]& , $CellContext`array1], 2]; 
+     For[$CellContext`k = 1, $CellContext`k <= $CellContext`compNumber, 
+       Increment[$CellContext`k], $CellContext`grid1 = 
+        Insert[$CellContext`grid1, 
+          StringJoin["Competitor ", 
+           ToString[$CellContext`k]], {{$CellContext`k, 1}}]; Null]; 
+     PrependTo[$CellContext`grid1, {"", "Concentration / M", "Ka / M-1"}]; 
+     styles`panelstyling[
+       Grid[$CellContext`grid1, Alignment -> Center]]}, ""], StandardForm],
+  ImageSizeCache->{824., {50., 56.}}]], "Output",
+ CellChangeTimes->{
+  3.755530239041738*^9, {3.755530397139617*^9, 3.7555304306606607`*^9}, {
+   3.755530548281165*^9, 3.7555305528806996`*^9}, {3.7555307436873455`*^9, 
+   3.7555307597542086`*^9}, {3.7555313774777803`*^9, 3.755531428295766*^9}, 
+   3.7555393549249086`*^9, {3.7555393896758184`*^9, 3.7555394167699566`*^9}, {
+   3.7555400203331847`*^9, 3.7555400330643487`*^9}, 3.7555401289221015`*^9, {
+   3.7555401928792048`*^9, 3.7555402012318764`*^9}, 3.755540271739719*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.75553045775296*^9, 3.755530461394187*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"PopupMenu", "[", 
+  RowBox[{
+   RowBox[{"Dynamic", "[", "compNumber", "]"}], ",", 
+   RowBox[{"Range", "[", "8", "]"}]}], "]"}]], "Input",
+ CellChangeTimes->{{3.7555304928525505`*^9, 3.7555305322422347`*^9}}],
+
+Cell[BoxData[
+ PopupMenuBox[Dynamic[$CellContext`compNumber], {1->"1", 2->"2", 3->"3", 4->
+  "4", 5->"5", 6->"6", 7->"7", 8->"8"}]], "Output",
+ CellChangeTimes->{3.755530534553878*^9, 3.7555393605652685`*^9, 
+  3.755586025839365*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"competitionFunction", "[", "comp_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"sol", ",", "array", ",", "hi", ",", "i", ",", "string"}], "}"}],
+     ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"ClearAll", "[", "hi", "]"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"array", "=", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+        RowBox[{"Array", "[", 
+         RowBox[{"hi", ",", 
+          RowBox[{"comp", "*", "2"}]}], "]"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"sol", "=", 
+      RowBox[{"Partition", "[", 
+       RowBox[{
+        RowBox[{"Map", "[", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"InputField", "[", 
+            RowBox[{
+             RowBox[{"Dynamic", "[", "#", "]"}], ",", 
+             RowBox[{"FieldHint", "\[Rule]", "\"\<Input\>\""}]}], "]"}], 
+           "&"}], ",", "array"}], "]"}], ",", "2"}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{"For", "[", 
+       RowBox[{
+        RowBox[{"i", "=", "1"}], ",", 
+        RowBox[{"i", "\[LessEqual]", " ", "comp"}], ",", 
+        RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"string", "=", 
+          RowBox[{"\"\<Competitor \>\"", "<>", 
+           RowBox[{"ToString", "[", "i", "]"}]}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"sol", "=", 
+          RowBox[{"Insert", "[", 
+           RowBox[{"sol", ",", "string", ",", 
+            RowBox[{"{", 
+             RowBox[{"{", 
+              RowBox[{"i", ",", "1"}], "}"}], "}"}]}], "]"}]}], ";"}]}], 
+       "]"}], "\[IndentingNewLine]", 
+      RowBox[{"PrependTo", "[", 
+       RowBox[{"sol", ",", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<\>\"", ",", "\"\<Concentration / M\>\"", ",", 
+          "\"\<\!\(\*SubscriptBox[\(K\), \(a\)]\) / \
+\!\(\*SuperscriptBox[\(M\), \(-1\)]\)\>\""}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "sol", "]"}]}]}], "]"}]}]], "Input",
+ CellChangeTimes->{{3.755530769571453*^9, 3.7555309921540923`*^9}, 
+   3.75553105282395*^9, {3.75553109679213*^9, 3.755531114274161*^9}, {
+   3.7555311599478407`*^9, 3.7555312112901936`*^9}, {3.7555392446651864`*^9, 
+   3.7555392522828426`*^9}, {3.7555392857489014`*^9, 3.755539286077016*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"grid2", "=", 
+  RowBox[{"competitionFunction", "[", "1", "]"}]}]], "Input",
+ CellChangeTimes->{{3.7555310006980624`*^9, 3.755531018447377*^9}, {
+   3.7555311376516385`*^9, 3.7555311497556543`*^9}, 3.7555392610484886`*^9, {
+   3.7555393048154087`*^9, 3.7555393233315306`*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"\<\"\"\>", ",", "\<\"Concentration / M\"\>", 
+     ",", "\<\"\\!\\(\\*SubscriptBox[\\(K\\), \\(a\\)]\\) / \
+\\!\\(\\*SuperscriptBox[\\(M\\), \\(-1\\)]\\)\"\>"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"\<\"Competitor 1\"\>", ",", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"], ",", 
+     InputFieldBox[Dynamic[0.],
+      FieldHint->"Input"]}], "}"}]}], "}"}]], "Output",
+ CellChangeTimes->{{3.7555310495538564`*^9, 3.7555310562604656`*^9}, {
+   3.755531119767268*^9, 3.7555311500605946`*^9}, {3.75553119644728*^9, 
+   3.7555312146209025`*^9}, 3.755539129987542*^9, {3.7555392557922015`*^9, 
+   3.755539324061117*^9}}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"fun", "[", "n_", "]"}], ":=", 
+  RowBox[{"Module", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{"array", ",", "hi"}], "}"}], ",", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"array", "=", 
+      RowBox[{"Map", "[", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+        RowBox[{"Array", "[", 
+         RowBox[{"hi", ",", 
+          RowBox[{"n", "*", "2"}]}], "]"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"Return", "[", "array", "]"}]}]}], "\[IndentingNewLine]", 
+   "]"}]}]], "Input",
+ CellChangeTimes->{{3.7555312411464148`*^9, 3.755531281281312*^9}, {
+  3.7555392141638107`*^9, 3.755539217828*^9}}],
+
+Cell[BoxData[
+ RowBox[{"fun", "[", "2", "]"}]], "Input",
+ CellChangeTimes->{{3.7555312854199066`*^9, 3.755531300860109*^9}, 
+   3.75553919565711*^9, 3.7555392344155436`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"{", 
+   RowBox[{"0.`", ",", "0.`", ",", "0.`", ",", "0.`"}], "}"}], 
+  "\[IndentingNewLine]"}]], "Input",
+ CellChangeTimes->{{3.7555857033341007`*^9, 3.755585703340232*^9}}],
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"stoich", "=", "0"}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"stoichiometrybutton", "=", 
+   RowBox[{"MouseAppearance", "[", 
+    RowBox[{
+     RowBox[{"Button", "[", 
+      RowBox[{
+       RowBox[{"stylesButtonGenericStyle", "[", 
+        RowBox[{
+        "\"\<Add competitors\>\"", ",", 
+         "\"\<Select the number of competitors\>\""}], "]"}], ",", 
+       RowBox[{
+       "{", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "\[IndentingNewLine]", 
+        RowBox[{
+         RowBox[{"If", "[", 
+          RowBox[{
+           RowBox[{"stoich", "==", "1"}], ",", 
+           RowBox[{"stoich", "=", "0"}], ",", 
+           RowBox[{"stoich", "=", "1"}]}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"ClearAll", "[", 
+          RowBox[{"hi", ",", "grid1"}], "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"array1", "=", 
+          RowBox[{"Map", "[", 
+           RowBox[{
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"#", "=", "0."}], ")"}], "&"}], ",", 
+            RowBox[{"Array", "[", 
+             RowBox[{"hi", ",", 
+              RowBox[{"compNumber", "*", "2"}]}], "]"}]}], "]"}]}], ";", 
+         "\[IndentingNewLine]", 
+         RowBox[{"grid1", "=", 
+          RowBox[{"Partition", "[", 
+           RowBox[{
+            RowBox[{"Map", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{"InputField", "[", 
+                RowBox[{
+                 RowBox[{"Dynamic", "[", "#", "]"}], ",", 
+                 RowBox[{"FieldHint", "\[Rule]", "\"\<Input\>\""}]}], "]"}], 
+               "&"}], ",", "array1"}], "]"}], ",", "2"}], "]"}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"For", "[", 
+          RowBox[{
+           RowBox[{"k", "=", "1"}], ",", 
+           RowBox[{"k", "\[LessEqual]", " ", "compNumber"}], ",", 
+           RowBox[{"k", "++"}], ",", 
+           RowBox[{
+            RowBox[{"grid1", "=", 
+             RowBox[{"Insert", "[", 
+              RowBox[{"grid1", ",", 
+               RowBox[{"\"\<Competitor \>\"", "<>", 
+                RowBox[{"ToString", "[", "k", "]"}]}], ",", 
+               RowBox[{"{", 
+                RowBox[{"{", 
+                 RowBox[{"k", ",", "1"}], "}"}], "}"}]}], "]"}]}], ";"}]}], 
+          "]"}], ";", "\[IndentingNewLine]", 
+         RowBox[{"PrependTo", "[", 
+          RowBox[{"grid1", ",", 
+           RowBox[{"{", 
+            RowBox[{
+            "\"\<\>\"", ",", "\"\<Concentration / M\>\"", ",", 
+             "\"\<Ka / M-1\>\""}], "}"}]}], "]"}], ";", "\[IndentingNewLine]",
+          " ", 
+         RowBox[{
+          RowBox[{"Grid", "[", 
+           RowBox[{"grid1", ",", " ", 
+            RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], "//", 
+          "panelstyling"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", 
+        "}"}], ",", 
+       RowBox[{"Appearance", "\[Rule]", "None"}]}], "]"}], ",", 
+     "\"\<LinkHand\>\""}], "]"}]}], ";"}]}], "Input",
+ CellChangeTimes->{{3.755585648496206*^9, 3.7555857589002705`*^9}, {
+  3.755585846165347*^9, 3.7555858913380527`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Dynamic", "[", "hi", "]"}]], "Input",
+ CellChangeTimes->{{3.7555857214167466`*^9, 3.7555857919957833`*^9}, {
+  3.7555859352931848`*^9, 3.7555859371199236`*^9}, {3.7555861050410976`*^9, 
+  3.7555861051191187`*^9}}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[$CellContext`hi, StandardForm],
+  ImageSizeCache->{14., {0., 9.}}]], "Output",
+ CellChangeTimes->{{3.755585722825392*^9, 3.755585767824854*^9}, 
+   3.7555858075421305`*^9, 3.755585937964288*^9, 3.75558603799223*^9, 
+   3.755586105838314*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"Print", "[", "stoichiometrybutton", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Dynamic", "[", 
+  RowBox[{"If", "[", 
+   RowBox[{
+    RowBox[{"compNumber", "\[NotEqual]", " ", "0"}], ",", " ", 
+    RowBox[{
+     RowBox[{"Grid", "[", 
+      RowBox[{"grid1", ",", " ", 
+       RowBox[{"Alignment", "\[Rule]", "Center"}]}], "]"}], "//", 
+     "panelstyling"}], ",", "\"\<\>\""}], "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.7555857959632645`*^9, 3.755585803932234*^9}, {
+  3.7555858352456665`*^9, 3.7555858365136175`*^9}, {3.755585983808437*^9, 
+  3.7555859977599316`*^9}}],
+
+Cell[BoxData[
+ TagBox[
+  ButtonBox[
+   TagBox[
+    TooltipBox[
+     FrameBox[
+      StyleBox["\<\"Add competitors\"\>", "Section",
+       StripOnInput->False,
+       FontSize->18],
+      Background->GrayLevel[0.85],
+      FrameStyle->Directive[
+        GrayLevel[0.85], 12],
+      RoundingRadius->15,
+      StripOnInput->False],
+     "\"Select the number of competitors\"",
+     TooltipStyle->"TextStyling"],
+    Annotation[#, "Select the number of competitors", "Tooltip"]& ],
+   Appearance->None,
+   ButtonFunction:>{
+    If[$CellContext`stoich == 1, $CellContext`stoich = 0, $CellContext`stoich = 
+       1]; ClearAll[$CellContext`hi, $CellContext`grid1]; $CellContext`array1 = 
+      Map[(# = 0.)& , 
+        Array[$CellContext`hi, $CellContext`compNumber 
+         2]]; $CellContext`grid1 = Partition[
+        Map[InputField[
+          Dynamic[#], FieldHint -> "Input"]& , $CellContext`array1], 2]; 
+     For[$CellContext`k = 1, $CellContext`k <= $CellContext`compNumber, 
+       Increment[$CellContext`k], $CellContext`grid1 = 
+        Insert[$CellContext`grid1, 
+          StringJoin["Competitor ", 
+           ToString[$CellContext`k]], {{$CellContext`k, 1}}]; Null]; 
+     PrependTo[$CellContext`grid1, {"", "Concentration / M", "Ka / M-1"}]; 
+     styles`panelstyling[
+       Grid[$CellContext`grid1, Alignment -> Center]]},
+   Evaluator->Automatic,
+   Method->"Preemptive"],
+  MouseAppearanceTag["LinkHand"]]], "Print",
+ CellChangeTimes->{3.755585837277247*^9, 3.7555860016349273`*^9, 
+  3.7555860542194986`*^9}],
+
+Cell[BoxData[
+ DynamicBox[ToBoxes[
+   If[$CellContext`compNumber != 0, 
+    styles`panelstyling[
+     Grid[$CellContext`grid1, Alignment -> Center]], ""], StandardForm],
+  ImageSizeCache->{802., {50., 56.}}]], "Output",
+ CellChangeTimes->{3.755586001644949*^9, 3.755586054223554*^9}]
+}, Open  ]]
+},
+WindowSize->{1366, 685},
+WindowMargins->{{-8, Automatic}, {Automatic, -8}},
+FrontEndVersion->"11.0 for Microsoft Windows (64-bit) (September 21, 2016)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[CellGroupData[{
+Cell[580, 22, 329, 9, 47, "Input"],
+Cell[912, 33, 307, 8, 63, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1256, 46, 115, 2, 30, "Input"],
+Cell[1374, 50, 96, 1, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[1507, 56, 266, 5, 47, "Input"],
+Cell[1776, 63, 233, 4, 36, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[2046, 72, 1694, 37, 216, "Input"],
+Cell[3743, 111, 533, 10, 23, "Message"],
+Cell[4279, 123, 626, 11, 30, "Message"],
+Cell[4908, 136, 628, 11, 30, "Message"],
+Cell[5539, 149, 471, 9, 21, "Message"],
+Cell[6013, 160, 474, 9, 21, "Message"],
+Cell[6490, 171, 968, 18, 41, "Output"],
+Cell[7461, 191, 533, 10, 23, "Message"],
+Cell[7997, 203, 374, 8, 21, "Message"],
+Cell[8374, 213, 534, 10, 23, "Message"],
+Cell[8911, 225, 820, 13, 30, "Output"],
+Cell[9734, 240, 628, 11, 30, "Message"],
+Cell[10365, 253, 474, 9, 21, "Message"],
+Cell[10842, 264, 1003, 19, 41, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[11882, 288, 309, 6, 47, "Input"],
+Cell[12194, 296, 229, 7, 30, "Output"]
+}, Open  ]],
+Cell[12438, 306, 154, 3, 47, "Input"],
+Cell[CellGroupData[{
+Cell[12617, 313, 348, 8, 47, "Input"],
+Cell[12968, 323, 252, 6, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13257, 334, 152, 3, 47, "Input"],
+Cell[13412, 339, 197, 5, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[13646, 349, 82, 2, 47, "Input"],
+Cell[13731, 353, 257, 7, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14025, 365, 261, 6, 47, "Input"],
+Cell[14289, 373, 403, 11, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[14729, 389, 309, 9, 47, "Input"],
+Cell[15041, 400, 169, 3, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[15247, 408, 635, 16, 84, "Input"],
+Cell[15885, 426, 542, 10, 23, "Message"],
+Cell[16430, 438, 273, 4, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[16740, 447, 270, 4, 30, "Input"],
+Cell[17013, 453, 902, 29, 116, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[17952, 487, 152, 2, 30, "Input"],
+Cell[18107, 491, 433, 15, 42, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[18577, 511, 2059, 56, 326, "Input"],
+Cell[20639, 569, 937, 28, 133, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[21613, 602, 202, 3, 47, "Input"],
+Cell[21818, 607, 986, 29, 133, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22841, 641, 2844, 68, 310, "Input"],
+Cell[25688, 711, 1289, 22, 123, "Output"]
+}, Open  ]],
+Cell[26992, 736, 91, 1, 30, "Input"],
+Cell[CellGroupData[{
+Cell[27108, 741, 232, 5, 47, "Input"],
+Cell[27343, 748, 233, 4, 43, "Output"]
+}, Open  ]],
+Cell[27591, 755, 2436, 62, 355, "Input"],
+Cell[CellGroupData[{
+Cell[30052, 821, 299, 5, 30, "Input"],
+Cell[30354, 828, 703, 16, 42, "Output"]
+}, Open  ]],
+Cell[31072, 847, 732, 21, 142, "Input"],
+Cell[31807, 870, 173, 3, 30, "Input"],
+Cell[31983, 875, 208, 5, 50, InheritFromParent],
+Cell[32194, 882, 3121, 77, 438, "Input"],
+Cell[CellGroupData[{
+Cell[35340, 963, 237, 4, 47, "Input"],
+Cell[35580, 969, 275, 5, 30, "Output"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[35892, 979, 595, 13, 84, "Input"],
+Cell[36490, 994, 1523, 38, 49, "Print"],
+Cell[38016, 1034, 283, 6, 123, "Output"]
+}, Open  ]]
+}
+]
+*)
+

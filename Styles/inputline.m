@@ -41,12 +41,12 @@ ilinputfield[ftype_, fname_, fvar_] :=
       },
      "kin",
      {Style[
-        "\!\(\*SubscriptBox[\(k\), \(1\)]\)(" <> fname <> ") =", Bold, FontSize -> 16 , TextAlignment -> Right],
+        "\!\(\*SubscriptBox[\(k\), \(in\)]\)(" <> fname <> ") =", Bold, FontSize -> 16 , TextAlignment -> Right],
          InputField[Dynamic[fvar], FieldSize -> 8],
          "\!\(\*SuperscriptBox[\(M\), \(-1\)]\) \ \!\(\*SuperscriptBox[\(s\), \(-1\)]\)"
       },
      "kout",
-      {Style["\!\(\*SubscriptBox[\(k\), \(-1\)]\)(" <> fname <> ") =", Bold, FontSize -> 16 , TextAlignment -> Right],
+      {Style["\!\(\*SubscriptBox[\(k\), \(out\)]\)(" <> fname <> ") =", Bold, FontSize -> 16 , TextAlignment -> Right],
       InputField[Dynamic[fvar, None], FieldSize -> 8, Background -> LightGray],
       "\!\(\*SuperscriptBox[\(s\), \(-1\)]\)"
       },

@@ -22,7 +22,7 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 
 1. click: **Launch Application**
 2. Choose a program of the suite (click on it)
-3. click: Launch Application in the open GUI
+3. click: **Launch Application** in the opened GUI
 4. click: **Simulate/Initialize**
 
 ![](get_started.gif)
@@ -30,12 +30,16 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 ### Simulate and Export data (csv format)
 
 1. Fill in the parameters of interest
-2. click: **Simulate**; If dynamic evaluation is enable, the simulation is carried out immediately (you don't need to click)
+2. click: **Simulate**
 3. click: **Generate saveable Data**
 4. click: save data
 5. Choose a directory to Save
+#### Simulate a Direct-Binding Assay
 
-![](simulate_save.gif)
+![](SimulationkinDBA.gif)
+#### Simulate a Competitive-Binding Assay
+
+![](SimulationkinCBA.gif)
 
 ### Import raw data (txt) and fit to a model
 

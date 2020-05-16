@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    393878,       6730]
-NotebookOptionsPosition[    392747,       6695]
-NotebookOutlinePosition[    393472,       6721]
-CellTagsIndexPosition[    393397,       6716]
+NotebookDataLength[    393870,       6728]
+NotebookOptionsPosition[    392739,       6693]
+NotebookOutlinePosition[    393464,       6719]
+CellTagsIndexPosition[    393389,       6714]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -6164,7 +6164,7 @@ Cell[BoxData[
       RowBox[{"{", 
        RowBox[{
         RowBox[{"NotebookDirectory", "[", "]"}], ",", "\"\<Simulation\>\"", 
-        ",", "\"\<Sim-thermoHG.nb\>\""}], "}"}], "]"}]}], ";"}], "\n", 
+        ",", "\"\<Sim-kineticsDBA.nb\>\""}], "}"}], "]"}]}], ";"}], "\n", 
    RowBox[{
     RowBox[{"kinHGFitpath", "=", 
      RowBox[{"FileNameJoin", "[", 
@@ -6180,14 +6180,14 @@ Cell[BoxData[
       RowBox[{
       "\"\<\!\(\*SuperscriptBox[StyleBox[RowBox[{StyleBox[\"kin\",FontSlant->\
 \"Italic\"], \"DBA\"}]], \"Sim\"]\)\>\"", ",", "kinHGSimpath", ",", 
-       "\"\<Simulation for a Direct-Binding Assay (DBA)\>\"", ",", "0"}], 
+       "\"\<Simulation for a Direct-Binding Assay (DBA)\>\"", ",", "1"}], 
       "]"}]}], ";"}], "\n", "\n", 
    RowBox[{
     RowBox[{"kineticHGFitbutton", "=", 
      RowBox[{"createButton", "[", 
       RowBox[{
-      "\"\<\!\(\*SuperscriptBox[StyleBox[RowBox[{StyleBox[\"kin\",FontSlant->\
-\"Italic\"], \"DBA\"}]], \"Fit\"]\)\>\"", ",", "kinHGFitpath", ",", 
+      "\"\<\!\(\*StyleBox[\"kin\",FontSlant->\"Italic\"]\)\!\(\*\
+SuperscriptBox[\(DBA\), \(Fit\)]\)\>\"", ",", "kinHGFitpath", ",", 
        "\"\<Fitting for a Direct-Binding Assay (DBA)\>\"", ",", "1"}], 
       "]"}]}], ";"}], "\n", "\n", "\n", 
    RowBox[{"(*", "inputlines", "*)"}], "\n", "  ", "\n", "   ", "\n", "   ", 
@@ -6358,7 +6358,6 @@ SuperscriptBox[\(GDA\), \(Fit\)]\)\>\"", ",", "kinHDADAFitpath", ",",
           RowBox[{
            RowBox[{"Style", "[", 
             RowBox[{
-            
             "\"\<HG + D \!\(\*UnderoverscriptBox[\(\[Equilibrium]\), \
 SubsuperscriptBox[\(k\), \(in\), \(HG\)], SubsuperscriptBox[\(k\), \(out\), \
 \(HG\)]]\) H + D + G \!\(\*UnderoverscriptBox[\(\[Equilibrium]\), \
@@ -6398,8 +6397,8 @@ SubsuperscriptBox[\(k\), \(out\), \(HD\)], SubsuperscriptBox[\(k\), \(in\), \
     RowBox[{"First", "[", "type", "]"}], "]"}]}]}]], "Input",
  CellOpen->False,
  CellChangeTimes->{{3.7981316993389587`*^9, 3.7981316993419557`*^9}, {
-  3.798131790872303*^9, 3.7981321597954035`*^9}, {3.7981322035547323`*^9, 
-  3.7981322770024614`*^9}},
+   3.798131790872303*^9, 3.7981321597954035`*^9}, {3.7981322035547323`*^9, 
+   3.7981322770024614`*^9}, 3.798218391637209*^9, 3.7982184552129436`*^9},
  CellTags->"launchcell",
  CellLabel->"In[25]:=",ExpressionUUID->"86bfce19-86c4-4a83-b7cc-dd8306cc56e1"],
 
@@ -6413,14 +6412,14 @@ Cell[BoxData[
             FormBox[
              StyleBox["\<\"Model\"\>", "Section",
               StripOnInput->False], TextForm]], "InlineText",ExpressionUUID->
-            "a7864c64-8b9f-4184-8bf1-397d07d23119"],
+            "e3c683c6-48eb-4402-9623-cce77a72e34c"],
            Text[
             Style["Model", "Section"]]], 
           InterpretationBox[Cell[BoxData[
             FormBox[
              StyleBox["\<\"Kinetics\"\>", "Section",
               StripOnInput->False], TextForm]], "InlineText",ExpressionUUID->
-            "b71516d1-dc46-4bbf-a58f-c47cc09bd179"],
+            "945ba31e-062b-4124-ac37-8f5587d74ffd"],
            Text[
             Style["Kinetics", "Section"]]]},
          {
@@ -6443,18 +6442,17 @@ StyleBox[\\\"kin\\\",FontSlant->\\\"Italic\\\"], \\\"DBA\\\"}]], \\\"Sim\\\"]\
                    StripOnInput->False,
                    FontSize->18],
                   Appearance->None,
-                  Background->GrayLevel[0.85],
                   
-                  ButtonFunction:>(kineticSimFit`Private`nb$13182 = 
+                  ButtonFunction:>(kineticSimFit`Private`nb$3835 = 
                    NotebookOpen[
                     "C:\\Users\\Stephan Sinn\\OneDrive\\Institute of \
-Nanotechnology\\Projects\\kineticSimFit\\Simulation\\Sim-thermoHG.nb"]),
-                  Enabled->False,
+Nanotechnology\\Projects\\kineticSimFit\\Simulation\\Sim-kineticsDBA.nb"]),
                   Evaluator->Automatic,
                   Method->"Preemptive"],
                  MouseAppearanceTag["LinkHand"]],
                 "\"Simulation for a Direct-Binding Assay (DBA)\"",
                 TooltipStyle->"TextStyling"],
+               
                Annotation[#, "Simulation for a Direct-Binding Assay (DBA)", 
                 "Tooltip"]& ], 
               TagBox[
@@ -6462,14 +6460,13 @@ Nanotechnology\\Projects\\kineticSimFit\\Simulation\\Sim-thermoHG.nb"]),
                 TagBox[
                  ButtonBox[
                   
-                  StyleBox["\<\"\\!\\(\\*SuperscriptBox[StyleBox[RowBox[{\
-StyleBox[\\\"kin\\\",FontSlant->\\\"Italic\\\"], \\\"DBA\\\"}]], \\\"Fit\\\"]\
-\\)\"\>", "Section",
+                  StyleBox["\<\"\\!\\(\\*StyleBox[\\\"kin\\\",FontSlant->\\\"\
+Italic\\\"]\\)\\!\\(\\*SuperscriptBox[\\(DBA\\), \\(Fit\\)]\\)\"\>", "Section",
                    StripOnInput->False,
                    FontSize->18],
                   Appearance->None,
                   
-                  ButtonFunction:>(kineticSimFit`Private`nb$13183 = 
+                  ButtonFunction:>(kineticSimFit`Private`nb$3836 = 
                    NotebookOpen[
                     "C:\\Users\\Stephan Sinn\\OneDrive\\Institute of \
 Nanotechnology\\Projects\\kineticSimFit\\Fitting\\Fitting-kinHD-fitConc_kequ.\
@@ -6503,14 +6500,14 @@ nb"]),
             FormBox[
              StyleBox["\<\"Model\"\>", "Section",
               StripOnInput->False], TextForm]], "InlineText",ExpressionUUID->
-            "7b18a5e7-54c5-43b7-83bd-e0fb7f3cd6bb"],
+            "10221124-d030-4b1f-8b60-4739ddcca143"],
            Text[
             Style["Model", "Section"]]], 
           InterpretationBox[Cell[BoxData[
             FormBox[
              StyleBox["\<\"Kinetics\"\>", "Section",
               StripOnInput->False], TextForm]], "InlineText",ExpressionUUID->
-            "77217cd3-8af9-4008-9fe7-e8ad6ad313b0"],
+            "90ac93cf-89e9-4d5b-b0a8-090d6541ec4f"],
            Text[
             Style["Kinetics", "Section"]]]},
          {
@@ -6535,7 +6532,7 @@ Italic\\\"]\\)\\!\\(\\*SuperscriptBox[\\(IDA\\), \\(Sim\\)]\\)\"\>", "Section",
                    FontSize->18],
                   Appearance->None,
                   
-                  ButtonFunction:>(kineticSimFit`Private`nb$13186 = 
+                  ButtonFunction:>(kineticSimFit`Private`nb$3839 = 
                    NotebookOpen[
                     "C:\\Users\\Stephan Sinn\\OneDrive\\Institute of \
 Nanotechnology\\Projects\\kineticSimFit\\Simulation\\Sim-kineticsComp.nb"]),
@@ -6559,7 +6556,7 @@ Italic\\\"]\\)\\!\\(\\*SuperscriptBox[\\(IDA\\), \\(Fit\\)]\\)\"\>", "Section",
                    FontSize->18],
                   Appearance->None,
                   
-                  ButtonFunction:>(kineticSimFit`Private`nb$13187 = 
+                  ButtonFunction:>(kineticSimFit`Private`nb$3840 = 
                    NotebookOpen[
                     "C:\\Users\\Stephan Sinn\\OneDrive\\Institute of \
 Nanotechnology\\Projects\\kineticSimFit\\Fitting\\Fit-kineticsIDA.nb"]),
@@ -6592,14 +6589,14 @@ Nanotechnology\\Projects\\kineticSimFit\\Fitting\\Fit-kineticsIDA.nb"]),
             FormBox[
              StyleBox["\<\"Model\"\>", "Section",
               StripOnInput->False], TextForm]], "InlineText",ExpressionUUID->
-            "89153b1e-af40-4456-b86e-f9d0286e0edf"],
+            "674b3b86-7910-4d94-89e5-a7045367cc85"],
            Text[
             Style["Model", "Section"]]], 
           InterpretationBox[Cell[BoxData[
             FormBox[
              StyleBox["\<\"Kinetics\"\>", "Section",
               StripOnInput->False], TextForm]], "InlineText",ExpressionUUID->
-            "ce3bcd6a-f770-48ba-9014-2bfcfd691c92"],
+            "e45bbaa5-37c7-4f09-9f03-e29a1d9daace"],
            Text[
             Style["Kinetics", "Section"]]]},
          {
@@ -6624,7 +6621,7 @@ Italic\\\"]\\)\\!\\(\\*SuperscriptBox[\\(GDA\\), \\(Sim\\)]\\)\"\>", "Section",
                    FontSize->18],
                   Appearance->None,
                   
-                  ButtonFunction:>(kineticSimFit`Private`nb$13190 = 
+                  ButtonFunction:>(kineticSimFit`Private`nb$3843 = 
                    NotebookOpen[
                     "C:\\Users\\Stephan Sinn\\OneDrive\\Institute of \
 Nanotechnology\\Projects\\kineticSimFit\\Simulation\\Sim-kineticsComp.nb"]),
@@ -6648,7 +6645,7 @@ Italic\\\"]\\)\\!\\(\\*SuperscriptBox[\\(GDA\\), \\(Fit\\)]\\)\"\>", "Section",
                    FontSize->18],
                   Appearance->None,
                   
-                  ButtonFunction:>(kineticSimFit`Private`nb$13191 = 
+                  ButtonFunction:>(kineticSimFit`Private`nb$3844 = 
                    NotebookOpen[
                     "C:\\Users\\Stephan Sinn\\OneDrive\\Institute of \
 Nanotechnology\\Projects\\kineticSimFit\\Fitting\\Fit-kineticsGDA.nb"]),
@@ -6685,12 +6682,13 @@ Nanotechnology\\Projects\\kineticSimFit\\Fitting\\Fit-kineticsGDA.nb"]),
    Column],
   Function[BoxForm`e$, 
    TableForm[BoxForm`e$]]]], "Output",
- CellChangeTimes->{3.7981317154499855`*^9, 3.79813217088809*^9, 
-  3.798132293202404*^9},
+ CellChangeTimes->{
+  3.7981317154499855`*^9, 3.79813217088809*^9, 3.798132293202404*^9, {
+   3.7982184586345925`*^9, 3.798218483580531*^9}},
  CellTags->"launchcell",
  CellLabel->
-  "Out[48]//TableForm=",ExpressionUUID->"c5f58835-8ba2-49af-8ce2-\
-2bdb324ceabe"]
+  "Out[48]//TableForm=",ExpressionUUID->"38943d07-9b04-446d-9ed6-\
+5b22f546d7f0"]
 }, Open  ]]
 },
 WindowSize->{1350, 709},
@@ -6706,16 +6704,16 @@ StyleDefinitions->"Default.nb"
 (*CellTagsOutline
 CellTagsIndex->{
  "launchcell"->{
-  Cell[369455, 6113, 11572, 290, 22, "Input",ExpressionUUID->"86bfce19-86c4-4a83-b7cc-dd8306cc56e1",
+  Cell[369455, 6113, 11596, 289, 22, "Input",ExpressionUUID->"86bfce19-86c4-4a83-b7cc-dd8306cc56e1",
    CellOpen->False,
    CellTags->"launchcell"],
-  Cell[381030, 6405, 11701, 287, 463, "Output",ExpressionUUID->"c5f58835-8ba2-49af-8ce2-2bdb324ceabe",
+  Cell[381054, 6404, 11669, 286, 463, "Output",ExpressionUUID->"38943d07-9b04-446d-9ed6-5b22f546d7f0",
    CellTags->"launchcell"]}
  }
 *)
 (*CellTagsIndex
 CellTagsIndex->{
- {"launchcell", 393093, 6707}
+ {"launchcell", 393085, 6705}
  }
 *)
 (*NotebookFileOutline
@@ -6726,10 +6724,10 @@ Cell[580, 22, 2072, 55, 22, "Input",ExpressionUUID->"3b7558d3-ba86-4c65-99ff-62b
 Cell[2655, 79, 366763, 6029, 143, "Output",ExpressionUUID->"f77a5781-b3a9-47c1-9df2-591b720392db"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[369455, 6113, 11572, 290, 22, "Input",ExpressionUUID->"86bfce19-86c4-4a83-b7cc-dd8306cc56e1",
+Cell[369455, 6113, 11596, 289, 22, "Input",ExpressionUUID->"86bfce19-86c4-4a83-b7cc-dd8306cc56e1",
  CellOpen->False,
  CellTags->"launchcell"],
-Cell[381030, 6405, 11701, 287, 463, "Output",ExpressionUUID->"c5f58835-8ba2-49af-8ce2-2bdb324ceabe",
+Cell[381054, 6404, 11669, 286, 463, "Output",ExpressionUUID->"38943d07-9b04-446d-9ed6-5b22f546d7f0",
  CellTags->"launchcell"]
 }, Open  ]]
 }

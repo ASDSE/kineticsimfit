@@ -34,9 +34,11 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 3. click: **Generate saveable Data**
 4. click: save data
 5. Choose a directory to Save
-#### Simulate a Direct-Binding Assay
+
+  #### Simulate a Direct-Binding Assay
 
 ![](SimulationkinDBA.gif)
+
 #### Simulate a Competitive-Binding Assay
 
 ![](SimulationkinCBA.gif)
@@ -63,4 +65,4 @@ Sample data for DBA, IDA and GDA is provided in **/Fitting/Samples** (<https://g
 
 Each sample data has a descriptive name and an info file with the same name providing a good guess. A fit leaving only the binding constant of interest unfixed will give the results presented in the paper.
 
-**Note**: The paper displays the mean of at least (often more repetitions) triplicates of titrations, whereas the sample data provided here is only one part of these repetitions. Thus, the obtained fitting results might differ slightly from the reported ones.
+**Note**: The paper displays the mean of at least (often more repetitions) triplicates of mixings, whereas the sample data provided here is only one part of these repetitions. Thus, the obtained fitting results might differ slightly from the reported ones.

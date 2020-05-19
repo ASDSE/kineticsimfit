@@ -35,11 +35,11 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 4. click: save data
 5. Choose a directory to Save
 
-  #### Simulate a Direct-Binding Assay (_kin_DBA)
+  #### Simulate a Direct-Binding Assay (*kin*DBA)
 
 ![](SimulationkinDBA.gif)
 
-#### Simulate a Competitive-Binding Assay (_kin_GDA or _kin_IDA)
+#### Simulate a Competitive-Binding Assay (*kin*GDA or *kin*IDA)
 
 ![](SimulationkinCBA.gif)
 
@@ -55,20 +55,21 @@ Each sample data has a descriptive name and an info file with the same name prov
 
 1. click: **Browse...** and choose file -> open
 2. select appropriate import parameters (JASCO option recognizes meta data header and footer of the brands output) and click: **Initialize**
-3. adjust the values for concentrations and binding constants (CBA) according to acquisition conditions
-4. give a good guess for the binding constant of interest and the signal parameters
+3. adjust the values for concentrations, binding and rate constants (CBA) according to acquisition conditions
+4. give a good guess for the rate constant of interest and the signal parameters
 5. adjust the **red simulated curve** as close as possible to the real data (**blue dots**)
 6. click: **Click here to Fit** (choose the fixation wisely)
 7. results are presented at the end and can be saved
+Tipp: You may trim the data to limit the fitting range.
 
-  #### Fit a Direct-Binding Assay (_kin_DBA)
+  #### Fit a Direct-Binding Assay (*kin*DBA)
 
 ![](FittingkinDBA_sampleData.gif)
 
-#### Fit a Guest-Displacement Assay (_kin_GDA)
+#### Fit a Guest-Displacement Assay (*kin*GDA)
 
 ![](FittingkinGDA_sampleData.gif)
 
 ### Save parameters
 
-In order to reduce frustration, one can save the filled parameters, to use them as a backup if the resulting fit with a lot of unfixed parameters is not well. **Note** The software package comes with pre-saved parameters for the provided real sample data with you can retrieve by simply clicking on **Load parameters**
+In order to reduce frustration, one can save the filled parameters, to use them as a backup if the resulting fit with a lot of unfixed parameters is not well. **Note** The software package comes with pre-saved parameters for the provided real sample data which you can retrieve by simply clicking on **Load parameters**. Saving your custom parameters will overwrite these values but you can view in conditions in the samples folder.

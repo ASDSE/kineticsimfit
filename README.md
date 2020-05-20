@@ -45,9 +45,9 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 
 ### Sample data
 
-Sample data for DBA, IDA and GDA is provided in **/Fitting/Samples** (<https://github.com/ASDSE/thermosimfit/tree/master/Fitting/Samples>), results can be found here [Citation to be added]
+Sample data for DBA, IDA and GDA is provided in **/Fitting/Samples** (<https://github.com/ASDSE/kineticsimfit/tree/master/Fitting/Samples>), results can be found here [Citation to be added]
 
-Each sample data has a descriptive name and an info file with the same name providing a good guess. A fit leaving only the binding constant of interest unfixed will give the results presented in the paper.
+Each sample data has a descriptive name and an info file with the same name providing a good guess. A fit leaving only the rate constant of interest unfixed will give the results presented in the paper.
 
 **Note**: The paper displays the mean of at least (often more repetitions) triplicates of mixings, whereas the sample data provided here is only one part of these repetitions. Thus, the obtained fitting results might differ slightly from the reported ones.
 

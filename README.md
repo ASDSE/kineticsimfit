@@ -25,7 +25,7 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 3. click: **Launch Application** in the opened GUI
 4. click: **Simulate/Initialize**
 
-![](get_started.gif)
+![](Assets/get_started.gif)
 
 ### Simulate and Export data (csv format)
 
@@ -37,11 +37,11 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 
   #### Simulate a Direct-Binding Assay (*kin*DBA)
 
-![](SimulationkinDBA.gif)
+![](Assets/SimulationkinDBA.gif)
 
 #### Simulate a Competitive-Binding Assay (*kin*GDA or *kin*IDA)
 
-![](SimulationkinCBA.gif)
+![](Assets/SimulationkinCBA.gif)
 
 ### Sample data
 
@@ -64,11 +64,11 @@ Tipp: You may trim the data to limit the fitting range.
 
   #### Fit a Direct-Binding Assay (*kin*DBA)
 
-![](FittingkinDBA_sampleData.gif)
+![](Assets/FittingkinDBA_sampleData.gif)
 
 #### Fit a Guest-Displacement Assay (*kin*GDA)
 
-![](FittingkinGDA_sampleData.gif)
+![](Assets/FittingkinGDA_sampleData.gif)
 
 ### Save parameters
 

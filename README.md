@@ -23,7 +23,7 @@ We are happy for any contributions. ADSDE is the perfect platform for further de
 1. click: **Launch Application**
 2. Choose a program of the suite (click on it)
 3. click: **Launch Application** in the opened GUI
-4. click: **Simulate/Initialize**
+4. click: **Simulate or Import/Update Data**
 
 ![](Assets/get_started.gif)
 
@@ -54,7 +54,7 @@ Each sample data has a descriptive name and an info file with the same name prov
 ### Import raw data (txt) and fit to a model
 
 1. click: **Browse...** and choose file -> open
-2. select appropriate import parameters (JASCO option recognizes meta data header and footer of the brands output) and click: **Initialize**
+2. select appropriate import parameters (JASCO option recognizes meta data header and footer of the brands output) and click: **Import/Update Data**
 3. adjust the values for concentrations, binding and rate constants (CBA) according to acquisition conditions
 4. give a good guess for the rate constant of interest and the signal parameters
 5. adjust the **red simulated curve** as close as possible to the real data (**blue dots**)

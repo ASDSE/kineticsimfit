@@ -49,12 +49,12 @@ Sample data for DBA, IDA and GDA is provided in **/Fitting/Samples** (<https://g
 
 Each sample data has a descriptive name and an info file with the same name providing a good guess. A fit leaving only the rate constant of interest unfixed will give the results presented in the paper.
 
-Four data samples are provided for kinDBA, kinIDA, kinGDA and kinGDA/kinGDA<sup>PFO</sup> besides simulated sample datasets. All is given in self-describtive filenames. The files need to be imported before anything can operate. The appropriate input values are either pre-loaded from the application, can be load with **Load parameters** or provided as info image. After filling the inputs typically it is enough to do:
+Four data samples are provided for kinDBA, kinIDA, kinGDA and kinGDA/kinGDA<sup>PFO</sup> besides simulated sample datasets. All is given in self-descriptive filenames. The files need to be imported before anything can operate. The appropriate input values are either pre-loaded from the application, can be loaded with **Load parameters** or provided as info image. After filling the inputs typically it is enough to do:
 1. adjust the time span
 2. **Simulate**
 3.  unfixing k<sub>in</sub>(HG), Signal-0 and Signal-HD
 4. **Fit the data**
-5. Note: Click **Simlate** again, since some signal parameters are not always automatically updated 
+5. Note: Click **Simulate** again, since some signal parameters are not always automatically updated
 
 **Note**: The paper displays the mean of at least (often more repetitions) triplicates of mixings, whereas the sample data provided here is only one part of these repetitions. Thus, the obtained fitting results might differ slightly from the reported ones.
 
@@ -67,7 +67,8 @@ Four data samples are provided for kinDBA, kinIDA, kinGDA and kinGDA/kinGDA<sup>
 5. adjust the **red simulated curve** as close as possible to the real data (**blue dots**)
 6. click: **Click here to Fit** (choose the fixation wisely)
 7. results are presented at the end and can be saved
-Tipp: You may trim the data to limit the fitting range.
+
+Tip: You may trim the data to limit the fitting range.
 
   #### Fit a Direct-Binding Assay (*kin*DBA)
 

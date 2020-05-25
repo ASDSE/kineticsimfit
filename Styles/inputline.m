@@ -61,7 +61,12 @@ ilinputfield[ftype_, fname_, fvar_] :=
       "number"
       },
      "end",
-      {Style["\!\(\*SubscriptBox[\("<>fname<>"\), \(endpoint\)]\) =", Bold, FontSize -> 16 , TextAlignment -> Right],
+      {Style["\!\(\*SubscriptBox[\("<>fname<>"\), \(end point\)]\) =", Bold, FontSize -> 16 , TextAlignment -> Right],
+      InputField[Dynamic[fvar, None], FieldSize -> 8, Background -> LightGray],
+      "number"
+      },
+     "start",
+      {Style["\!\(\*SubscriptBox[\("<>fname<>"\), \(start point\)]\) =", Bold, FontSize -> 16 , TextAlignment -> Right],
       InputField[Dynamic[fvar, None], FieldSize -> 8, Background -> LightGray],
       "number"
       }
@@ -86,7 +91,8 @@ ilinfofield[ftype_, fname_, fvar_] :=
       "\!\(\*SubscriptBox[\(k\), \(out\)]\)", ""},
      "time",{Style[fname <>" time", FontSize -> 14 ], Dynamic[fvar*1000], "msec"},
      "step", {Style["stepsize =", FontSize -> 14 ],Dynamic[fvar], fname},
-     "end", {Style["endpoint =", FontSize -> 14 ], Dynamic[fvar], fname}
+     "end", {Style["end point =", FontSize -> 14 ], Dynamic[fvar], fname},
+     "start", {Style["start point =", FontSize -> 14 ], Dynamic[fvar], fname}
      ]; Return[after]];
 
 fitilheading := Block[{heading},

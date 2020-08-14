@@ -84,8 +84,8 @@ GDAStart[fkd_?NumericQ, fd0_?NumericQ, fh0_?NumericQ, fkga0_?NumericQ, fga0_?Num
 
 SBAStart[fkd_?NumericQ, fd0_?NumericQ, fh0_?NumericQ, fkga0_?NumericQ, fga0_?NumericQ] := SBAStart[fkd, fd0, fh0, fkga0, fga0] =
  Block[{h0c, d0c, g0c, hg0c, hd0c, initials, stepsize, sol},
-  hd0c = 0;
-  hg0c = 0;
+  hd0c = 1.*10^-15;
+  hg0c = 1.*10^-15;
   g0c = fga0;
 	h0c = fh0;
 	d0c = fd0;

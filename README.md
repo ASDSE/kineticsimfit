@@ -1,7 +1,9 @@
 # kineticSimFit
 
 GUI Simulation and fitting tools for kinetics of binding interactions, based on Mathematica.
+
 [![DOI](https://zenodo.org/badge/262844546.svg)](https://zenodo.org/badge/latestdoi/262844546)
+
 ## Prerequisites
 
 Download and install Mathematica (11/12+) <https://www.wolfram.com/mathematica/>
